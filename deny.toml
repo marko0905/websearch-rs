@@ -1,0 +1,58 @@
+# cargo-deny configuration — license policy gate.
+#
+# This crate ships as `MIT OR Apache-2.0` and must stay usable in commercial and
+# proprietary products. The license check below is an ALLOW-LIST of permissive
+# licenses: any crate whose SPDX expression cannot be satisfied from this list
+# (e.g. anything GPL/AGPL/LGPL-only or otherwise non-commercial) fails CI.
+#
+# Policy:
+#   - Never add a copyleft / non-commercial / source-available dependency.
+#   - When a NEW permissive license legitimately enters the tree, add its SPDX
+#     id below with a one-line justification. Do NOT switch this to a deny-list
+#     or lower the confidence threshold to make a copyleft crate pass.
+#
+# Run locally:  cargo deny check licenses
+
+[graph]
+# Evaluate every feature so feature-gated dependencies are covered, matching the
+# `--all-features` build used elsewhere in CI.
+all-features = true
+
+[licenses]
+# SPDX ids that satisfy a crate's license expression. For `A OR B` expressions
+# cargo-deny passes if any listed id matches, so disjunctions like
+# `MIT OR Apache-2.0 OR LGPL-2.1-or-later` (e.g. `r-efi`) resolve to MIT/Apache
+# and never pull in the copyleft option.
+allow = [
+    "MIT",
+    "Apache-2.0",
+    "BSD-3-Clause",        # scraper, ego-tree (HTML/CSS scraping stack)
+    "ISC",                 # scraper, libloading
+    "Zlib",                # foldhash (Zlib-only)
+    "Unicode-3.0",         # ICU crates pulled via url/idna (Unicode license)
+    "MPL-2.0",             # cssparser/selectors (Servo). File-level weak copyleft;
+                           # permits commercial/proprietary use — not viral to our crate.
+    "CDLA-Permissive-2.0", # webpki-root-certs (the bundled CA root set)
+]
+# Require high confidence in license detection; do not lower this to force a
+# crate with an unclear/incompatible license to pass.
+confidence-threshold = 0.9
+exceptions = []
+
+[bans]
+# Permissive defaults; the license gate above is the load-bearing check here.
+multiple-versions = "allow"
+wildcards = "allow"
+
+[advisories]
+# Security-advisory checks (RustSec). Kept informational so a newly published
+# advisory can't spuriously fail the license-focused CI job; run on demand with
+# `cargo deny check advisories`.
+yanked = "warn"
+
+[sources]
+# All dependencies must come from crates.io. This also reinforces the decision
+# to stay on published crates (no git/patched transport).
+unknown-registry = "deny"
+unknown-git = "deny"
+allow-registry = ["https://github.com/rust-lang/crates.io-index"]

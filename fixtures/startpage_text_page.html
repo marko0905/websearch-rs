@@ -1,0 +1,32 @@
+<!--
+  Sanitized Startpage SERP fixture for parser tests.
+  Mirrors live markup: <div class="result"> with a title anchor
+  (data-testid="gl-title-link", direct destination href) wrapping an
+  <h2 class="wgl-title"> heading, plus a <p class="description"> snippet.
+  Emotion CSS hash classes and <style> blocks are dropped; no tokens or PII.
+-->
+<!DOCTYPE html>
+<html>
+  <body>
+    <div class="mainline-results">
+      <div class="result css-aaa">
+        <a class="result-title result-link css-bbb" href="https://rust-lang.org/" data-testid="gl-title-link">
+          <h2 class="wgl-title css-ccc">Rust Programming Language</h2>
+        </a>
+        <p class="description css-ddd">Rust is blazingly fast and memory-efficient with no runtime or garbage collector.</p>
+      </div>
+      <div class="result css-aaa">
+        <a class="result-title result-link css-bbb" href="https://en.wikipedia.org/wiki/Rust_(programming_language)" data-testid="gl-title-link">
+          <h2 class="wgl-title css-ccc">Rust (programming language) - Wikipedia</h2>
+        </a>
+        <p class="description css-ddd">Rust is a general-purpose programming language emphasizing performance and memory safety.</p>
+      </div>
+      <div class="result css-aaa">
+        <a class="result-title result-link css-bbb" href="https://doc.rust-lang.org/book/" data-testid="gl-title-link">
+          <h2 class="wgl-title css-ccc">The Rust Programming Language - Book</h2>
+        </a>
+        <p class="description css-ddd">The official book on the Rust programming language.</p>
+      </div>
+    </div>
+  </body>
+</html>

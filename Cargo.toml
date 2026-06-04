@@ -1,0 +1,57 @@
+[package]
+name = "websearch-rs"
+version = "0.1.1"
+edition = "2024"
+description = "Keyless multi-engine web search — a pure-Rust port of Python's ddgs with browser TLS fingerprint impersonation."
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/marko0905/websearch-rs"
+keywords = ["duckduckgo", "search", "cli", "async", "ddgs"]
+categories = ["api-bindings", "command-line-utilities", "web-programming"]
+include = [
+    "src/**",
+    "tests/**",
+    "examples/**",
+    "fixtures/**",
+    "docs/**",
+    "README.md",
+    "LICENSE-*",
+    "Cargo.toml",
+    "Cargo.lock",
+]
+
+[lib]
+name = "websearch_rs"
+path = "src/lib.rs"
+
+[[bin]]
+name = "websearch"
+path = "src/bin/websearch.rs"
+
+[dependencies]
+async-trait = "0.1"
+clap = { version = "4.5", features = ["derive"] }
+html-escape = "0.2"
+scraper = "0.20"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "1"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "time"] }
+tracing = "0.1"
+url = "2"
+# Transport: BoringSSL-backed browser impersonation. Pinned to exact prerelease
+# versions because this is the first Apache-2.0 release line — wreq-util 2.x and
+# earlier 3.0 prereleases were GPL-3.0/LGPL-3.0, which are incompatible with this
+# crate's permissive license. The `deny.toml` license gate blocks any future bump
+# that reintroduces a copyleft version. Do not relax these pins without checking
+# the resolved licenses (see deny.toml).
+wreq = { version = "=6.0.0-rc.29", features = ["charset", "form"] }
+wreq-util = "=3.0.0-rc.12"
+
+[dev-dependencies]
+tokio = { version = "1", features = ["macros", "rt", "test-util"] }
+
+[profile.release]
+codegen-units = 1
+lto = "thin"
+strip = "symbols"

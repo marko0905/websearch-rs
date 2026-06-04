@@ -1,0 +1,26 @@
+{
+  "batchcomplete": "",
+  "query": {
+    "searchinfo": { "totalhits": 1234 },
+    "search": [
+      {
+        "ns": 0,
+        "title": "Rust (programming language)",
+        "pageid": 29414838,
+        "snippet": "<span class=\"searchmatch\">Rust</span> is a general-purpose <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span> emphasizing performance &amp; memory safety."
+      },
+      {
+        "ns": 0,
+        "title": "Rust",
+        "pageid": 26477,
+        "snippet": "<span class=\"searchmatch\">Rust</span> is an iron oxide, a usually reddish-brown oxide formed by the reaction of iron and oxygen."
+      },
+      {
+        "ns": 0,
+        "title": "History of programming languages",
+        "pageid": 1023456,
+        "snippet": "The history of <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">languages</span> spans from documentation of early mechanical computers."
+      }
+    ]
+  }
+}

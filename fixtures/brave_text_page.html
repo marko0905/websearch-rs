@@ -1,0 +1,38 @@
+<!--
+  Sanitized Brave SERP fixture for parser tests.
+  Mirrors live markup: <div class="snippet" data-type="web"> wrapping a result
+  anchor (with the real destination href — Brave does not wrap URLs), a
+  <div class="title"> heading, and a <div class="content"> description.
+  Svelte hash classes are dropped; no favicons, tracking, tokens, or PII.
+-->
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="results">
+      <div class="snippet" data-pos="0" data-type="web">
+        <a href="https://rust-lang.org/" class="l1">
+          <div class="title search-snippet-title line-clamp-1">Rust Programming Language</div>
+        </a>
+        <div class="snippet-content">
+          <div class="content line-clamp-dynamic">A language empowering everyone to build reliable and efficient software.</div>
+        </div>
+      </div>
+      <div class="snippet" data-pos="1" data-type="web">
+        <a href="https://en.wikipedia.org/wiki/Rust_(programming_language)" class="l1">
+          <div class="title search-snippet-title line-clamp-1">Rust (programming language) - Wikipedia</div>
+        </a>
+        <div class="snippet-content">
+          <div class="content line-clamp-dynamic">Rust is a general-purpose programming language emphasizing performance and memory safety.</div>
+        </div>
+      </div>
+      <div class="snippet" data-pos="2" data-type="web">
+        <a href="https://doc.rust-lang.org/book/" class="l1">
+          <div class="title search-snippet-title line-clamp-1">The Rust Programming Language - Book</div>
+        </a>
+        <div class="snippet-content">
+          <div class="content line-clamp-dynamic">The official book on the Rust programming language.</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

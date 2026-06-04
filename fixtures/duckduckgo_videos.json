@@ -1,0 +1,35 @@
+{
+  "next": "v.js?q=rust%20programming&o=json&p=1&s=60&vqd=4-123456789&l=wt-wt",
+  "results": [
+    {
+      "content": "https://www.youtube.com/watch?v=abc123",
+      "description": "Learn <b>Rust</b> programming from scratch.",
+      "duration": "1:23:45",
+      "embed_url": "https://www.youtube.com/embed/abc123?autoplay=1",
+      "images": {
+        "large": "https://example.com/video-large.jpg",
+        "medium": "https://example.com/video-medium.jpg",
+        "small": "https://example.com/video-small.jpg"
+      },
+      "provider": "Bing",
+      "published": "2024-05-21T16:00:07.0000000",
+      "publisher": "YouTube",
+      "title": "Learn Rust Programming",
+      "uploader": "Example Channel"
+    },
+    {
+      "content": "https://www.youtube.com/watch?v=def456",
+      "description": "A systems programming tutorial.",
+      "duration": "12:34",
+      "embed_url": "https://www.youtube.com/embed/def456?autoplay=1",
+      "images": {
+        "medium": "https://example.com/second-video.jpg"
+      },
+      "provider": "Bing",
+      "published": "2023-01-01T00:00:00.0000000",
+      "publisher": "YouTube",
+      "title": "Rust Systems Programming",
+      "uploader": "Another Channel"
+    }
+  ]
+}

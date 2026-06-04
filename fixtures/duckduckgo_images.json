@@ -1,0 +1,23 @@
+{
+  "next": "i.js?q=rust%20programming&o=json&p=1&s=100&u=bing&l=wt-wt",
+  "results": [
+    {
+      "height": 444,
+      "image": "https://example.com/rust-image.png",
+      "source": "Bing",
+      "thumbnail": "https://example.com/rust-thumb.png",
+      "title": "Rust Programming Language",
+      "url": "https://example.com/rust-article",
+      "width": 700
+    },
+    {
+      "height": 800,
+      "image": "https://example.com/rust-book.jpg",
+      "source": "Bing",
+      "thumbnail": "https://example.com/rust-book-thumb.jpg",
+      "title": "The Rust Book",
+      "url": "https://example.com/rust-book",
+      "width": 1200
+    }
+  ]
+}

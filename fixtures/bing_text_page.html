@@ -1,0 +1,38 @@
+<!--
+  Sanitized Bing SERP fixture for parser tests.
+  Mirrors live markup: <li class="b_algo"> with <h2><a> title (href wrapped in a
+  /ck/a?...&u=a1<base64url> redirect) and a <div class="b_caption"><p> snippet.
+  The third result uses a direct (non-redirect) href to exercise the fallback.
+  No cookies, tokens, tracking params, or PII.
+-->
+<!DOCTYPE html>
+<html>
+  <body>
+    <ol id="b_results">
+      <li class="b_algo">
+        <h2>
+          <a href="https://www.bing.com/ck/a?!&amp;&amp;p=abc&amp;u=a1aHR0cHM6Ly93d3cucnVzdC1sYW5nLm9yZy8&amp;ntb=1">Rust Programming Language</a>
+        </h2>
+        <div class="b_caption">
+          <p class="b_lineclamp2">Rust is blazingly fast and memory-efficient with no runtime or garbage collector.</p>
+        </div>
+      </li>
+      <li class="b_algo">
+        <h2>
+          <a href="https://www.bing.com/ck/a?!&amp;&amp;p=def&amp;u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvUnVzdF8ocHJvZ3JhbW1pbmdfbGFuZ3VhZ2Up&amp;ntb=1">Rust (programming language) - Wikipedia</a>
+        </h2>
+        <div class="b_caption">
+          <p class="b_lineclamp2">Rust is a general-purpose programming language emphasizing performance, type safety, and concurrency.</p>
+        </div>
+      </li>
+      <li class="b_algo">
+        <h2>
+          <a href="https://doc.rust-lang.org/book/">The Rust Programming Language - Book</a>
+        </h2>
+        <div class="b_caption">
+          <p class="b_lineclamp2">The official book on the Rust programming language, written by the Rust team.</p>
+        </div>
+      </li>
+    </ol>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!--
+  Sanitized Yandex web-SERP fixture for parser tests.
+  Mirrors live markup from yandex.com/search/: <li class="serp-item"> organic
+  blocks whose title link carries the `OrganicTitle-Link` class (direct
+  destination href) and whose snippet sits in a `TextContainer OrganicText`
+  block. Obfuscated layout classes, scripts, and ads are dropped; no PII.
+-->
+<!DOCTYPE html>
+<html>
+  <body>
+    <ul>
+      <li class="serp-item serp-item__futuris-snippet serp-item_card">
+        <div class="OrganicTitle">
+          <a target="_blank" class="Link Link_theme_normal OrganicTitle-Link link" href="https://rust-lang.org/">
+            <span class="OrganicTitle-LinkText">Rust Programming Language</span>
+          </a>
+        </div>
+        <div class="TextContainer OrganicText Typo Typo_text_m">A language empowering everyone to build reliable and efficient software.</div>
+      </li>
+      <li class="serp-item serp-item__futuris-snippet serp-item_card">
+        <div class="OrganicTitle">
+          <a target="_blank" class="Link Link_theme_normal OrganicTitle-Link link" href="https://en.wikipedia.org/wiki/Rust_(programming_language)">
+            <span class="OrganicTitle-LinkText">Rust (programming language) - Wikipedia</span>
+          </a>
+        </div>
+        <div class="TextContainer OrganicText Typo Typo_text_m">Rust is a multi-paradigm, general-purpose programming language emphasizing performance and safety.</div>
+      </li>
+      <li class="serp-item serp-item_card">
+        <div class="OrganicTitle">
+          <a target="_blank" class="Link Link_theme_normal OrganicTitle-Link link" href="https://doc.rust-lang.org/book/">
+            <span class="OrganicTitle-LinkText">The Rust Programming Language Book</span>
+          </a>
+        </div>
+        <div class="TextContainer OrganicText Typo Typo_text_m">The official book for learning Rust, from the Rust team.</div>
+      </li>
+    </ul>
+  </body>
+</html>

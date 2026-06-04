@@ -1,0 +1,19 @@
+{
+  "next": "news.js?q=rust%20programming&l=wt-wt&o=json&p=1&s=30&vqd=4-123456789&noamp=1&u=bing",
+  "results": [
+    {
+      "date": 1710000000,
+      "excerpt": "The <b>Rust</b> project announced a new release for reliable software.",
+      "source": "Example News",
+      "title": "Rust language release improves developer experience",
+      "url": "https://example.com/rust-release"
+    },
+    {
+      "date": 1710000100,
+      "excerpt": "Developers continue to adopt Rust for systems programming.",
+      "source": "Tech Daily",
+      "title": "Why developers are choosing Rust",
+      "url": "https://example.com/rust-adoption"
+    }
+  ]
+}

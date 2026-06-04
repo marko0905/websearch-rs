@@ -1,0 +1,53 @@
+# Rust / Cargo build artifacts
+/target/
+**/*.rs.bk
+*.pdb
+
+# Cargo.lock is committed on purpose: this crate ships a binary (`ddgs`),
+# so the lockfile is part of the reproducible build.
+
+# Coverage / profiling output
+*.profraw
+*.profdata
+/coverage/
+tarpaulin-report.*
+
+# Benchmark / criterion output
+/criterion/
+
+# Editor & IDE
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+*~
+
+# Direnv / local env
+.envrc
+.env
+.env.local
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Linux
+*~
+.directory
+
+# Logs & scratch
+*.log
+/tmp/
+/scratch/
+
+#AI
+CLAUDE.md
+AGENTS.md
+.claude
+.mcp.json
