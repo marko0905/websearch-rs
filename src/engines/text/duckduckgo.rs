@@ -1,32 +1,27 @@
-//! DuckDuckGo text engine — scrapes `html.duckduckgo.com/html/`.
+//! DuckDuckGo text engine — port of `ddgs/engines/duckduckgo.py` (v9.16.1).
 //!
-//! First engine ported onto the [`crate::http`] (wreq) layer. DuckDuckGo's HTML
-//! endpoint works without TLS impersonation, so this is the safe first slice;
-//! engines that require impersonation (Bing, etc.) follow the same shape.
-
-use std::collections::HashSet;
+//! Form-encoded `POST https://html.duckduckgo.com/html/` with
+//! `{"q": query, "b": "", "l": region}`, plus `s` for later pages and `df` for
+//! a time limit. Upstream sends no extra headers.
+//!
+//! Parsing is the generic `BaseSearchEngine` loop: items
+//! `//div[contains(@class, 'body')]`, title `.//h2//text()`, href `./a/@href`,
+//! body `./a//text()`. On the real page the item is `div.result__body`; its
+//! only direct-child `<a>` is the `result__snippet` link, so the href is the
+//! snippet's (direct) URL and the body is the snippet text. Upstream does not
+//! unwrap `/l/?uddg=` redirects. `post_extract_results` drops ads
+//! (`https://duckduckgo.com/y.js?` hrefs); there is no other filter.
 
 use async_trait::async_trait;
-use scraper::{ElementRef, Html, Selector};
-use url::Url;
 
 use crate::engines::SearchEngine;
-use crate::engines::util::{element_text, first_match, selector, selectors};
+use crate::engines::util::text_result;
+use crate::html;
 use crate::http::HttpClient;
-use crate::{Result, TextResult, TextSearchRequest, WebSearchError};
+use crate::{Result, TextResult, TextSearchRequest};
 
 const NAME: &str = "duckduckgo";
 const HTML_ENDPOINT: &str = "https://html.duckduckgo.com/html/";
-const HOME: &str = "https://duckduckgo.com/";
-
-/// Specific block-page markers — never generic words like "captcha", so
-/// legitimate results mentioning them don't false-positive.
-const BLOCK_PAGE_MARKERS: &[&str] = &[
-    "If this error persists, please let us know: ops@duckduckgo.com",
-    "Unfortunately, bots use DuckDuckGo too",
-    "anomaly-modal",
-    "detected unusual activity from your",
-];
 
 /// DuckDuckGo HTML text engine.
 #[derive(Clone, Debug, Default)]
@@ -45,164 +40,149 @@ impl SearchEngine<TextSearchRequest, TextResult> for DuckDuckGo {
         NAME
     }
 
+    /// Upstream `provider = "bing"`.
+    fn provider(&self) -> &'static str {
+        "bing"
+    }
+
     async fn search(
         &self,
         http: &HttpClient,
         request: &TextSearchRequest,
     ) -> Result<Vec<TextResult>> {
-        let url = build_url(request)?;
-        let body = http.get_text(url.as_str(), &[("Referer", HOME)]).await?;
-        if looks_blocked(&body) {
-            return Err(WebSearchError::EngineBlocked(format!(
-                "{NAME} returned a block page"
-            )));
-        }
-        parse_text(&body, request.max_results)
+        let form = build_payload(request);
+        let Some(body) = http.post_form_text(HTML_ENDPOINT, &form, &[]).await? else {
+            // Upstream `BaseSearchEngine.request`: non-200 → `None` → no results.
+            return Ok(Vec::new());
+        };
+        // No `max_results` cap here: upstream engines return the whole page and
+        // the orchestrator applies the cap.
+        Ok(post_extract_results(parse_text(&body)?))
     }
 }
 
-fn build_url(request: &TextSearchRequest) -> Result<Url> {
-    let mut url = Url::parse(HTML_ENDPOINT)?;
-    {
-        let mut query = url.query_pairs_mut();
-        query.append_pair("q", request.query.trim());
-        query.append_pair("kl", request.region.as_str());
-        query.append_pair("kp", request.safe_search.as_duckduckgo_kp());
-        if let Some(time_limit) = request.time_limit {
-            query.append_pair("df", time_limit.as_duckduckgo_df());
-        }
+/// Upstream `build_payload`, in its dict order. The query and region are sent
+/// verbatim.
+fn build_payload(request: &TextSearchRequest) -> Vec<(String, String)> {
+    let mut form = vec![
+        ("q".to_owned(), request.query.clone()),
+        ("b".to_owned(), String::new()),
+        ("l".to_owned(), request.region.as_str().to_owned()),
+    ];
+    if request.page > 1 {
+        // `10 + (page - 2) * 15`: page 2 → 10, page 3 → 25, ...
+        form.push(("s".to_owned(), (10 + (request.page - 2) * 15).to_string()));
     }
-    Ok(url)
+    if let Some(limit) = &request.time_limit {
+        form.push(("df".to_owned(), limit.as_duckduckgo_df().to_owned()));
+    }
+    form
 }
 
-fn looks_blocked(body: &str) -> bool {
-    BLOCK_PAGE_MARKERS
-        .iter()
-        .any(|marker| body.contains(marker))
+/// Upstream `items_xpath`.
+const ITEMS_XPATH: &str = "//div[contains(@class, 'body')]";
+/// Upstream `elements_xpath` (dict order).
+const ELEMENTS_XPATH: &[(&str, &str)] = &[
+    ("title", ".//h2//text()"),
+    ("href", "./a/@href"),
+    ("body", "./a//text()"),
+];
+
+/// Upstream `BaseSearchEngine.extract_results` with this engine's XPaths,
+/// evaluated by libxml2 exactly like lxml. Every item gives a result, even
+/// one with empty fields (upstream does not filter here).
+fn parse_text(body: &str) -> Result<Vec<TextResult>> {
+    Ok(html::extract_results(body, ITEMS_XPATH, ELEMENTS_XPATH)?
+        .into_iter()
+        .map(|fields| text_result(&fields))
+        .collect())
 }
 
-fn parse_text(body: &str, max_results: usize) -> Result<Vec<TextResult>> {
-    let document = Html::parse_document(body);
-    let result_selector = selector(".result")?;
-    let title_selectors = selectors(&[".result__a", "a.result-link", "a"])?;
-    let snippet_selectors = selectors(&[".result__snippet", ".result-snippet", ".result__body"])?;
-
-    let mut results: Vec<TextResult> = Vec::new();
-    let mut seen: HashSet<String> = HashSet::new();
-
-    for node in document.select(&result_selector) {
-        if let Some(result) = parse_result_node(node, &title_selectors, &snippet_selectors)?
-            && seen.insert(result.href.clone())
-        {
-            results.push(result);
-            if results.len() >= max_results {
-                return Ok(results);
-            }
-        }
-    }
-
-    // Fallback: some markup variants drop the `.result` wrapper.
-    if results.is_empty() {
-        let anchor_selector = selector("a.result__a, a.result-link")?;
-        for anchor in document.select(&anchor_selector) {
-            let title = element_text(anchor);
-            let Some(raw_href) = anchor.value().attr("href") else {
-                continue;
-            };
-            let href = clean_result_url(raw_href)?;
-            if !title.is_empty() && !href.is_empty() && seen.insert(href.clone()) {
-                results.push(TextResult::new(title, href, "", NAME));
-                if results.len() >= max_results {
-                    break;
-                }
-            }
-        }
-    }
-
-    Ok(results)
-}
-
-fn parse_result_node(
-    node: ElementRef<'_>,
-    title_selectors: &[Selector],
-    snippet_selectors: &[Selector],
-) -> Result<Option<TextResult>> {
-    let Some(anchor) = first_match(node, title_selectors) else {
-        return Ok(None);
-    };
-    let title = element_text(anchor);
-    let Some(raw_href) = anchor.value().attr("href") else {
-        return Ok(None);
-    };
-    let href = clean_result_url(raw_href)?;
-    if title.is_empty() || href.is_empty() {
-        return Ok(None);
-    }
-    let body = first_match(node, snippet_selectors)
-        .map(element_text)
-        .unwrap_or_default();
-    Ok(Some(TextResult::new(title, href, body, NAME)))
-}
-
-/// Resolve a DuckDuckGo result href, unwrapping the `/l/?uddg=` redirect.
-fn clean_result_url(raw_href: &str) -> Result<String> {
-    let href = raw_href.trim();
-    if href.is_empty() {
-        return Ok(String::new());
-    }
-
-    let parsed = if href.starts_with("//") {
-        Url::parse(&format!("https:{href}"))?
-    } else if href.starts_with('/') {
-        Url::parse(HOME)?.join(href)?
-    } else {
-        Url::parse(href)?
-    };
-
-    if parsed.domain() == Some("duckduckgo.com")
-        && parsed.path().starts_with("/l/")
-        && let Some((_, target)) = parsed.query_pairs().find(|(key, _)| key == "uddg")
-    {
-        return Ok(target.into_owned());
-    }
-
-    Ok(parsed.into())
+/// Upstream `post_extract_results` (applied to the normalized href).
+fn post_extract_results(results: Vec<TextResult>) -> Vec<TextResult> {
+    results
+        .into_iter()
+        .filter(|result| !result.href.starts_with("https://duckduckgo.com/y.js?"))
+        .collect()
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
+    fn parse(body: &str) -> Vec<TextResult> {
+        post_extract_results(parse_text(body).unwrap())
+    }
+
+    #[test]
+    fn matches_upstream_on_real_markup() {
+        // Expected output was produced by ddgs 9.16.1's own DuckDuckGo
+        // `extract_results` + `post_extract_results` on the same fixture.
+        let expected: Vec<TextResult> = serde_json::from_str(include_str!(
+            "../../../fixtures/duckduckgo_text_expected.json"
+        ))
+        .expect("expected json");
+        assert_eq!(
+            parse(include_str!("../../../fixtures/duckduckgo_text_page.html")),
+            expected
+        );
+    }
+
     #[test]
     fn parses_text_fixture() {
-        let body = include_str!("../../../fixtures/duckduckgo_text_page.html");
-        let results = parse_text(body, 10).expect("parse");
-        assert!(!results.is_empty(), "fixture should yield results");
-        let first = &results[0];
-        assert!(!first.title.is_empty());
-        assert!(first.href.starts_with("http"));
-        assert_eq!(first.source, NAME);
+        let results = parse(include_str!("../../../fixtures/duckduckgo_text_page.html"));
+        // The ad is dropped; the empty `no-results body` div is kept.
+        assert_eq!(results.len(), 4);
+        assert_eq!(results[0].title, "Rust Programming Language");
+        assert_eq!(results[0].href, "https://rust-lang.org/");
+        assert!(
+            results[0]
+                .body
+                .starts_with("Rust is a fast, reliable, and productive programming language")
+        );
+        assert_eq!(
+            results[1].href,
+            "https://en.wikipedia.org/wiki/Rust_(programming_language)"
+        );
+        assert_eq!(results[3], TextResult::default());
     }
 
     #[test]
-    fn unwraps_redirect_url() {
-        let href = "/l/?kh=-1&uddg=https%3A%2F%2Fexample.com%2Fpage";
-        assert_eq!(clean_result_url(href).unwrap(), "https://example.com/page");
+    fn drops_ads_only() {
+        let all = parse_text(include_str!("../../../fixtures/duckduckgo_text_page.html")).unwrap();
+        assert_eq!(all.len(), 5);
+        assert!(all[0].href.starts_with("https://duckduckgo.com/y.js?"));
     }
 
     #[test]
-    fn detects_block_page() {
-        assert!(looks_blocked("... anomaly-modal ..."));
-        assert!(!looks_blocked(
-            "a normal page mentioning captcha in passing"
-        ));
+    fn custom_time_limit_is_sent_raw() {
+        let request = TextSearchRequest::new("q").time_limit(Some(crate::TimeLimit::Custom(
+            "2024-01-01..2024-02-01".into(),
+        )));
+        let form = build_payload(&request);
+        assert!(form.contains(&("df".to_owned(), "2024-01-01..2024-02-01".to_owned())));
     }
 
     #[test]
-    fn respects_max_results() {
-        let body = include_str!("../../../fixtures/duckduckgo_text_page.html");
-        let results = parse_text(body, 1).expect("parse");
-        assert_eq!(results.len(), 1);
+    fn payload_matches_upstream() {
+        let request = TextSearchRequest::new(" rust ")
+            .region("de-de".parse().unwrap())
+            .time_limit(Some(crate::TimeLimit::Month))
+            .page(3);
+        let form = build_payload(&request);
+        let expected: Vec<(String, String)> = [
+            ("q", " rust "),
+            ("b", ""),
+            ("l", "de-de"),
+            ("s", "25"),
+            ("df", "m"),
+        ]
+        .iter()
+        .map(|(k, v)| ((*k).to_owned(), (*v).to_owned()))
+        .collect();
+        assert_eq!(form, expected);
+        let first = build_payload(&TextSearchRequest::new("q").page(2));
+        assert_eq!(first[3], ("s".to_owned(), "10".to_owned()));
     }
 
     /// Verifies the selectors still match DuckDuckGo's live HTML markup.
@@ -210,8 +190,10 @@ mod tests {
     #[ignore = "hits live DuckDuckGo"]
     async fn live_duckduckgo_returns_results() {
         let http = HttpClient::new(&crate::http::HttpConfig::default()).expect("client");
+        let request =
+            TextSearchRequest::new("rust programming language").region("us-en".parse().unwrap());
         let results = DuckDuckGo::new()
-            .search(&http, &TextSearchRequest::new("rust programming language"))
+            .search(&http, &request)
             .await
             .expect("search");
         assert!(!results.is_empty(), "duckduckgo returned no results");

@@ -26,12 +26,10 @@ all-features = true
 allow = [
     "MIT",
     "Apache-2.0",
-    "BSD-3-Clause",        # scraper, ego-tree (HTML/CSS scraping stack)
-    "ISC",                 # scraper, libloading
+    "BSD-3-Clause",        # brotli, bindgen, encoding_rs
+    "ISC",                 # libloading
     "Zlib",                # foldhash (Zlib-only)
     "Unicode-3.0",         # ICU crates pulled via url/idna (Unicode license)
-    "MPL-2.0",             # cssparser/selectors (Servo). File-level weak copyleft;
-                           # permits commercial/proprietary use — not viral to our crate.
     "CDLA-Permissive-2.0", # webpki-root-certs (the bundled CA root set)
 ]
 # Require high confidence in license detection; do not lower this to force a

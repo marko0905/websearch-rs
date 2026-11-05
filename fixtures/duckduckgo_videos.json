@@ -5,15 +5,21 @@
       "content": "https://www.youtube.com/watch?v=abc123",
       "description": "Learn <b>Rust</b> programming from scratch.",
       "duration": "1:23:45",
+      "embed_html": "<iframe width=\"1280\" height=\"720\" src=\"https://www.youtube.com/embed/abc123?autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>",
       "embed_url": "https://www.youtube.com/embed/abc123?autoplay=1",
+      "image_token": "token-abc",
       "images": {
         "large": "https://example.com/video-large.jpg",
         "medium": "https://example.com/video-medium.jpg",
+        "motion": "",
         "small": "https://example.com/video-small.jpg"
       },
       "provider": "Bing",
       "published": "2024-05-21T16:00:07.0000000",
       "publisher": "YouTube",
+      "statistics": {
+        "viewCount": 12345
+      },
       "title": "Learn Rust Programming",
       "uploader": "Example Channel"
     },
@@ -28,6 +34,9 @@
       "provider": "Bing",
       "published": "2023-01-01T00:00:00.0000000",
       "publisher": "YouTube",
+      "statistics": {
+        "viewCount": null
+      },
       "title": "Rust Systems Programming",
       "uploader": "Another Channel"
     }

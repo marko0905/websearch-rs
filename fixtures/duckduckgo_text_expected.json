@@ -1,0 +1,22 @@
+[
+ {
+  "title": "Rust Programming Language",
+  "href": "https://rust-lang.org/",
+  "body": "Rust is a fast, reliable, and productive programming language that can run on embedded devices, web services, and more. Learn how to get started, why Rust is different, and what companies are using it in production."
+ },
+ {
+  "title": "Rust (programming language) - Wikipedia",
+  "href": "https://en.wikipedia.org/wiki/Rust_(programming_language)",
+  "body": "Rust (programming language) ... Rust is a general-purpose programming language that emphasizes performance, type safety, concurrency, and memory safety. Rust supports multiple programming paradigms. It was influenced by ideas from functional programming, including immutability, higher-order functions, algebraic data types, and pattern matching."
+ },
+ {
+  "title": "Getting started - Rust Programming Language",
+  "href": "https://rust-lang.org/learn/get-started/",
+  "body": "Learn how to install Rust, use Cargo, and write a small app with a dependency. Find out more about Rust, its features, and its community."
+ },
+ {
+  "title": "",
+  "href": "",
+  "body": ""
+ }
+]

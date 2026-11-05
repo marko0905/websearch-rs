@@ -1,9 +1,51 @@
 {
   "results": [
     {
-      "title": "Rust (programming language)",
       "slug": "Rust_(programming_language)",
-      "snippet": "Overview\n\nRust is a systems programming language focused on safety and performance."
+      "title": "Rust (programming language)",
+      "snippet": "Rust logo; a capital letter R set into a sprocket Rust is a systems programming language that prioritizes memory safety, thread safety, and high performance without...",
+      "relevanceScore": 10000,
+      "viewCount": "1000324",
+      "titleHighlights": [],
+      "snippetHighlights": [],
+      "creationSource": 1,
+      "visibility": 1,
+      "providers": [
+        1
+      ],
+      "snippetVariants": [
+        {
+          "provider": 1,
+          "kind": 1,
+          "text": "Rust logo; a capital letter R set into a sprocket Rust is a systems programming language that prioritizes memory safety, thread safety, and high performance without...",
+          "score": 10000
+        }
+      ],
+      "scrollAnchorText": "Rust logo; a capital letter R set into a sprocket Rust is a systems programming language that prioritizes memory safety, thread safety, and high performance without..."
+    },
+    {
+      "slug": "programming_rust_fast_safe_systems_development_(book)",
+      "title": "Programming Rust: Fast, Safe Systems Development (book)",
+      "snippet": "Programming Rust: Fast, Safe Systems Development is a comprehensive guide to the Rust programming language, authored by Jim Blandy and Jason Orendorff and published by O'Reilly Media on November 21, 2017. The book targets experienced systems program…",
+      "relevanceScore": 10000,
+      "viewCount": "0",
+      "titleHighlights": [],
+      "snippetHighlights": [],
+      "creationSource": 1,
+      "visibility": 1,
+      "providers": [
+        1
+      ],
+      "snippetVariants": [
+        {
+          "provider": 1,
+          "kind": 1,
+          "text": "Programming Rust: Fast, Safe Systems Development is a comprehensive guide to the Rust programming language, authored by Jim Blandy and Jason Orendorff and published by O'Reilly Media on November 21, 2017. The book targets experienced systems program…",
+          "score": 10000
+        }
+      ],
+      "scrollAnchorText": "Programming Rust: Fast, Safe Systems Development is a comprehensive guide to the Rust programming language, authored by Jim Blandy and Jason Orendorff and published by O'Reilly Media on November 21, 2017. The book targets experienced systems program…"
     }
-  ]
+  ],
+  "searchTimeMs": 41.621487
 }

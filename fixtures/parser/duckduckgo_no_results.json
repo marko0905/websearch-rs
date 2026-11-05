@@ -1,0 +1,94 @@
+{
+"root": "html",
+"nodes": [
+[
+"e",
+"html",
+[]
+],
+[
+"e",
+"body",
+[]
+],
+[
+"t",
+"\n    "
+],
+[
+"e",
+"div",
+[
+[
+"id",
+"links"
+],
+[
+"class",
+"results"
+]
+]
+],
+[
+"t",
+"\n      "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"no-results"
+]
+]
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"h1",
+[]
+],
+[
+"t",
+"No results found for "
+],
+[
+"e",
+"strong",
+[]
+],
+[
+"t",
+"zzzzzzzzzzzzzz unlikely query"
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"p",
+[]
+],
+[
+"t",
+"Suggestions:"
+],
+[
+"t",
+"\n      "
+],
+[
+"t",
+"\n    "
+],
+[
+"t",
+"\n  "
+]
+]
+}

@@ -1,14 +1,25 @@
 [package]
 name = "websearch-rs"
-version = "0.1.1"
+version = "9.16.1"
 edition = "2024"
-description = "Keyless multi-engine web search — a pure-Rust port of Python's ddgs with browser TLS fingerprint impersonation."
+description = "Keyless multi-engine web search — a 1:1 Rust port of Python's ddgs with browser TLS fingerprint impersonation."
 license = "MIT OR Apache-2.0"
 readme = "README.md"
 repository = "https://github.com/marko0905/websearch-rs"
 keywords = ["duckduckgo", "search", "cli", "async", "ddgs"]
 categories = ["api-bindings", "command-line-utilities", "web-programming"]
 include = [
+    "build.rs",
+    "csrc/**",
+    "vendor/libxml2/*.c",
+    "vendor/libxml2/*.h",
+    "vendor/libxml2/*.in",
+    "vendor/libxml2/*.inc",
+    "vendor/libxml2/include/**",
+    "vendor/libxml2/CMakeLists.txt",
+    "vendor/libxml2/VERSION",
+    "vendor/libxml2/Copyright",
+    "scripts/**",
     "src/**",
     "tests/**",
     "examples/**",
@@ -30,13 +41,34 @@ path = "src/bin/websearch.rs"
 
 [dependencies]
 async-trait = "0.1"
-clap = { version = "4.5", features = ["derive"] }
-html-escape = "0.2"
-scraper = "0.20"
+# Result-field normalization (port of ddgs `utils._normalize_text`): ICU for
+# NFC and Unicode categories (also pulled by url/idna), markup5ever for the
+# HTML5 entity table used by the `html.unescape` port, regex (also pulled by
+# bindgen). HTML parsing itself is the vendored libxml2 (see build.rs).
+icu_normalizer = { version = "2", default-features = false, features = ["compiled_data"] }
+icu_properties = { version = "2", default-features = false, features = ["compiled_data"] }
+markup5ever = "0.12"
+regex = { version = "1", default-features = false, features = ["std", "unicode-perl", "unicode-case"] }
 serde = { version = "1", features = ["derive"] }
-serde_json = "1"
+# `preserve_order`: JSON objects copied into results (video `images`/
+# `statistics`) keep their source key order, as Python dicts do. Uses indexmap,
+# already in the tree.
+# `DDGS.extract` content formats, exactly as primp 2.0.1 (upstream's HTTP
+# client) produces them: html2text for text_markdown/text_plain/text_rich,
+# mime + encoding_rs for `resp.text` decoding. Same crates and versions.
+encoding_rs = "0.8.41"
+html2text = "=0.17.1"
+mime = "0.3.17"
+# HTTP/1.1 request parsing and query decoding for the `api` server (both
+# already in the tree via wreq/url).
+form_urlencoded = "1.2"
+httparse = "1.10"
+# OS randomness, like Python's `os.urandom`/`SystemRandom`/`secrets` (already
+# in the tree via wreq).
+getrandom = "0.3"
+serde_json = { version = "1", features = ["preserve_order"] }
 thiserror = "1"
-tokio = { version = "1", features = ["macros", "rt-multi-thread", "time"] }
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "sync", "time", "io-std", "io-util", "net", "signal"] }
 tracing = "0.1"
 url = "2"
 # Transport: BoringSSL-backed browser impersonation. Pinned to exact prerelease
@@ -45,11 +77,25 @@ url = "2"
 # crate's permissive license. The `deny.toml` license gate blocks any future bump
 # that reintroduces a copyleft version. Do not relax these pins without checking
 # the resolved licenses (see deny.toml).
-wreq = { version = "=6.0.0-rc.29", features = ["charset", "form"] }
+# `cookies`: per-engine persistent cookie store (primp's `cookie_store=True`).
+# `socks`: SOCKS proxies, e.g. the `tb` alias `socks5h://127.0.0.1:9150`.
+wreq = { version = "=6.0.0-rc.29", features = ["charset", "cookies", "form", "socks"] }
 wreq-util = "=3.0.0-rc.12"
 
+# Host-local time zone for Bing news dates (`astimezone` on a naive datetime),
+# via the same C `localtime_r`/`localtime_s` CPython calls. Already in the tree.
+[target.'cfg(any(unix, windows))'.dependencies]
+libc = "0.2"
+
+[build-dependencies]
+# Build the vendored libxml2 (vendor/libxml2, v2.14.6 = the version lxml 6.1.3
+# bundles) and the C shim in csrc/. Both crates are already in the tree via
+# boring-sys.
+cmake = "0.1"
+cc = "1"
+
 [dev-dependencies]
-tokio = { version = "1", features = ["macros", "rt", "test-util"] }
+tokio = { version = "1", features = ["macros", "rt", "test-util", "io-std", "io-util", "net"] }
 
 [profile.release]
 codegen-units = 1

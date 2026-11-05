@@ -4,6 +4,7 @@
     {
       "date": 1710000000,
       "excerpt": "The <b>Rust</b> project announced a new release for reliable software.",
+      "image": "https://example.com/rust-release.jpg",
       "source": "Example News",
       "title": "Rust language release improves developer experience",
       "url": "https://example.com/rust-release"

@@ -1,0 +1,55 @@
+{
+ "text": [
+  {
+   "title": "Rust Programming Language",
+   "href": "https://rust-lang.org/",
+   "body": "A language empowering everyone to build reliable and efficient software."
+  },
+  {
+   "title": "Rust (programming language) - Wikipedia",
+   "href": "https://en.wikipedia.org/wiki/Rust_(programming_language)",
+   "body": "Rust is a general-purpose programming language emphasizing performance and memory safety."
+  }
+ ],
+ "images": [
+  {
+   "title": "Rust Programming Language",
+   "image": "https://example.com/rust.png",
+   "thumbnail": "https://example.com/rust-thumb.jpg",
+   "url": "https://example.com/rust-page",
+   "height": "800",
+   "width": "1200",
+   "source": "example.com"
+  },
+  {
+   "title": null,
+   "image": "https://example.com/ferris.png",
+   "thumbnail": "https://example.com/ferris-thumb.jpg",
+   "url": "https://example.com/ferris-page",
+   "height": "480",
+   "width": "640",
+   "source": "example.com"
+  }
+ ],
+ "videos": [],
+ "news": [
+  {
+   "date": "2 days ago",
+   "title": "Rust language release improves tooling",
+   "body": "The update improves compiler and Cargo workflows for developers.",
+   "url": "https://example.com/rust-news",
+   "image": "/th?id=ON.123&pid=News",
+   "source": "Example News"
+  }
+ ],
+ "books": [
+  {
+   "title": "The Rust Programming Language",
+   "author": "Steve Klabnik, Carol Nichols",
+   "publisher": "No Starch Press",
+   "info": "English [en], pdf, 5.2MB,",
+   "url": "https://annas-archive.gd/md5/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "thumbnail": "/covers/rust-book.jpg"
+  }
+ ]
+}

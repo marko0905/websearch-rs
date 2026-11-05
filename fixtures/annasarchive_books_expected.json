@@ -1,0 +1,26 @@
+[
+ {
+  "title": "The Rust Programming Language",
+  "author": "Steve Klabnik, Carol Nichols",
+  "publisher": "No Starch Press",
+  "info": "English [en], pdf, 5.2MB,",
+  "url": "https://annas-archive.gd/md5/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "thumbnail": "/covers/rust-book.jpg"
+ },
+ {
+  "title": "Programming Rust2nd Edition",
+  "author": "Jim Blandy, Jason Orendorff",
+  "publisher": "",
+  "info": "English [en], epub, 3.1MB",
+  "url": "https://annas-archive.gd/md5/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "thumbnail": "https://example.com/programming-rust.jpg"
+ },
+ {
+  "title": "",
+  "author": "",
+  "publisher": "",
+  "info": "",
+  "url": "https://annas-archive.gd",
+  "thumbnail": ""
+ }
+]

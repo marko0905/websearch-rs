@@ -62,6 +62,11 @@ impl WebSearchBlockingClient {
         self.runtime.block_on(self.client.videos_with(request))
     }
 
+    /// Upstream `DDGS.extract(url, fmt)`; see [`WebSearchClient::extract`].
+    pub fn extract(&self, url: &str, format: crate::ExtractFormat) -> Result<crate::ExtractResult> {
+        self.runtime.block_on(self.client.extract(url, format))
+    }
+
     /// Run a news search with default request settings.
     pub fn news(&self, query: impl Into<String>) -> Result<Vec<NewsResult>> {
         self.news_with(NewsSearchRequest::new(query))
@@ -98,12 +103,19 @@ mod tests {
     #[test]
     fn blocking_client_wraps_async_client() {
         let async_client = WebSearchClient::builder()
-            .max_retries(0)
+            .max_retries(1)
             .build()
             .expect("async client should build");
         let blocking = WebSearchBlockingClient::from_client(async_client)
             .expect("blocking client should build");
 
-        assert_eq!(blocking.client().config().max_retries, 0);
+        assert_eq!(blocking.client().config().max_retries, 1);
+    }
+
+    #[test]
+    fn blocking_client_reports_empty_query() {
+        let blocking = WebSearchBlockingClient::new().expect("blocking client");
+        let err = blocking.text("").expect_err("empty query");
+        assert!(matches!(err, crate::WebSearchError::InvalidConfig(_)));
     }
 }

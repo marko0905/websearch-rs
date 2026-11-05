@@ -1,0 +1,167 @@
+{
+"root": "div",
+"nodes": [
+[
+"e",
+"html",
+[]
+],
+[
+"e",
+"div",
+[]
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"newsitem"
+],
+[
+"data-title",
+"Rust language release improves tooling"
+],
+[
+"data-author",
+"Example News"
+],
+[
+"url",
+"https://example.com/rust-news"
+]
+]
+],
+[
+"t",
+"\n  "
+],
+[
+"e",
+"a",
+[
+[
+"class",
+"image"
+]
+]
+],
+[
+"e",
+"img",
+[
+[
+"src",
+"/th?id=ON.123&pid=News"
+]
+]
+],
+[
+"t",
+"\n  "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"snippet"
+]
+]
+],
+[
+"t",
+"The update improves compiler and Cargo workflows for developers."
+],
+[
+"t",
+"\n  "
+],
+[
+"e",
+"span",
+[
+[
+"aria-label",
+"2 days ago"
+]
+]
+],
+[
+"t",
+"2 days ago"
+],
+[
+"t",
+"\n"
+],
+[
+"t",
+"\n"
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"newsitem"
+],
+[
+"data-title",
+"Rust adoption grows"
+],
+[
+"data-author",
+"Tech Daily"
+],
+[
+"url",
+"https://example.com/rust-adoption"
+]
+]
+],
+[
+"t",
+"\n  "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"snippet"
+]
+]
+],
+[
+"t",
+"More teams are adopting Rust for infrastructure."
+],
+[
+"t",
+"\n  "
+],
+[
+"e",
+"span",
+[
+[
+"aria-label",
+"3 hours ago"
+]
+]
+],
+[
+"t",
+"3 hours ago"
+],
+[
+"t",
+"\n"
+]
+]
+}

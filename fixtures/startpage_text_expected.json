@@ -1,0 +1,27 @@
+[
+ {
+  "title": "Rust Programming Language",
+  "href": "https://rust-lang.org/",
+  "body": "Rust is blazingly fast and memory-efficient with no runtime or garbage collector."
+ },
+ {
+  "title": "Rust (programming language) - Wikipedia",
+  "href": "https://en.wikipedia.org/wiki/Rust_(programming_language)",
+  "body": "Rust is a general-purpose programming language emphasizing performance and memory safety."
+ },
+ {
+  "title": "The Rust Programming Language - Book",
+  "href": "https://doc.rust-lang.org/book/",
+  "body": "The official book on the Rust programming language."
+ },
+ {
+  "title": "The Rust Programming Language - Book (repeat)",
+  "href": "https://doc.rust-lang.org/book/",
+  "body": "Upstream does not dedup inside an engine."
+ },
+ {
+  "title": "",
+  "href": "/relative/first/second",
+  "body": "Two direct-child anchors, no heading: upstream joins both hrefs."
+ }
+]

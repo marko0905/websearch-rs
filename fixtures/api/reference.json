@@ -1,0 +1,1477 @@
+[
+ {
+  "method": "GET",
+  "path": "/",
+  "body": null,
+  "headers": {},
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "59"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"status\":\"healthy\",\"version\":\"1.0.0\",\"service\":\"DDGS API\"}"
+ },
+ {
+  "method": "GET",
+  "path": "/health",
+  "body": null,
+  "headers": {},
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "59"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"status\":\"healthy\",\"version\":\"1.0.0\",\"service\":\"DDGS API\"}"
+ },
+ {
+  "method": "GET",
+  "path": "/nope",
+  "body": null,
+  "headers": {},
+  "status": 404,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "22"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":\"Not Found\"}"
+ },
+ {
+  "method": "DELETE",
+  "path": "/health",
+  "body": null,
+  "headers": {},
+  "status": 405,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "allow",
+    "GET"
+   ],
+   [
+    "content-length",
+    "31"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":\"Method Not Allowed\"}"
+ },
+ {
+  "method": "POST",
+  "path": "/search/text",
+  "body": {
+   "query": "rust"
+  },
+  "headers": {},
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "383"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"results\":[{\"title\":\"Rust Programming Language\",\"href\":\"https://rust-lang.org/\",\"body\":\"A language empowering everyone to build reliable and efficient software.\"},{\"title\":\"Rust (programming language) - Wikipedia\",\"href\":\"https://en.wikipedia.org/wiki/Rust_(programming_language)\",\"body\":\"Rust is a general-purpose programming language emphasizing performance and memory safety.\"}]}"
+ },
+ {
+  "method": "POST",
+  "path": "/search/text",
+  "body": {
+   "query": ""
+  },
+  "headers": {},
+  "status": 500,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "47"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":\"Search failed: query is mandatory.\"}"
+ },
+ {
+  "method": "POST",
+  "path": "/search/text",
+  "body": {},
+  "headers": {},
+  "status": 422,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "88"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":[{\"type\":\"missing\",\"loc\":[\"body\",\"query\"],\"msg\":\"Field required\",\"input\":{}}]}"
+ },
+ {
+  "method": "POST",
+  "path": "/search/text",
+  "body": {
+   "query": 5,
+   "max_results": "x",
+   "page": null
+  },
+  "headers": {},
+  "status": 422,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "344"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":[{\"type\":\"string_type\",\"loc\":[\"body\",\"query\"],\"msg\":\"Input should be a valid string\",\"input\":5},{\"type\":\"int_parsing\",\"loc\":[\"body\",\"max_results\"],\"msg\":\"Input should be a valid integer, unable to parse string as an integer\",\"input\":\"x\"},{\"type\":\"int_type\",\"loc\":[\"body\",\"page\"],\"msg\":\"Input should be a valid integer\",\"input\":null}]}"
+ },
+ {
+  "method": "POST",
+  "path": "/search/text",
+  "body": {
+   "query": "rust",
+   "max_results": null
+  },
+  "headers": {},
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "383"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"results\":[{\"title\":\"Rust Programming Language\",\"href\":\"https://rust-lang.org/\",\"body\":\"A language empowering everyone to build reliable and efficient software.\"},{\"title\":\"Rust (programming language) - Wikipedia\",\"href\":\"https://en.wikipedia.org/wiki/Rust_(programming_language)\",\"body\":\"Rust is a general-purpose programming language emphasizing performance and memory safety.\"}]}"
+ },
+ {
+  "method": "POST",
+  "path": "/search/text",
+  "body": "not json",
+  "headers": {
+   "Content-Type": "application/json"
+  },
+  "status": 422,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "124"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":[{\"type\":\"json_invalid\",\"loc\":[\"body\",0],\"msg\":\"JSON decode error\",\"input\":{},\"ctx\":{\"error\":\"Expecting value\"}}]}"
+ },
+ {
+  "method": "POST",
+  "path": "/search/text",
+  "body": null,
+  "headers": {},
+  "status": 422,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "82"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":[{\"type\":\"missing\",\"loc\":[\"body\"],\"msg\":\"Field required\",\"input\":null}]}"
+ },
+ {
+  "method": "GET",
+  "path": "/search/text?query=rust&max_results=2",
+  "body": null,
+  "headers": {},
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "383"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"results\":[{\"title\":\"Rust Programming Language\",\"href\":\"https://rust-lang.org/\",\"body\":\"A language empowering everyone to build reliable and efficient software.\"},{\"title\":\"Rust (programming language) - Wikipedia\",\"href\":\"https://en.wikipedia.org/wiki/Rust_(programming_language)\",\"body\":\"Rust is a general-purpose programming language emphasizing performance and memory safety.\"}]}"
+ },
+ {
+  "method": "GET",
+  "path": "/search/text",
+  "body": null,
+  "headers": {},
+  "status": 422,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "91"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":[{\"type\":\"missing\",\"loc\":[\"query\",\"query\"],\"msg\":\"Field required\",\"input\":null}]}"
+ },
+ {
+  "method": "GET",
+  "path": "/search/text?query=rust&max_results=x",
+  "body": null,
+  "headers": {},
+  "status": 422,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "155"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":[{\"type\":\"int_parsing\",\"loc\":[\"query\",\"max_results\"],\"msg\":\"Input should be a valid integer, unable to parse string as an integer\",\"input\":\"x\"}]}"
+ },
+ {
+  "method": "GET",
+  "path": "/search/text?query=",
+  "body": null,
+  "headers": {},
+  "status": 500,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "47"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":\"Search failed: query is mandatory.\"}"
+ },
+ {
+  "method": "POST",
+  "path": "/search/images",
+  "body": {
+   "query": "rust",
+   "size": "Large"
+  },
+  "headers": {},
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "429"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"results\":[{\"title\":\"Rust Programming Language\",\"image\":\"https://example.com/rust.png\",\"thumbnail\":\"https://example.com/rust-thumb.jpg\",\"url\":\"https://example.com/rust-page\",\"height\":\"800\",\"width\":\"1200\",\"source\":\"example.com\"},{\"title\":null,\"image\":\"https://example.com/ferris.png\",\"thumbnail\":\"https://example.com/ferris-thumb.jpg\",\"url\":\"https://example.com/ferris-page\",\"height\":\"480\",\"width\":\"640\",\"source\":\"example.com\"}]}"
+ },
+ {
+  "method": "GET",
+  "path": "/search/images?query=rust",
+  "body": null,
+  "headers": {},
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "429"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"results\":[{\"title\":\"Rust Programming Language\",\"image\":\"https://example.com/rust.png\",\"thumbnail\":\"https://example.com/rust-thumb.jpg\",\"url\":\"https://example.com/rust-page\",\"height\":\"800\",\"width\":\"1200\",\"source\":\"example.com\"},{\"title\":null,\"image\":\"https://example.com/ferris.png\",\"thumbnail\":\"https://example.com/ferris-thumb.jpg\",\"url\":\"https://example.com/ferris-page\",\"height\":\"480\",\"width\":\"640\",\"source\":\"example.com\"}]}"
+ },
+ {
+  "method": "POST",
+  "path": "/search/videos",
+  "body": {
+   "query": "rust"
+  },
+  "headers": {},
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "14"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"results\":[]}"
+ },
+ {
+  "method": "GET",
+  "path": "/search/videos?query=rust",
+  "body": null,
+  "headers": {},
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "14"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"results\":[]}"
+ },
+ {
+  "method": "POST",
+  "path": "/search/news",
+  "body": {
+   "query": "rust"
+  },
+  "headers": {},
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "253"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"results\":[{\"date\":\"2 days ago\",\"title\":\"Rust language release improves tooling\",\"body\":\"The update improves compiler and Cargo workflows for developers.\",\"url\":\"https://example.com/rust-news\",\"image\":\"/th?id=ON.123&pid=News\",\"source\":\"Example News\"}]}"
+ },
+ {
+  "method": "GET",
+  "path": "/search/news?query=rust",
+  "body": null,
+  "headers": {},
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "253"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"results\":[{\"date\":\"2 days ago\",\"title\":\"Rust language release improves tooling\",\"body\":\"The update improves compiler and Cargo workflows for developers.\",\"url\":\"https://example.com/rust-news\",\"image\":\"/th?id=ON.123&pid=News\",\"source\":\"Example News\"}]}"
+ },
+ {
+  "method": "POST",
+  "path": "/search/books",
+  "body": {
+   "query": "rust"
+  },
+  "headers": {},
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "266"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"results\":[{\"title\":\"The Rust Programming Language\",\"author\":\"Steve Klabnik, Carol Nichols\",\"publisher\":\"No Starch Press\",\"info\":\"English [en], pdf, 5.2MB,\",\"url\":\"https://annas-archive.gd/md5/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"thumbnail\":\"/covers/rust-book.jpg\"}]}"
+ },
+ {
+  "method": "GET",
+  "path": "/search/books?query=rust",
+  "body": null,
+  "headers": {},
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "266"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"results\":[{\"title\":\"The Rust Programming Language\",\"author\":\"Steve Klabnik, Carol Nichols\",\"publisher\":\"No Starch Press\",\"info\":\"English [en], pdf, 5.2MB,\",\"url\":\"https://annas-archive.gd/md5/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"thumbnail\":\"/covers/rust-book.jpg\"}]}"
+ },
+ {
+  "method": "POST",
+  "path": "/search/books",
+  "body": {
+   "query": ""
+  },
+  "headers": {},
+  "status": 500,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "52"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":\"Book search failed: query is mandatory.\"}"
+ },
+ {
+  "method": "GET",
+  "path": "/search/news?query=",
+  "body": null,
+  "headers": {},
+  "status": 500,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "52"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":\"News search failed: query is mandatory.\"}"
+ },
+ {
+  "method": "POST",
+  "path": "/extract",
+  "body": {
+   "url": "http://127.0.0.1:PORT/extract_sample.html"
+  },
+  "headers": {},
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "927"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"url\":\"http://127.0.0.1:PORT/extract_sample.html\",\"content\":\"# Rust *programming* language\\n\\nRust is a **general-purpose** language. See [the website][1] and [Learn][2].\\n\\n## Features\\n* Memory safety without a garbage collector\\n* Zero-cost abstractions\\n  * Nested item\\n1. First\\n2. Second\\n\\n> A quote with `inline code`.\\n\\n`fn main() {\\n    println!(\\\"Hello, world!\\\");\\n}`\\n\\n────────────┬────\\nName        │Year\\n────────────┼────\\nRust 1.0    │2015\\n────────────┼────\\nEdition 2024│2025\\n────────────┴────\\n\\nUnicode: café — naïve “quotes” 日本語. A long line of text that should wrap at one hundred columns\\nbecause html2text wraps output to the given width.\\n\\n[Rust logo]\\n\\nFooter & entities <tag>   end.\\n\\n[1]: https://www.rust-lang.org/\\n[2]: /learn\\n\"}"
+ },
+ {
+  "method": "POST",
+  "path": "/extract",
+  "body": {
+   "url": "http://127.0.0.1:PORT/extract_sample.html",
+   "format": "text_plain"
+  },
+  "headers": {},
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "836"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"url\":\"http://127.0.0.1:PORT/extract_sample.html\",\"content\":\"Rust programming language\\n\\nRust is a general-purpose language. See the website and Learn.\\n\\nFeatures\\nMemory safety without a garbage collector\\nZero-cost abstractions\\nNested item\\nFirst\\nSecond\\n\\nA quote with inline code.\\n\\nfn main() {\\n    println!(\\\"Hello, world!\\\");\\n}\\n\\n────────────┬────\\nName        │Year\\n────────────┼────\\nRust 1.0    │2015\\n────────────┼────\\nEdition 2024│2025\\n────────────┴────\\n\\nUnicode: café — naïve “quotes” 日本語. A long line of text that should wrap at one hundred columns\\nbecause html2text wraps output to the given width.\\n\\nRust logo\\n\\nFooter & entities <tag>   end.\\n\"}"
+ },
+ {
+  "method": "GET",
+  "path": "/extract?url=http://127.0.0.1:PORT/extract_sample.html&fmt=text_rich",
+  "body": null,
+  "headers": {},
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "857"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"url\":\"http://127.0.0.1:PORT/extract_sample.html\",\"content\":\"# Rust programming language\\n\\nRust is a general-purpose language. See the website and Learn.\\n\\n## Features\\n* Memory safety without a garbage collector\\n* Zero-cost abstractions\\n  * Nested item\\n1. First\\n2. Second\\n\\n> A quote with inline code.\\n\\nfn main() {\\n    println!(\\\"Hello, world!\\\");\\n}\\n\\n────────────┬────\\nName        │Year\\n────────────┼────\\nRust 1.0    │2015\\n────────────┼────\\nEdition 2024│2025\\n────────────┴────\\n\\nUnicode: café — naïve “quotes” 日本語. A long line of text that should wrap at one hundred columns\\nbecause html2text wraps output to the given width.\\n\\nRust logo\\n\\nFooter & entities <tag>   end.\\n\"}"
+ },
+ {
+  "method": "GET",
+  "path": "/extract?url=http://127.0.0.1:PORT/missing.html",
+  "body": null,
+  "headers": {},
+  "status": 500,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "93"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":\"Extraction failed: Failed to fetch http://127.0.0.1:PORT/missing.html: HTTP 404\"}"
+ },
+ {
+  "method": "POST",
+  "path": "/extract",
+  "body": {},
+  "headers": {},
+  "status": 422,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "86"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":[{\"type\":\"missing\",\"loc\":[\"body\",\"url\"],\"msg\":\"Field required\",\"input\":{}}]}"
+ },
+ {
+  "method": "GET",
+  "path": "/health",
+  "body": null,
+  "headers": {
+   "Origin": "https://example.com"
+  },
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "59"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "access-control-allow-origin",
+    "https://example.com"
+   ],
+   [
+    "access-control-allow-credentials",
+    "true"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"status\":\"healthy\",\"version\":\"1.0.0\",\"service\":\"DDGS API\"}"
+ },
+ {
+  "method": "OPTIONS",
+  "path": "/search/text",
+  "body": null,
+  "headers": {
+   "Origin": "https://example.com",
+   "Access-Control-Request-Method": "POST",
+   "Access-Control-Request-Headers": "content-type"
+  },
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "vary",
+    "Origin, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Request-Private-Network"
+   ],
+   [
+    "access-control-allow-methods",
+    "DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT, QUERY"
+   ],
+   [
+    "access-control-max-age",
+    "600"
+   ],
+   [
+    "access-control-allow-credentials",
+    "true"
+   ],
+   [
+    "access-control-allow-origin",
+    "https://example.com"
+   ],
+   [
+    "access-control-allow-headers",
+    "content-type"
+   ],
+   [
+    "content-length",
+    "2"
+   ],
+   [
+    "content-type",
+    "text/plain; charset=utf-8"
+   ]
+  ],
+  "response": "OK"
+ },
+ {
+  "method": "OPTIONS",
+  "path": "/search/text",
+  "body": null,
+  "headers": {},
+  "status": 405,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "allow",
+    "POST"
+   ],
+   [
+    "content-length",
+    "31"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":\"Method Not Allowed\"}"
+ },
+ {
+  "method": "GET",
+  "path": "/openapi.json",
+  "body": null,
+  "headers": {},
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "18842"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"openapi\":\"3.1.0\",\"info\":{\"title\":\"DDGS API\",\"description\":\"A FastAPI wrapper for the DDGS (Dux Distributed Global Search) library\",\"version\":\"1.0.0\"},\"paths\":{\"/\":{\"get\":{\"summary\":\"Root\",\"description\":\"Root endpoint with basic service information.\",\"operationId\":\"root__get\",\"responses\":{\"200\":{\"description\":\"Successful Response\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/HealthResponse\"}}}}}}},\"/health\":{\"get\":{\"summary\":\"Health Check\",\"description\":\"Health check endpoint.\",\"operationId\":\"health_check_health_get\",\"responses\":{\"200\":{\"description\":\"Successful Response\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/HealthResponse\"}}}}}}},\"/search/text\":{\"post\":{\"summary\":\"Search Text\",\"description\":\"Perform a text search.\",\"operationId\":\"search_text_search_text_post\",\"requestBody\":{\"required\":true,\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/TextSearchRequest\"}}}},\"responses\":{\"200\":{\"description\":\"Successful Response\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/SearchResponse\"}}}},\"422\":{\"description\":\"Validation Error\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/HTTPValidationError\"}}}}}},\"get\":{\"summary\":\"Search Text Get\",\"description\":\"Perform a text search via GET request.\",\"operationId\":\"search_text_get_search_text_get\",\"parameters\":[{\"name\":\"query\",\"in\":\"query\",\"required\":true,\"schema\":{\"type\":\"string\",\"title\":\"Query\"}},{\"name\":\"region\",\"in\":\"query\",\"required\":false,\"schema\":{\"type\":\"string\",\"default\":\"us-en\",\"title\":\"Region\"}},{\"name\":\"safesearch\",\"in\":\"query\",\"required\":false,\"schema\":{\"type\":\"string\",\"default\":\"moderate\",\"title\":\"Safesearch\"}},{\"name\":\"timelimit\",\"in\":\"query\",\"required\":false,\"schema\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"title\":\"Timelimit\"}},{\"name\":\"max_results\",\"in\":\"query\",\"required\":false,\"schema\":{\"type\":\"integer\",\"default\":10,\"title\":\"Max Results\"}},{\"name\":\"page\",\"in\":\"query\",\"required\":false,\"schema\":{\"type\":\"integer\",\"default\":1,\"title\":\"Page\"}},{\"name\":\"backend\",\"in\":\"query\",\"required\":false,\"schema\":{\"type\":\"string\",\"default\":\"auto\",\"title\":\"Backend\"}}],\"responses\":{\"200\":{\"description\":\"Successful Response\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/SearchResponse\"}}}},\"422\":{\"description\":\"Validation Error\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/HTTPValidationError\"}}}}}}},\"/search/images\":{\"post\":{\"summary\":\"Search Images\",\"description\":\"Perform an image search.\",\"operationId\":\"search_images_search_images_post\",\"requestBody\":{\"required\":true,\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/ImagesSearchRequest\"}}}},\"responses\":{\"200\":{\"description\":\"Successful Response\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/SearchResponse\"}}}},\"422\":{\"description\":\"Validation Error\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/HTTPValidationError\"}}}}}},\"get\":{\"summary\":\"Search Images Get\",\"description\":\"Perform an image search via GET request.\",\"operationId\":\"search_images_get_search_images_get\",\"parameters\":[{\"name\":\"query\",\"in\":\"query\",\"required\":true,\"schema\":{\"type\":\"string\",\"title\":\"Query\"}},{\"name\":\"region\",\"in\":\"query\",\"required\":false,\"schema\":{\"type\":\"string\",\"default\":\"us-en\",\"title\":\"Region\"}},{\"name\":\"safesearch\",\"in\":\"query\",\"required\":false,\"schema\":{\"type\":\"string\",\"default\":\"moderate\",\"title\":\"Safesearch\"}},{\"name\":\"timelimit\",\"in\":\"query\",\"required\":false,\"schema\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"title\":\"Timelimit\"}},{\"name\":\"max_results\",\"in\":\"query\",\"required\":false,\"schema\":{\"type\":\"integer\",\"default\":10,\"title\":\"Max Results\"}},{\"name\":\"page\",\"in\":\"query\",\"required\":false,\"schema\":{\"type\":\"integer\",\"default\":1,\"title\":\"Page\"}},{\"name\":\"backend\",\"in\":\"query\",\"required\":false,\"schema\":{\"type\":\"string\",\"default\":\"auto\",\"title\":\"Backend\"}},{\"name\":\"size\",\"in\":\"query\",\"required\":false,\"schema\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"title\":\"Size\"}},{\"name\":\"color\",\"in\":\"query\",\"required\":false,\"schema\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"title\":\"Color\"}},{\"name\":\"type_image\",\"in\":\"query\",\"required\":false,\"schema\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"title\":\"Type Image\"}},{\"name\":\"layout\",\"in\":\"query\",\"required\":false,\"schema\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"title\":\"Layout\"}},{\"name\":\"license_image\",\"in\":\"query\",\"required\":false,\"schema\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"title\":\"License Image\"}}],\"responses\":{\"200\":{\"description\":\"Successful Response\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/SearchResponse\"}}}},\"422\":{\"description\":\"Validation Error\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/HTTPValidationError\"}}}}}}},\"/search/news\":{\"post\":{\"summary\":\"Search News\",\"description\":\"Perform a news search.\",\"operationId\":\"search_news_search_news_post\",\"requestBody\":{\"required\":true,\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/NewsSearchRequest\"}}}},\"responses\":{\"200\":{\"description\":\"Successful Response\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/SearchResponse\"}}}},\"422\":{\"description\":\"Validation Error\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/HTTPValidationError\"}}}}}},\"get\":{\"summary\":\"Search News Get\",\"description\":\"Perform a news search via GET request.\",\"operationId\":\"search_news_get_search_news_get\",\"parameters\":[{\"name\":\"query\",\"in\":\"query\",\"required\":true,\"schema\":{\"type\":\"string\",\"title\":\"Query\"}},{\"name\":\"region\",\"in\":\"query\",\"required\":false,\"schema\":{\"type\":\"string\",\"default\":\"us-en\",\"title\":\"Region\"}},{\"name\":\"safesearch\",\"in\":\"query\",\"required\":false,\"schema\":{\"type\":\"string\",\"default\":\"moderate\",\"title\":\"Safesearch\"}},{\"name\":\"timelimit\",\"in\":\"query\",\"required\":false,\"schema\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"title\":\"Timelimit\"}},{\"name\":\"max_results\",\"in\":\"query\",\"required\":false,\"schema\":{\"type\":\"integer\",\"default\":10,\"title\":\"Max Results\"}},{\"name\":\"page\",\"in\":\"query\",\"required\":false,\"schema\":{\"type\":\"integer\",\"default\":1,\"title\":\"Page\"}},{\"name\":\"backend\",\"in\":\"query\",\"required\":false,\"schema\":{\"type\":\"string\",\"default\":\"auto\",\"title\":\"Backend\"}}],\"responses\":{\"200\":{\"description\":\"Successful Response\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/SearchResponse\"}}}},\"422\":{\"description\":\"Validation Error\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/HTTPValidationError\"}}}}}}},\"/search/videos\":{\"post\":{\"summary\":\"Search Videos\",\"description\":\"Perform a video search.\",\"operationId\":\"search_videos_search_videos_post\",\"requestBody\":{\"required\":true,\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/VideosSearchRequest\"}}}},\"responses\":{\"200\":{\"description\":\"Successful Response\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/SearchResponse\"}}}},\"422\":{\"description\":\"Validation Error\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/HTTPValidationError\"}}}}}},\"get\":{\"summary\":\"Search Videos Get\",\"description\":\"Perform a video search via GET request.\",\"operationId\":\"search_videos_get_search_videos_get\",\"parameters\":[{\"name\":\"query\",\"in\":\"query\",\"required\":true,\"schema\":{\"type\":\"string\",\"title\":\"Query\"}},{\"name\":\"region\",\"in\":\"query\",\"required\":false,\"schema\":{\"type\":\"string\",\"default\":\"us-en\",\"title\":\"Region\"}},{\"name\":\"safesearch\",\"in\":\"query\",\"required\":false,\"schema\":{\"type\":\"string\",\"default\":\"moderate\",\"title\":\"Safesearch\"}},{\"name\":\"timelimit\",\"in\":\"query\",\"required\":false,\"schema\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"title\":\"Timelimit\"}},{\"name\":\"max_results\",\"in\":\"query\",\"required\":false,\"schema\":{\"type\":\"integer\",\"default\":10,\"title\":\"Max Results\"}},{\"name\":\"page\",\"in\":\"query\",\"required\":false,\"schema\":{\"type\":\"integer\",\"default\":1,\"title\":\"Page\"}},{\"name\":\"backend\",\"in\":\"query\",\"required\":false,\"schema\":{\"type\":\"string\",\"default\":\"auto\",\"title\":\"Backend\"}},{\"name\":\"resolution\",\"in\":\"query\",\"required\":false,\"schema\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"title\":\"Resolution\"}},{\"name\":\"duration\",\"in\":\"query\",\"required\":false,\"schema\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"title\":\"Duration\"}},{\"name\":\"license_videos\",\"in\":\"query\",\"required\":false,\"schema\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"title\":\"License Videos\"}}],\"responses\":{\"200\":{\"description\":\"Successful Response\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/SearchResponse\"}}}},\"422\":{\"description\":\"Validation Error\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/HTTPValidationError\"}}}}}}},\"/search/books\":{\"post\":{\"summary\":\"Search Books\",\"description\":\"Perform a book search.\",\"operationId\":\"search_books_search_books_post\",\"requestBody\":{\"required\":true,\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/BooksSearchRequest\"}}}},\"responses\":{\"200\":{\"description\":\"Successful Response\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/SearchResponse\"}}}},\"422\":{\"description\":\"Validation Error\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/HTTPValidationError\"}}}}}},\"get\":{\"summary\":\"Search Books Get\",\"description\":\"Perform a book search via GET request.\",\"operationId\":\"search_books_get_search_books_get\",\"parameters\":[{\"name\":\"query\",\"in\":\"query\",\"required\":true,\"schema\":{\"type\":\"string\",\"title\":\"Query\"}},{\"name\":\"max_results\",\"in\":\"query\",\"required\":false,\"schema\":{\"type\":\"integer\",\"default\":10,\"title\":\"Max Results\"}},{\"name\":\"page\",\"in\":\"query\",\"required\":false,\"schema\":{\"type\":\"integer\",\"default\":1,\"title\":\"Page\"}},{\"name\":\"backend\",\"in\":\"query\",\"required\":false,\"schema\":{\"type\":\"string\",\"default\":\"auto\",\"title\":\"Backend\"}}],\"responses\":{\"200\":{\"description\":\"Successful Response\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/SearchResponse\"}}}},\"422\":{\"description\":\"Validation Error\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/HTTPValidationError\"}}}}}}},\"/extract\":{\"post\":{\"summary\":\"Extract Content\",\"description\":\"Extract text content from a URL.\",\"operationId\":\"extract_content_extract_post\",\"requestBody\":{\"required\":true,\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/ExtractRequest\"}}}},\"responses\":{\"200\":{\"description\":\"Successful Response\",\"content\":{\"application/json\":{\"schema\":{\"type\":\"object\",\"additionalProperties\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"string\",\"contentMediaType\":\"application/octet-stream\"}]},\"title\":\"Response Extract Content Extract Post\"}}}},\"422\":{\"description\":\"Validation Error\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/HTTPValidationError\"}}}}}},\"get\":{\"summary\":\"Extract Content Get\",\"description\":\"Extract text content from a URL via GET request.\",\"operationId\":\"extract_content_get_extract_get\",\"parameters\":[{\"name\":\"url\",\"in\":\"query\",\"required\":true,\"schema\":{\"type\":\"string\",\"title\":\"Url\"}},{\"name\":\"fmt\",\"in\":\"query\",\"required\":false,\"schema\":{\"type\":\"string\",\"default\":\"text_markdown\",\"title\":\"Fmt\"}}],\"responses\":{\"200\":{\"description\":\"Successful Response\",\"content\":{\"application/json\":{\"schema\":{\"type\":\"object\",\"additionalProperties\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"string\",\"contentMediaType\":\"application/octet-stream\"}]},\"title\":\"Response Extract Content Get Extract Get\"}}}},\"422\":{\"description\":\"Validation Error\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/HTTPValidationError\"}}}}}}}},\"components\":{\"schemas\":{\"BooksSearchRequest\":{\"properties\":{\"query\":{\"type\":\"string\",\"title\":\"Query\",\"description\":\"Books search query\"},\"max_results\":{\"anyOf\":[{\"type\":\"integer\"},{\"type\":\"null\"}],\"title\":\"Max Results\",\"description\":\"Maximum number of results to return\",\"default\":10},\"page\":{\"type\":\"integer\",\"title\":\"Page\",\"description\":\"Page number of results\",\"default\":1},\"backend\":{\"type\":\"string\",\"title\":\"Backend\",\"description\":\"Search backend (auto, or specific engine)\",\"default\":\"auto\"}},\"type\":\"object\",\"required\":[\"query\"],\"title\":\"BooksSearchRequest\",\"description\":\"Request model for book search operations.\"},\"ExtractRequest\":{\"properties\":{\"url\":{\"type\":\"string\",\"title\":\"Url\",\"description\":\"URL to extract content from\"},\"format\":{\"type\":\"string\",\"title\":\"Format\",\"description\":\"Format: text_markdown, text_plain, text_rich, text, content\",\"default\":\"text_markdown\"}},\"type\":\"object\",\"required\":[\"url\"],\"title\":\"ExtractRequest\",\"description\":\"Request model for URL content extraction.\"},\"HTTPValidationError\":{\"properties\":{\"detail\":{\"items\":{\"$ref\":\"#/components/schemas/ValidationError\"},\"type\":\"array\",\"title\":\"Detail\"}},\"type\":\"object\",\"title\":\"HTTPValidationError\"},\"HealthResponse\":{\"properties\":{\"status\":{\"type\":\"string\",\"title\":\"Status\"},\"version\":{\"type\":\"string\",\"title\":\"Version\"},\"service\":{\"type\":\"string\",\"title\":\"Service\"}},\"type\":\"object\",\"required\":[\"status\",\"version\",\"service\"],\"title\":\"HealthResponse\",\"description\":\"Response model for health check.\"},\"ImagesSearchRequest\":{\"properties\":{\"query\":{\"type\":\"string\",\"title\":\"Query\",\"description\":\"Image search query\"},\"region\":{\"type\":\"string\",\"title\":\"Region\",\"description\":\"Region for search (e.g., us-en, uk-en, ru-ru)\",\"default\":\"us-en\"},\"safesearch\":{\"type\":\"string\",\"title\":\"Safesearch\",\"description\":\"Safe search setting (on, moderate, off)\",\"default\":\"moderate\"},\"timelimit\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"title\":\"Timelimit\",\"description\":\"Time limit (d, w, m, y) or custom date range\"},\"max_results\":{\"anyOf\":[{\"type\":\"integer\"},{\"type\":\"null\"}],\"title\":\"Max Results\",\"description\":\"Maximum number of results to return\",\"default\":10},\"page\":{\"type\":\"integer\",\"title\":\"Page\",\"description\":\"Page number of results\",\"default\":1},\"backend\":{\"type\":\"string\",\"title\":\"Backend\",\"description\":\"Search backend (auto, or specific engine)\",\"default\":\"auto\"},\"size\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"title\":\"Size\",\"description\":\"Image size (Small, Medium, Large, Wallpaper)\"},\"color\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"title\":\"Color\",\"description\":\"Image color (Monochrome, Red, Orange, Yellow, Green, Blue, Purple, Pink, Brown, Black, Gray, Teal, White)\"},\"type_image\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"title\":\"Type Image\",\"description\":\"Image type (photo, clipart, gif, transparent, line)\"},\"layout\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"title\":\"Layout\",\"description\":\"Image layout (Square, Tall, Wide)\"},\"license_image\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"title\":\"License Image\",\"description\":\"Image license (any, Public, Share, ShareCommercially, Modify, ModifyCommercially)\"}},\"type\":\"object\",\"required\":[\"query\"],\"title\":\"ImagesSearchRequest\",\"description\":\"Request model for image search operations.\"},\"NewsSearchRequest\":{\"properties\":{\"query\":{\"type\":\"string\",\"title\":\"Query\",\"description\":\"Search query\"},\"region\":{\"type\":\"string\",\"title\":\"Region\",\"description\":\"Region for search (e.g., us-en, uk-en, ru-ru)\",\"default\":\"us-en\"},\"safesearch\":{\"type\":\"string\",\"title\":\"Safesearch\",\"description\":\"Safe search setting (on, moderate, off)\",\"default\":\"moderate\"},\"timelimit\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"title\":\"Timelimit\",\"description\":\"Time limit (d, w, m, y) or custom date range\"},\"max_results\":{\"anyOf\":[{\"type\":\"integer\"},{\"type\":\"null\"}],\"title\":\"Max Results\",\"description\":\"Maximum number of results to return\",\"default\":10},\"page\":{\"type\":\"integer\",\"title\":\"Page\",\"description\":\"Page number of results\",\"default\":1},\"backend\":{\"type\":\"string\",\"title\":\"Backend\",\"description\":\"Search backend (auto, or specific engine)\",\"default\":\"auto\"}},\"type\":\"object\",\"required\":[\"query\"],\"title\":\"NewsSearchRequest\",\"description\":\"Request model for search operations.\"},\"SearchResponse\":{\"properties\":{\"results\":{\"items\":{\"additionalProperties\":true,\"type\":\"object\"},\"type\":\"array\",\"title\":\"Results\"}},\"type\":\"object\",\"required\":[\"results\"],\"title\":\"SearchResponse\",\"description\":\"Response model for search operations.\"},\"TextSearchRequest\":{\"properties\":{\"query\":{\"type\":\"string\",\"title\":\"Query\",\"description\":\"Search query\"},\"region\":{\"type\":\"string\",\"title\":\"Region\",\"description\":\"Region for search (e.g., us-en, uk-en, ru-ru)\",\"default\":\"us-en\"},\"safesearch\":{\"type\":\"string\",\"title\":\"Safesearch\",\"description\":\"Safe search setting (on, moderate, off)\",\"default\":\"moderate\"},\"timelimit\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"title\":\"Timelimit\",\"description\":\"Time limit (d, w, m, y) or custom date range\"},\"max_results\":{\"anyOf\":[{\"type\":\"integer\"},{\"type\":\"null\"}],\"title\":\"Max Results\",\"description\":\"Maximum number of results to return\",\"default\":10},\"page\":{\"type\":\"integer\",\"title\":\"Page\",\"description\":\"Page number of results\",\"default\":1},\"backend\":{\"type\":\"string\",\"title\":\"Backend\",\"description\":\"Search backend (auto, or specific engine)\",\"default\":\"auto\"}},\"type\":\"object\",\"required\":[\"query\"],\"title\":\"TextSearchRequest\",\"description\":\"Request model for search operations.\"},\"ValidationError\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"type\":\"array\",\"title\":\"Location\"},\"msg\":{\"type\":\"string\",\"title\":\"Message\"},\"type\":{\"type\":\"string\",\"title\":\"Error Type\"},\"input\":{\"title\":\"Input\"},\"ctx\":{\"type\":\"object\",\"title\":\"Context\"}},\"type\":\"object\",\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\"},\"VideosSearchRequest\":{\"properties\":{\"query\":{\"type\":\"string\",\"title\":\"Query\",\"description\":\"Video search query\"},\"region\":{\"type\":\"string\",\"title\":\"Region\",\"description\":\"Region for search (e.g., us-en, uk-en, ru-ru)\",\"default\":\"us-en\"},\"safesearch\":{\"type\":\"string\",\"title\":\"Safesearch\",\"description\":\"Safe search setting (on, moderate, off)\",\"default\":\"moderate\"},\"timelimit\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"title\":\"Timelimit\",\"description\":\"Time limit (d, w, m) or custom date range\"},\"max_results\":{\"anyOf\":[{\"type\":\"integer\"},{\"type\":\"null\"}],\"title\":\"Max Results\",\"description\":\"Maximum number of results to return\",\"default\":10},\"page\":{\"type\":\"integer\",\"title\":\"Page\",\"description\":\"Page number of results\",\"default\":1},\"backend\":{\"type\":\"string\",\"title\":\"Backend\",\"description\":\"Search backend (auto, or specific engine)\",\"default\":\"auto\"},\"resolution\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"title\":\"Resolution\",\"description\":\"Video resolution (high, standard)\"},\"duration\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"title\":\"Duration\",\"description\":\"Video duration (short, medium, long)\"},\"license_videos\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"title\":\"License Videos\",\"description\":\"Video license (creativeCommon, youtube)\"}},\"type\":\"object\",\"required\":[\"query\"],\"title\":\"VideosSearchRequest\",\"description\":\"Request model for video search operations.\"}}}}"
+ },
+ {
+  "method": "GET",
+  "path": "/docs",
+  "body": null,
+  "headers": {},
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "1007"
+   ],
+   [
+    "content-type",
+    "text/html; charset=utf-8"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "\n    <!DOCTYPE html>\n    <html>\n    <head>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <link type=\"text/css\" rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css\">\n    <link rel=\"shortcut icon\" href=\"https://fastapi.tiangolo.com/img/favicon.png\">\n    <title>DDGS API - Swagger UI</title>\n    </head>\n    <body>\n    <div id=\"swagger-ui\">\n    </div>\n    <script src=\"https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js\"></script>\n    <!-- `SwaggerUIBundle` is now available on the page -->\n    <script>\n    const ui = SwaggerUIBundle({\n        url: '/openapi.json',\n    \"dom_id\": \"#swagger-ui\",\n\"layout\": \"BaseLayout\",\n\"deepLinking\": true,\n\"showExtensions\": true,\n\"showCommonExtensions\": true,\noauth2RedirectUrl: window.location.origin + '/docs/oauth2-redirect',\n    presets: [\n        SwaggerUIBundle.presets.apis,\n        SwaggerUIBundle.SwaggerUIStandalonePreset\n        ],\n    })\n    </script>\n    </body>\n    </html>\n    "
+ },
+ {
+  "method": "GET",
+  "path": "/redoc",
+  "body": null,
+  "headers": {},
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "889"
+   ],
+   [
+    "content-type",
+    "text/html; charset=utf-8"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "\n    <!DOCTYPE html>\n    <html>\n    <head>\n    <title>DDGS API - ReDoc</title>\n    <!-- needed for adaptive design -->\n    <meta charset=\"utf-8\"/>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    \n    <link href=\"https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700\" rel=\"stylesheet\">\n    \n    <link rel=\"shortcut icon\" href=\"https://fastapi.tiangolo.com/img/favicon.png\">\n    <!--\n    ReDoc doesn't change outer page styles\n    -->\n    <style>\n      body {\n        margin: 0;\n        padding: 0;\n      }\n    </style>\n    </head>\n    <body>\n    <noscript>\n        ReDoc requires Javascript to function. Please enable it to browse the documentation.\n    </noscript>\n    <redoc spec-url=\"/openapi.json\"></redoc>\n    <script src=\"https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js\"> </script>\n    </body>\n    </html>\n    "
+ },
+ {
+  "method": "GET",
+  "path": "/docs/oauth2-redirect",
+  "body": null,
+  "headers": {},
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "3012"
+   ],
+   [
+    "content-type",
+    "text/html; charset=utf-8"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "\n    <!doctype html>\n    <html lang=\"en-US\">\n    <head>\n        <title>Swagger UI: OAuth2 Redirect</title>\n    </head>\n    <body>\n    <script>\n        'use strict';\n        function run () {\n            var oauth2 = window.opener.swaggerUIRedirectOauth2;\n            var sentState = oauth2.state;\n            var redirectUrl = oauth2.redirectUrl;\n            var isValid, qp, arr;\n\n            if (/code|token|error/.test(window.location.hash)) {\n                qp = window.location.hash.substring(1).replace('?', '&');\n            } else {\n                qp = location.search.substring(1);\n            }\n\n            arr = qp.split(\"&\");\n            arr.forEach(function (v,i,_arr) { _arr[i] = '\"' + v.replace('=', '\":\"') + '\"';});\n            qp = qp ? JSON.parse('{' + arr.join() + '}',\n                    function (key, value) {\n                        return key === \"\" ? value : decodeURIComponent(value);\n                    }\n            ) : {};\n\n            isValid = qp.state === sentState;\n\n            if ((\n              oauth2.auth.schema.get(\"flow\") === \"accessCode\" ||\n              oauth2.auth.schema.get(\"flow\") === \"authorizationCode\" ||\n              oauth2.auth.schema.get(\"flow\") === \"authorization_code\"\n            ) && !oauth2.auth.code) {\n                if (!isValid) {\n                    oauth2.errCb({\n                        authId: oauth2.auth.name,\n                        source: \"auth\",\n                        level: \"warning\",\n                        message: \"Authorization may be unsafe, passed state was changed in server. The passed state wasn't returned from auth server.\"\n                    });\n                }\n\n                if (qp.code) {\n                    delete oauth2.state;\n                    oauth2.auth.code = qp.code;\n                    oauth2.callback({auth: oauth2.auth, redirectUrl: redirectUrl});\n                } else {\n                    let oauthErrorMsg;\n                    if (qp.error) {\n                        oauthErrorMsg = \"[\"+qp.error+\"]: \" +\n                            (qp.error_description ? qp.error_description+ \". \" : \"no accessCode received from the server. \") +\n                            (qp.error_uri ? \"More info: \"+qp.error_uri : \"\");\n                    }\n\n                    oauth2.errCb({\n                        authId: oauth2.auth.name,\n                        source: \"auth\",\n                        level: \"error\",\n                        message: oauthErrorMsg || \"[Authorization failed]: no accessCode received from the server.\"\n                    });\n                }\n            } else {\n                oauth2.callback({auth: oauth2.auth, token: qp, isValid: isValid, redirectUrl: redirectUrl});\n            }\n            window.close();\n        }\n\n        if (document.readyState !== 'loading') {\n            run();\n        } else {\n            document.addEventListener('DOMContentLoaded', function () {\n                run();\n            });\n        }\n    </script>\n    </body>\n    </html>\n        "
+ },
+ {
+  "method": "GET",
+  "path": "/health/",
+  "body": null,
+  "headers": {
+   "Host": "localhost:4479"
+  },
+  "status": 307,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "0"
+   ],
+   [
+    "location",
+    "http://localhost:4479/health"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": ""
+ },
+ {
+  "method": "HEAD",
+  "path": "/health",
+  "body": null,
+  "headers": {},
+  "status": 405,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "allow",
+    "GET"
+   ],
+   [
+    "content-length",
+    "31"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": ""
+ },
+ {
+  "method": "GET",
+  "path": "/search/text?query=a&query=rust&max_results=1",
+  "body": null,
+  "headers": {},
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "383"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"results\":[{\"title\":\"Rust Programming Language\",\"href\":\"https://rust-lang.org/\",\"body\":\"A language empowering everyone to build reliable and efficient software.\"},{\"title\":\"Rust (programming language) - Wikipedia\",\"href\":\"https://en.wikipedia.org/wiki/Rust_(programming_language)\",\"body\":\"Rust is a general-purpose programming language emphasizing performance and memory safety.\"}]}"
+ },
+ {
+  "method": "GET",
+  "path": "/search/text?query=rust%20lang&region=%20x",
+  "body": null,
+  "headers": {},
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "383"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"results\":[{\"title\":\"Rust Programming Language\",\"href\":\"https://rust-lang.org/\",\"body\":\"A language empowering everyone to build reliable and efficient software.\"},{\"title\":\"Rust (programming language) - Wikipedia\",\"href\":\"https://en.wikipedia.org/wiki/Rust_(programming_language)\",\"body\":\"Rust is a general-purpose programming language emphasizing performance and memory safety.\"}]}"
+ },
+ {
+  "method": "POST",
+  "path": "/search/text",
+  "body": [
+   1,
+   2
+  ],
+  "headers": {},
+  "status": 422,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "150"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":[{\"type\":\"model_attributes_type\",\"loc\":[\"body\"],\"msg\":\"Input should be a valid dictionary or object to extract fields from\",\"input\":[1,2]}]}"
+ },
+ {
+  "method": "POST",
+  "path": "/search/text",
+  "body": "\"str\"",
+  "headers": {
+   "Content-Type": "application/json"
+  },
+  "status": 422,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "150"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":[{\"type\":\"model_attributes_type\",\"loc\":[\"body\"],\"msg\":\"Input should be a valid dictionary or object to extract fields from\",\"input\":\"str\"}]}"
+ },
+ {
+  "method": "POST",
+  "path": "/search/text",
+  "body": "{\"query\": \"rust\"",
+  "headers": {
+   "Content-Type": "application/json"
+  },
+  "status": 422,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "133"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":[{\"type\":\"json_invalid\",\"loc\":[\"body\",16],\"msg\":\"JSON decode error\",\"input\":{},\"ctx\":{\"error\":\"Expecting ',' delimiter\"}}]}"
+ },
+ {
+  "method": "POST",
+  "path": "/search/text",
+  "body": "{\"query\": \"rust\",}",
+  "headers": {
+   "Content-Type": "application/json"
+  },
+  "status": 422,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "153"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":[{\"type\":\"json_invalid\",\"loc\":[\"body\",16],\"msg\":\"JSON decode error\",\"input\":{},\"ctx\":{\"error\":\"Illegal trailing comma before end of object\"}}]}"
+ },
+ {
+  "method": "POST",
+  "path": "/search/text",
+  "body": "{\"query\": \"rust\"} x",
+  "headers": {
+   "Content-Type": "application/json"
+  },
+  "status": 422,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "120"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":[{\"type\":\"json_invalid\",\"loc\":[\"body\",18],\"msg\":\"JSON decode error\",\"input\":{},\"ctx\":{\"error\":\"Extra data\"}}]}"
+ },
+ {
+  "method": "POST",
+  "path": "/search/text",
+  "body": "{\"query\": \"rust\"}",
+  "headers": {
+   "Content-Type": "text/plain"
+  },
+  "status": 422,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "168"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":[{\"type\":\"model_attributes_type\",\"loc\":[\"body\"],\"msg\":\"Input should be a valid dictionary or object to extract fields from\",\"input\":\"{\\\"query\\\": \\\"rust\\\"}\"}]}"
+ },
+ {
+  "method": "POST",
+  "path": "/search/text",
+  "body": "{\"query\": \"rust\"}",
+  "headers": {},
+  "status": 422,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "168"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":[{\"type\":\"model_attributes_type\",\"loc\":[\"body\"],\"msg\":\"Input should be a valid dictionary or object to extract fields from\",\"input\":\"{\\\"query\\\": \\\"rust\\\"}\"}]}"
+ },
+ {
+  "method": "POST",
+  "path": "/search/text",
+  "body": {
+   "query": "rust",
+   "page": "2",
+   "max_results": 1.0
+  },
+  "headers": {},
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "383"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"results\":[{\"title\":\"Rust Programming Language\",\"href\":\"https://rust-lang.org/\",\"body\":\"A language empowering everyone to build reliable and efficient software.\"},{\"title\":\"Rust (programming language) - Wikipedia\",\"href\":\"https://en.wikipedia.org/wiki/Rust_(programming_language)\",\"body\":\"Rust is a general-purpose programming language emphasizing performance and memory safety.\"}]}"
+ },
+ {
+  "method": "POST",
+  "path": "/search/text",
+  "body": {
+   "query": "rust",
+   "max_results": 1.5
+  },
+  "headers": {},
+  "status": 422,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "156"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":[{\"type\":\"int_from_float\",\"loc\":[\"body\",\"max_results\"],\"msg\":\"Input should be a valid integer, got a number with a fractional part\",\"input\":1.5}]}"
+ },
+ {
+  "method": "GET",
+  "path": "/search/text?query=rust&page=",
+  "body": null,
+  "headers": {},
+  "status": 422,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "147"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":[{\"type\":\"int_parsing\",\"loc\":[\"query\",\"page\"],\"msg\":\"Input should be a valid integer, unable to parse string as an integer\",\"input\":\"\"}]}"
+ },
+ {
+  "method": "GET",
+  "path": "/search/images?query=rust&size=",
+  "body": null,
+  "headers": {},
+  "status": 200,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "429"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"results\":[{\"title\":\"Rust Programming Language\",\"image\":\"https://example.com/rust.png\",\"thumbnail\":\"https://example.com/rust-thumb.jpg\",\"url\":\"https://example.com/rust-page\",\"height\":\"800\",\"width\":\"1200\",\"source\":\"example.com\"},{\"title\":null,\"image\":\"https://example.com/ferris.png\",\"thumbnail\":\"https://example.com/ferris-thumb.jpg\",\"url\":\"https://example.com/ferris-page\",\"height\":\"480\",\"width\":\"640\",\"source\":\"example.com\"}]}"
+ },
+ {
+  "method": "GET",
+  "path": "/extract",
+  "body": null,
+  "headers": {},
+  "status": 422,
+  "response_headers": [
+   [
+    "server",
+    "uvicorn"
+   ],
+   [
+    "content-length",
+    "89"
+   ],
+   [
+    "content-type",
+    "application/json"
+   ],
+   [
+    "vary",
+    "Origin"
+   ]
+  ],
+  "response": "{\"detail\":[{\"type\":\"missing\",\"loc\":[\"query\",\"url\"],\"msg\":\"Field required\",\"input\":null}]}"
+ }
+]

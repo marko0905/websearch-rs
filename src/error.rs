@@ -51,13 +51,30 @@ pub enum WebSearchError {
     /// Engine appears to have throttled, blocked, or challenged the request.
     #[error("engine blocked request: {0}")]
     EngineBlocked(String),
+
+    /// No engine returned any result and no engine raised an error.
+    ///
+    /// Upstream `DDGSException("No results found.")`.
+    #[error("No results found.")]
+    NoResults,
+
+    /// An exception that upstream's own pipeline code raises, reproduced for
+    /// parity (for example the Python `TypeError` that `ResultsAggregator` or
+    /// `SimpleFilterRanker` raise on a `None` result field). The message is the
+    /// Python exception message.
+    #[error("{0}")]
+    Internal(String),
 }
 
 impl WebSearchError {
     /// Classify a `wreq` transport error into a specific websearch-rs error variant.
     ///
-    /// HTTP 403/429 map to [`WebSearchError::EngineBlocked`] because engines use them
-    /// to throttle or challenge non-browser-looking traffic.
+    /// In practice this yields only [`WebSearchError::Timeout`] and
+    /// [`WebSearchError::Http`]: the HTTP layer never calls `error_for_status`,
+    /// so a status is not a transport error and `error.status()` is `None`.
+    /// The `EngineBlocked` (403/429) and `HttpStatus` branches are kept for
+    /// callers that build errors from a `wreq` error that carries a status;
+    /// they are unreachable from the engines.
     pub(crate) fn from_wreq(error: wreq::Error) -> Self {
         if error.is_timeout() {
             return Self::Timeout(error.to_string());

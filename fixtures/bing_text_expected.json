@@ -1,0 +1,17 @@
+[
+ {
+  "title": "Rust Programming Language",
+  "href": "https://www.rust-lang.org/",
+  "body": "Rust is blazingly fast and memory-efficient with no runtime or garbage collector."
+ },
+ {
+  "title": "Rust (programming language) - Wikipedia",
+  "href": "https://en.wikipedia.org/wiki/Rust_(programming_language)",
+  "body": "Rust is a general-purpose programming language emphasizing performance, type safety, and concurrency."
+ },
+ {
+  "title": "The Rust Programming Language - Book",
+  "href": "https://doc.rust-lang.org/book/",
+  "body": "The official book on the Rust programming language, written by the Rust team."
+ }
+]

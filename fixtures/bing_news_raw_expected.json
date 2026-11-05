@@ -1,0 +1,18 @@
+[
+ {
+  "date": "2 days ago",
+  "title": "Rust language release improves tooling",
+  "body": "The update improves compiler and Cargo workflows for developers.",
+  "url": "https://example.com/rust-news",
+  "image": "/th?id=ON.123&pid=News",
+  "source": "Example News"
+ },
+ {
+  "date": "3 hours ago",
+  "title": "Rust adoption grows",
+  "body": "More teams are adopting Rust for infrastructure.",
+  "url": "https://example.com/rust-adoption",
+  "image": "",
+  "source": "Tech Daily"
+ }
+]

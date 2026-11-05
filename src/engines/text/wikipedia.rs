@@ -1,23 +1,29 @@
-//! Wikipedia text engine — queries the MediaWiki search API.
+//! Wikipedia text engine — port of `ddgs/engines/wikipedia.py` (v9.16.1).
 //!
-//! Unlike the scraping engines this is a clean JSON API (`action=query&
-//! list=search`); results are built from the page title. Wikipedia leads text
-//! results in Python `ddgs`, so it carries a high (low-numbered) priority and
-//! the ranker also floats it into the top bucket.
+//! Upstream flow:
+//! 1. `GET https://{lang}.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search={quote(query)}`
+//!    (no other params). `lang` is the second half of `region.lower().split("-")`.
+//! 2. If the opensearch list of titles (`json[1]`) is empty, no result.
+//!    Otherwise one result: `title = json[1][0]`, `href = json[3][0]`.
+//! 3. `GET https://{lang}.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles={quote(title)}&explaintext=0&exintro=0&redirects=1`
+//!    and use the first page's `extract` as the body (non-200 → body stays `""`).
+//! 4. A body that contains `"may refer to:"` (a disambiguation page) gives no
+//!    result.
+//!
+//! So this engine returns at most ONE result. Upstream sends no extra headers.
 
 use async_trait::async_trait;
-use serde::Deserialize;
-use url::Url;
+use serde_json::Value;
 
 use crate::engines::SearchEngine;
-use crate::engines::util::clean_html;
+use crate::engines::util::{py_truthy, split_region};
 use crate::http::HttpClient;
+use crate::normalize::{normalize_text, quote};
 use crate::{Result, TextResult, TextSearchRequest, WebSearchError};
 
 const NAME: &str = "wikipedia";
-const DEFAULT_LANG: &str = "en";
 
-/// Wikipedia MediaWiki-search engine.
+/// Wikipedia opensearch + extracts engine.
 #[derive(Clone, Debug, Default)]
 pub struct Wikipedia;
 
@@ -34,9 +40,14 @@ impl SearchEngine<TextSearchRequest, TextResult> for Wikipedia {
         NAME
     }
 
-    fn priority(&self) -> u8 {
-        // Leads text results, as in Python ddgs.
-        10
+    /// Upstream `provider = "wikipedia"`.
+    fn provider(&self) -> &'static str {
+        "wikipedia"
+    }
+
+    fn priority(&self) -> f64 {
+        // Upstream `priority = 2` (engines run in descending priority).
+        2.0
     }
 
     async fn search(
@@ -44,88 +55,110 @@ impl SearchEngine<TextSearchRequest, TextResult> for Wikipedia {
         http: &HttpClient,
         request: &TextSearchRequest,
     ) -> Result<Vec<TextResult>> {
-        let lang = language(request);
-        let url = build_url(request, &lang)?;
-        let body = http
-            .get_text(url.as_str(), &[("Accept", "application/json")])
+        // Upstream `build_payload`: `_country, lang = region.lower().split("-")`.
+        // A region such as `wt-wt` gives lang `wt` and the host
+        // `wt.wikipedia.org`, which does not exist; upstream has the same
+        // behavior (its default region is `us-en`).
+        let (_country, lang) = split_region(request.region.as_str())?;
+        // The query is sent verbatim (upstream does not strip it).
+        let Some(body) = http
+            .get_text(&search_url(&lang, &request.query), &[])
+            .await?
+        else {
+            // Upstream `BaseSearchEngine.request`: non-200 → `None` → no results.
+            return Ok(Vec::new());
+        };
+        let Some(mut result) = parse_opensearch(&body)? else {
+            return Ok(Vec::new());
+        };
+
+        // `self.request(...)` again: non-200 → `None`.
+        let extract = http
+            .get_text(&extracts_url(&lang, &result.title), &[])
             .await?;
-        parse_results(&body, &lang)
-    }
-}
-
-/// Language subdomain for the wiki, derived from the region's language half.
-fn language(request: &TextSearchRequest) -> String {
-    match request.region.as_str().split_once('-') {
-        Some((_, lang)) if lang != "wt" && !lang.is_empty() => lang.to_ascii_lowercase(),
-        _ => DEFAULT_LANG.to_string(),
-    }
-}
-
-fn build_url(request: &TextSearchRequest, lang: &str) -> Result<Url> {
-    let mut url = Url::parse(&format!("https://{lang}.wikipedia.org/w/api.php"))?;
-    {
-        let mut query = url.query_pairs_mut();
-        query.append_pair("action", "query");
-        query.append_pair("list", "search");
-        query.append_pair("srsearch", request.query.trim());
-        query.append_pair("srlimit", &request.max_results.to_string());
-        query.append_pair("srprop", "snippet");
-        query.append_pair("format", "json");
-        let offset = request.page.saturating_sub(1) * request.max_results;
-        if offset > 0 {
-            query.append_pair("sroffset", &offset.to_string());
+        // Upstream `if resp_data:` — an empty body is skipped too.
+        if let Some(extract) = extract.filter(|text| !text.is_empty()) {
+            result.body = parse_extract(&extract)?;
         }
+        Ok(finish(result))
     }
-    Ok(url)
 }
 
-#[derive(Deserialize)]
-struct ApiResponse {
-    query: Option<QueryBlock>,
+fn search_url(lang: &str, query: &str) -> String {
+    format!(
+        "https://{lang}.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search={}",
+        quote(query)
+    )
 }
 
-#[derive(Deserialize)]
-struct QueryBlock {
-    #[serde(default)]
-    search: Vec<SearchItem>,
+/// The extracts request. `title` is the already-normalized result title, as
+/// upstream reads `result.title` after its setter normalized it.
+fn extracts_url(lang: &str, title: &str) -> String {
+    format!(
+        "https://{lang}.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles={}&explaintext=0&exintro=0&redirects=1",
+        quote(title)
+    )
 }
 
-#[derive(Deserialize)]
-struct SearchItem {
-    title: String,
-    #[serde(default)]
-    snippet: String,
+fn parse_error(message: impl Into<String>) -> WebSearchError {
+    WebSearchError::Parse(format!("wikipedia: {}", message.into()))
 }
 
-fn parse_results(body: &str, lang: &str) -> Result<Vec<TextResult>> {
-    let response: ApiResponse = serde_json::from_str(body)
-        .map_err(|err| WebSearchError::Parse(format!("wikipedia json: {err}")))?;
-
-    let Some(query) = response.query else {
-        return Ok(Vec::new());
-    };
-
-    let mut results = Vec::with_capacity(query.search.len());
-    for item in query.search {
-        let title = item.title.trim();
-        if title.is_empty() {
-            continue;
-        }
-        let href = page_url(lang, title);
-        let body_text = clean_html(&item.snippet);
-        results.push(TextResult::new(title, href, body_text, NAME));
+/// `json.loads(text)` then `json_data[1]` / `[1][0]` / `[3][0]`.
+///
+/// Returns `Ok(None)` when `json_data[1]` is falsy. Every lookup that raises
+/// in Python (`KeyError`/`IndexError`/`TypeError`) is a parse error here.
+fn parse_opensearch(body: &str) -> Result<Option<TextResult>> {
+    let json: Value = serde_json::from_str(body).map_err(|err| parse_error(err.to_string()))?;
+    let titles = json
+        .get(1)
+        .ok_or_else(|| parse_error("opensearch response has no title list"))?;
+    if !py_truthy(titles) {
+        return Ok(None);
     }
-    Ok(results)
+    let title = titles
+        .get(0)
+        .and_then(Value::as_str)
+        .ok_or_else(|| parse_error("opensearch title is missing or not a string"))?;
+    let href = json
+        .get(3)
+        .and_then(|links| links.get(0))
+        .and_then(Value::as_str)
+        .ok_or_else(|| parse_error("opensearch link is missing or not a string"))?;
+    // Constructor = upstream setter normalization of `title` and `href`.
+    Ok(Some(TextResult::new(title, href, "")))
 }
 
-/// Build the canonical page URL from a title (spaces become underscores; the
-/// `url` crate percent-encodes the rest).
-fn page_url(lang: &str, title: &str) -> String {
-    let base = format!("https://{lang}.wikipedia.org/wiki/");
-    let underscored = title.replace(' ', "_");
-    match Url::parse(&base).and_then(|base| base.join(&underscored)) {
-        Ok(url) => url.into(),
-        Err(_) => format!("{base}{underscored}"),
+/// `next(iter(json["query"]["pages"].values())).get("extract", "")`, then the
+/// `body` setter (normalize a truthy string).
+///
+/// A missing key, an empty `pages` map (`StopIteration`), and a `null` or
+/// non-string extract (later `TypeError`) all raise upstream, so they are
+/// parse errors here.
+fn parse_extract(body: &str) -> Result<String> {
+    let json: Value = serde_json::from_str(body).map_err(|err| parse_error(err.to_string()))?;
+    let page = json
+        .get("query")
+        .and_then(|query| query.get("pages"))
+        .and_then(Value::as_object)
+        .ok_or_else(|| parse_error("extracts response has no query.pages"))?
+        .values()
+        .next()
+        .ok_or_else(|| parse_error("extracts response has no page"))?;
+    match page.get("extract") {
+        None => Ok(String::new()),
+        Some(Value::String(text)) if text.is_empty() => Ok(String::new()),
+        Some(Value::String(text)) => Ok(normalize_text(text)),
+        Some(_) => Err(parse_error("extract is not a string")),
+    }
+}
+
+/// Upstream `if "may refer to:" in result.body: return []`.
+fn finish(result: TextResult) -> Vec<TextResult> {
+    if result.body.contains("may refer to:") {
+        Vec::new()
+    } else {
+        vec![result]
     }
 }
 
@@ -134,50 +167,149 @@ mod tests {
     use super::*;
 
     #[test]
-    fn parses_wikipedia_fixture() {
-        let body = include_str!("../../../fixtures/wikipedia_search.json");
-        let results = parse_results(body, "en").expect("parse");
-        assert_eq!(results.len(), 3);
-
-        assert_eq!(results[0].title, "Rust (programming language)");
+    fn builds_upstream_urls() {
         assert_eq!(
-            results[0].href,
+            search_url("en", "rust programming/lang?"),
+            "https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=rust%20programming/lang%3F"
+        );
+        assert_eq!(
+            extracts_url("de", "Rust (programming language)"),
+            "https://de.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=Rust%20%28programming%20language%29&explaintext=0&exintro=0&redirects=1"
+        );
+    }
+
+    #[test]
+    fn parses_opensearch_and_extract_fixtures() {
+        let open = include_str!("../../../fixtures/wikipedia_opensearch.json");
+        let mut result = parse_opensearch(open).unwrap().expect("one result");
+        assert_eq!(result.title, "Rust (programming language)");
+        assert_eq!(
+            result.href,
             "https://en.wikipedia.org/wiki/Rust_(programming_language)"
         );
-        assert_eq!(results[0].source, NAME);
-        // HTML highlight tags stripped, entity decoded.
-        assert!(!results[0].body.contains('<'));
-        assert!(results[0].body.contains("performance & memory safety"));
+        result.body =
+            parse_extract(include_str!("../../../fixtures/wikipedia_extracts.json")).unwrap();
+        assert!(
+            result
+                .body
+                .starts_with("Rust is a general-purpose programming language")
+        );
+        let results = finish(result);
+        assert_eq!(results.len(), 1);
     }
 
     #[test]
-    fn empty_query_block_is_empty() {
+    fn disambiguation_page_gives_no_result() {
+        let open = include_str!("../../../fixtures/wikipedia_opensearch_disambiguation.json");
+        let mut result = parse_opensearch(open).unwrap().expect("one result");
+        result.body = parse_extract(include_str!(
+            "../../../fixtures/wikipedia_extracts_disambiguation.json"
+        ))
+        .unwrap();
+        assert!(finish(result).is_empty());
+    }
+
+    #[test]
+    fn may_also_refer_to_is_kept() {
+        // Quirk (reproduced): upstream checks only the exact substring
+        // "may refer to:", so a real disambiguation page whose extract says
+        // "may also refer to:" (here: Mercury) is returned as the result.
+        let mut result = TextResult::new("Mercury", "https://en.wikipedia.org/wiki/Mercury", "");
+        result.body = parse_extract(include_str!(
+            "../../../fixtures/wikipedia_extracts_may_also_refer.json"
+        ))
+        .unwrap();
+        assert!(result.body.ends_with("The Mercury may also refer to:"));
+        assert_eq!(finish(result).len(), 1);
+    }
+
+    #[test]
+    fn matches_upstream_expected_output() {
+        // Expected files: upstream ddgs 9.16.1 output (`scripts/regen_expected.py`).
+        let cases = [
+            (
+                include_str!("../../../fixtures/wikipedia_opensearch.json"),
+                include_str!("../../../fixtures/wikipedia_extracts.json"),
+                include_str!("../../../fixtures/wikipedia_text_expected.json"),
+            ),
+            (
+                include_str!("../../../fixtures/wikipedia_opensearch_disambiguation.json"),
+                include_str!("../../../fixtures/wikipedia_extracts_disambiguation.json"),
+                include_str!("../../../fixtures/wikipedia_disambiguation_expected.json"),
+            ),
+            (
+                include_str!("../../../fixtures/wikipedia_opensearch_may_also_refer.json"),
+                include_str!("../../../fixtures/wikipedia_extracts_may_also_refer.json"),
+                include_str!("../../../fixtures/wikipedia_may_also_refer_expected.json"),
+            ),
+        ];
+        for (open, extracts, expected) in cases {
+            let expected: Vec<TextResult> = serde_json::from_str(expected).expect("expected json");
+            let mut got = Vec::new();
+            if let Some(mut result) = parse_opensearch(open).unwrap() {
+                result.body = parse_extract(extracts).unwrap();
+                got = finish(result);
+            }
+            assert_eq!(got, expected);
+        }
+    }
+
+    #[test]
+    fn empty_title_list_gives_no_result() {
         assert!(
-            parse_results(r#"{"batchcomplete":""}"#, "en")
+            parse_opensearch(r#"["zzqqxx",[],[],[]]"#)
                 .unwrap()
-                .is_empty()
+                .is_none()
         );
     }
 
     #[test]
-    fn language_defaults_to_en() {
-        let mut req = TextSearchRequest::new("x");
-        assert_eq!(language(&req), "en"); // default region wt-wt
-        req.region = crate::Region::new("de-de").unwrap();
-        assert_eq!(language(&req), "de");
+    fn upstream_errors_are_parse_errors() {
+        // `json_data[1]` on an error object raises KeyError upstream.
+        assert!(parse_opensearch(r#"{"error":{"code":"x"}}"#).is_err());
+        // `json_data[3][0]` IndexError.
+        assert!(parse_opensearch(r#"["q",["T"],[""],[]]"#).is_err());
+        // Empty `pages` → StopIteration.
+        assert!(parse_extract(r#"{"query":{"pages":{}}}"#).is_err());
+        // Missing extract → "".
+        assert_eq!(
+            parse_extract(r#"{"query":{"pages":{"-1":{"missing":""}}}}"#).unwrap(),
+            ""
+        );
     }
 
-    /// Verifies the live MediaWiki API still parses.
+    #[test]
+    fn region_must_have_two_parts() {
+        assert_eq!(
+            split_region("DE-de").unwrap(),
+            ("de".to_owned(), "de".to_owned())
+        );
+        assert!(split_region("wt").is_err());
+        assert!(split_region("a-b-c").is_err());
+    }
+
+    /// Verifies the live opensearch + extracts flow.
     #[tokio::test]
     #[ignore = "hits live Wikipedia"]
     async fn live_wikipedia_returns_results() {
         let http = HttpClient::new(&crate::http::HttpConfig::default()).expect("client");
+        let request =
+            TextSearchRequest::new("rust programming language").region("us-en".parse().unwrap());
         let results = Wikipedia::new()
-            .search(&http, &TextSearchRequest::new("rust programming language"))
+            .search(&http, &request)
             .await
             .expect("search");
-        assert!(!results.is_empty(), "wikipedia returned no results");
+        assert_eq!(results.len(), 1, "wikipedia returns exactly one result");
         assert!(results[0].href.contains("wikipedia.org/wiki/"));
         assert!(!results[0].title.is_empty());
+        assert!(!results[0].body.is_empty());
+
+        // A "may refer to:" disambiguation page gives no result.
+        let request = TextSearchRequest::new("pitch").region("us-en".parse().unwrap());
+        let results = Wikipedia::new()
+            .search(&http, &request)
+            .await
+            .expect("search");
+        assert!(results.is_empty(), "disambiguation page must be dropped");
     }
 }

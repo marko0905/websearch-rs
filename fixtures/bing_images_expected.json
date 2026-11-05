@@ -1,0 +1,20 @@
+[
+ {
+  "title": "Rust Programming Language",
+  "image": "https://example.com/rust.png",
+  "thumbnail": "https://example.com/rust-thumb.jpg",
+  "url": "https://example.com/rust-page",
+  "height": "800",
+  "width": "1200",
+  "source": "example.com"
+ },
+ {
+  "title": null,
+  "image": "https://example.com/ferris.png",
+  "thumbnail": "https://example.com/ferris-thumb.jpg",
+  "url": "https://example.com/ferris-page",
+  "height": "480",
+  "width": "640",
+  "source": "example.com"
+ }
+]

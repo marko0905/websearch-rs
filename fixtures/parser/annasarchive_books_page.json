@@ -1,0 +1,446 @@
+{
+"root": "html",
+"nodes": [
+[
+"e",
+"html",
+[]
+],
+[
+"e",
+"body",
+[]
+],
+[
+"t",
+"\n     Anna's Archive serves the result cards inside an HTML comment and\n         renders them client-side; the parser strips the comment markers first. \n    "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"js-aarecord-list-outer"
+]
+]
+],
+[
+"t",
+"\n      \n      "
+],
+[
+"e",
+"script",
+[]
+],
+[
+"t",
+"/* keyboard-nav noise that must be ignored */"
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"flex pt-3 pb-3 border-b last:border-b-0 border-gray-100"
+]
+]
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"a",
+[
+[
+"href",
+"/md5/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+],
+[
+"class",
+"custom-a block mr-2 hover:opacity-80"
+]
+]
+],
+[
+"t",
+"\n          "
+],
+[
+"e",
+"img",
+[
+[
+"class",
+"w-full h-full object-cover"
+],
+[
+"src",
+"/covers/rust-book.jpg"
+],
+[
+"alt",
+""
+]
+]
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"max-w-full overflow-hidden flex flex-col justify-around"
+]
+]
+],
+[
+"t",
+"\n          "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"text-[9px] text-gray-500 font-mono"
+]
+]
+],
+[
+"t",
+"lgli/rust_programming_language.pdf"
+],
+[
+"t",
+"\n          "
+],
+[
+"e",
+"a",
+[
+[
+"href",
+"/md5/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+],
+[
+"class",
+"js-vim-focus custom-a font-semibold text-lg leading-[1.2]"
+]
+]
+],
+[
+"t",
+"The Rust Programming Language"
+],
+[
+"t",
+"\n          "
+],
+[
+"e",
+"a",
+[
+[
+"href",
+"/search?q=Steve+Klabnik"
+],
+[
+"class",
+"custom-a text-sm hover:opacity-70"
+]
+]
+],
+[
+"e",
+"span",
+[
+[
+"class",
+"icon-[mdi--user-edit]"
+]
+]
+],
+[
+"t",
+" Steve Klabnik, Carol Nichols"
+],
+[
+"t",
+"\n          "
+],
+[
+"e",
+"a",
+[
+[
+"href",
+"/search?q=No+Starch+Press"
+],
+[
+"class",
+"custom-a text-sm hover:opacity-70"
+]
+]
+],
+[
+"e",
+"span",
+[
+[
+"class",
+"icon-[mdi--company]"
+]
+]
+],
+[
+"t",
+" No Starch Press"
+],
+[
+"t",
+"\n          "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"text-sm text-gray-800 mt-2 mb-2 leading-[1.3]"
+]
+]
+],
+[
+"t",
+"English [en], pdf, 5.2MB, "
+],
+[
+"e",
+"span",
+[]
+],
+[
+"t",
+"The official book on the Rust programming language."
+],
+[
+"t",
+"\n        "
+],
+[
+"t",
+"\n      "
+],
+[
+"t",
+"\n      "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"flex pt-3 pb-3 border-b last:border-b-0 border-gray-100"
+]
+]
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"a",
+[
+[
+"href",
+"/md5/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+],
+[
+"class",
+"custom-a block mr-2 hover:opacity-80"
+]
+]
+],
+[
+"t",
+"\n          "
+],
+[
+"e",
+"img",
+[
+[
+"class",
+"w-full h-full object-cover"
+],
+[
+"src",
+"https://example.com/programming-rust.jpg"
+],
+[
+"alt",
+""
+]
+]
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"max-w-full overflow-hidden flex flex-col justify-around"
+]
+]
+],
+[
+"t",
+"\n          "
+],
+[
+"e",
+"a",
+[
+[
+"href",
+"/md5/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+],
+[
+"class",
+"js-vim-focus custom-a font-semibold text-lg leading-[1.2]"
+]
+]
+],
+[
+"t",
+"Programming Rust"
+],
+[
+"t",
+"\n          "
+],
+[
+"e",
+"a",
+[
+[
+"href",
+"/md5/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+],
+[
+"class",
+"custom-a text-lg"
+]
+]
+],
+[
+"t",
+"2nd Edition"
+],
+[
+"t",
+"\n          "
+],
+[
+"e",
+"a",
+[
+[
+"href",
+"/search?q=Jim+Blandy"
+],
+[
+"class",
+"custom-a text-sm hover:opacity-70"
+]
+]
+],
+[
+"e",
+"span",
+[
+[
+"class",
+"icon-[mdi--user-edit]"
+]
+]
+],
+[
+"t",
+" Jim Blandy, Jason Orendorff"
+],
+[
+"t",
+"\n          "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"text-sm text-gray-800 mt-2 mb-2 leading-[1.3]"
+]
+]
+],
+[
+"t",
+"English [en], epub, 3.1MB"
+],
+[
+"t",
+"\n        "
+],
+[
+"t",
+"\n      "
+],
+[
+"t",
+"\n      "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"flex pt-3 pb-3"
+]
+]
+],
+[
+"e",
+"span",
+[]
+],
+[
+"t",
+"placeholder card"
+],
+[
+"t",
+"\n      \n    "
+],
+[
+"t",
+"\n  "
+]
+]
+}

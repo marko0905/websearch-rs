@@ -9,19 +9,19 @@ cargo fmt --all --check
 cargo test --all-targets --all-features
 cargo clippy --all-targets --all-features -- -D warnings
 cargo test -- --ignored
-cargo run -- text "rust programming" --max-results 5 --json
-cargo run -- text "rust programming" --backend bing,brave --max-results 5 --json
-cargo run -- images "rust programming" --max-results 5 --json
-cargo run -- videos "rust programming" --max-results 5 --json
-cargo run -- news "rust programming" --max-results 5 --json
-cargo run -- books "rust programming" --max-results 5 --json
+cargo run -- text -q "rust programming" -m 5 -o json
+cargo run -- text -q "rust programming" -b brave -b duckduckgo -m 5 -o json
+cargo run -- images -q "rust programming" -m 5 -o json
+cargo run -- videos -q "rust programming" -m 5 -o json
+cargo run -- news -q "rust programming" -m 5 -o json
+cargo run -- books -q "rust programming" -m 5 -o json
 ```
 
 ## Crate release
 
 1. Update `Cargo.toml` version.
 2. Update `CHANGELOG.md`.
-3. Verify `README.md` and `docs/compatibility.md` reflect current behavior.
+3. Verify `README.md`, `docs/compatibility.md`, and `docs/compatibility-matrix.md` match the code and the tracked upstream version (currently ddgs v9.16.1).
 4. Run the full validation commands above.
 5. Publish with:
 

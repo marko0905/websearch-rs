@@ -1,0 +1,587 @@
+{
+"root": "div",
+"nodes": [
+[
+"e",
+"html",
+[]
+],
+[
+"e",
+"body",
+[]
+],
+[
+"t",
+"\n    "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"mainline-results"
+]
+]
+],
+[
+"t",
+"\n      "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"results-header css-hhh"
+]
+]
+],
+[
+"e",
+"a",
+[
+[
+"href",
+"https://www.startpage.com/"
+]
+]
+],
+[
+"t",
+"Header"
+],
+[
+"t",
+"\n      "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"result css-aaa"
+]
+]
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"a",
+[
+[
+"class",
+"result-title result-link css-bbb"
+],
+[
+"href",
+"https://www.google.com/search?q=rust"
+],
+[
+"data-testid",
+"gl-title-link"
+]
+]
+],
+[
+"t",
+"\n          "
+],
+[
+"e",
+"h2",
+[
+[
+"class",
+"wgl-title css-ccc"
+]
+]
+],
+[
+"t",
+"Google link (filtered)"
+],
+[
+"t",
+"\n        "
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"p",
+[
+[
+"class",
+"description css-ddd"
+]
+]
+],
+[
+"t",
+"Dropped by the google.com post-filter."
+],
+[
+"t",
+"\n      "
+],
+[
+"t",
+"\n      "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"result css-aaa"
+]
+]
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"div",
+[]
+],
+[
+"e",
+"a",
+[
+[
+"href",
+"https://nested.example/"
+]
+]
+],
+[
+"t",
+"Nested anchor only"
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"h2",
+[]
+],
+[
+"t",
+"No direct anchor"
+],
+[
+"t",
+"\n      "
+],
+[
+"t",
+"\n      "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"result css-aaa"
+]
+]
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"a",
+[
+[
+"class",
+"result-title result-link css-bbb"
+],
+[
+"href",
+"https://rust-lang.org/"
+],
+[
+"data-testid",
+"gl-title-link"
+]
+]
+],
+[
+"t",
+"\n          "
+],
+[
+"e",
+"h2",
+[
+[
+"class",
+"wgl-title css-ccc"
+]
+]
+],
+[
+"t",
+"Rust Programming Language"
+],
+[
+"t",
+"\n        "
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"p",
+[
+[
+"class",
+"description css-ddd"
+]
+]
+],
+[
+"t",
+"Rust is blazingly fast and memory-efficient with no runtime or garbage collector."
+],
+[
+"t",
+"\n      "
+],
+[
+"t",
+"\n      "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"result css-aaa"
+]
+]
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"a",
+[
+[
+"class",
+"result-title result-link css-bbb"
+],
+[
+"href",
+"https://en.wikipedia.org/wiki/Rust_(programming_language)"
+],
+[
+"data-testid",
+"gl-title-link"
+]
+]
+],
+[
+"t",
+"\n          "
+],
+[
+"e",
+"h2",
+[
+[
+"class",
+"wgl-title css-ccc"
+]
+]
+],
+[
+"t",
+"Rust (programming language) - Wikipedia"
+],
+[
+"t",
+"\n        "
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"p",
+[
+[
+"class",
+"description css-ddd"
+]
+]
+],
+[
+"t",
+"Rust is a general-purpose programming language emphasizing performance and memory safety."
+],
+[
+"t",
+"\n      "
+],
+[
+"t",
+"\n      "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"result css-aaa"
+]
+]
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"a",
+[
+[
+"class",
+"result-title result-link css-bbb"
+],
+[
+"href",
+"https://doc.rust-lang.org/book/"
+],
+[
+"data-testid",
+"gl-title-link"
+]
+]
+],
+[
+"t",
+"\n          "
+],
+[
+"e",
+"h2",
+[
+[
+"class",
+"wgl-title css-ccc"
+]
+]
+],
+[
+"t",
+"The Rust Programming Language - Book"
+],
+[
+"t",
+"\n        "
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"p",
+[
+[
+"class",
+"description css-ddd"
+]
+]
+],
+[
+"t",
+"The official book on the Rust programming language."
+],
+[
+"t",
+"\n      "
+],
+[
+"t",
+"\n      "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"result css-aaa"
+]
+]
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"a",
+[
+[
+"class",
+"result-title result-link css-bbb"
+],
+[
+"href",
+"https://doc.rust-lang.org/book/"
+],
+[
+"data-testid",
+"gl-title-link"
+]
+]
+],
+[
+"t",
+"\n          "
+],
+[
+"e",
+"h2",
+[
+[
+"class",
+"wgl-title css-ccc"
+]
+]
+],
+[
+"t",
+"The Rust Programming Language - Book (repeat)"
+],
+[
+"t",
+"\n        "
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"p",
+[
+[
+"class",
+"description css-ddd"
+]
+]
+],
+[
+"t",
+"Upstream does not dedup inside an engine."
+],
+[
+"t",
+"\n      "
+],
+[
+"t",
+"\n      "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"result css-aaa"
+]
+]
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"a",
+[
+[
+"href",
+"/relative/first"
+]
+]
+],
+[
+"t",
+"first"
+],
+[
+"e",
+"a",
+[
+[
+"href",
+"/second"
+]
+]
+],
+[
+"t",
+"second"
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"p",
+[
+[
+"class",
+"description css-ddd"
+]
+]
+],
+[
+"t",
+"Two direct-child anchors, no heading: upstream joins both hrefs."
+],
+[
+"t",
+"\n      "
+],
+[
+"t",
+"\n    "
+],
+[
+"t",
+"\n  "
+]
+]
+}

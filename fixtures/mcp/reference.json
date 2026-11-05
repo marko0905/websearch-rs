@@ -1,0 +1,600 @@
+[
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 1,
+   "method": "initialize",
+   "params": {
+    "protocolVersion": "2025-06-18",
+    "capabilities": {},
+    "clientInfo": {
+     "name": "t",
+     "version": "1"
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"capabilities\":{\"prompts\":{\"listChanged\":false},\"resources\":{\"listChanged\":false,\"subscribe\":false},\"tools\":{\"listChanged\":false}},\"protocolVersion\":\"2025-06-18\",\"serverInfo\":{\"name\":\"ddgs-search\",\"version\":\"\"}}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "method": "notifications/initialized"
+  },
+  "response": null
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 2,
+   "method": "tools/list"
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"tools\":[{\"description\":\"Perform a text search using DDGS.\\n\\nArgs:\\n    query: Search query string\\n    region: Region for search (e.g., us-en, uk-en, ru-ru)\\n    safesearch: Safe search setting (on, moderate, off)\\n    timelimit: Time limit (d, w, m, y) or custom date range\\n    max_results: Maximum number of results to return\\n    page: Page number of results\\n    backend: Search backend (auto, or specific engine)\\n\\nReturns:\\n    List of search results with title, href, and body\\n\\n\",\"inputSchema\":{\"properties\":{\"query\":{\"title\":\"Query\",\"type\":\"string\"},\"region\":{\"default\":\"us-en\",\"title\":\"Region\",\"type\":\"string\"},\"safesearch\":{\"default\":\"moderate\",\"title\":\"Safesearch\",\"type\":\"string\"},\"timelimit\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null,\"title\":\"Timelimit\"},\"max_results\":{\"default\":10,\"title\":\"Max Results\",\"type\":\"integer\"},\"page\":{\"default\":1,\"title\":\"Page\",\"type\":\"integer\"},\"backend\":{\"default\":\"auto\",\"title\":\"Backend\",\"type\":\"string\"}},\"required\":[\"query\"],\"type\":\"object\",\"title\":\"search_textArguments\"},\"name\":\"search_text\",\"outputSchema\":{\"properties\":{\"result\":{\"items\":{\"additionalProperties\":true,\"type\":\"object\"},\"title\":\"Result\",\"type\":\"array\"}},\"required\":[\"result\"],\"type\":\"object\",\"title\":\"search_textOutput\"}},{\"description\":\"Perform an image search using DDGS.\\n\\nArgs:\\n    query: Image search query string\\n    region: Region for search (e.g., us-en, uk-en, ru-ru)\\n    safesearch: Safe search setting (on, moderate, off)\\n    timelimit: Time limit (d, w, m, y) or custom date range\\n    max_results: Maximum number of results to return\\n    page: Page number of results\\n    backend: Search backend (auto, or specific engine)\\n    size: Image size (Small, Medium, Large, Wallpaper)\\n    color: Image color filter\\n    type_image: Image type (photo, clipart, gif, transparent, line)\\n    layout: Image layout (Square, Tall, Wide)\\n    license_image: Image license filter\\n\\nReturns:\\n    List of image search results with title, image URL, and source\\n\\n\",\"inputSchema\":{\"properties\":{\"query\":{\"title\":\"Query\",\"type\":\"string\"},\"region\":{\"default\":\"us-en\",\"title\":\"Region\",\"type\":\"string\"},\"safesearch\":{\"default\":\"moderate\",\"title\":\"Safesearch\",\"type\":\"string\"},\"timelimit\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null,\"title\":\"Timelimit\"},\"max_results\":{\"default\":10,\"title\":\"Max Results\",\"type\":\"integer\"},\"page\":{\"default\":1,\"title\":\"Page\",\"type\":\"integer\"},\"backend\":{\"default\":\"auto\",\"title\":\"Backend\",\"type\":\"string\"},\"size\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null,\"title\":\"Size\"},\"color\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null,\"title\":\"Color\"},\"type_image\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null,\"title\":\"Type Image\"},\"layout\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null,\"title\":\"Layout\"},\"license_image\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null,\"title\":\"License Image\"}},\"required\":[\"query\"],\"type\":\"object\",\"title\":\"search_imagesArguments\"},\"name\":\"search_images\",\"outputSchema\":{\"properties\":{\"result\":{\"items\":{\"additionalProperties\":true,\"type\":\"object\"},\"title\":\"Result\",\"type\":\"array\"}},\"required\":[\"result\"],\"type\":\"object\",\"title\":\"search_imagesOutput\"}},{\"description\":\"Perform a news search using DDGS.\\n\\nArgs:\\n    query: News search query string\\n    region: Region for search (e.g., us-en, uk-en, ru-ru)\\n    safesearch: Safe search setting (on, moderate, off)\\n    timelimit: Time limit (d, w, m, y) or custom date range\\n    max_results: Maximum number of results to return\\n    page: Page number of results\\n    backend: Search backend (auto, or specific engine)\\n\\nReturns:\\n    List of news results with title, URL, source, and date\\n\\n\",\"inputSchema\":{\"properties\":{\"query\":{\"title\":\"Query\",\"type\":\"string\"},\"region\":{\"default\":\"us-en\",\"title\":\"Region\",\"type\":\"string\"},\"safesearch\":{\"default\":\"moderate\",\"title\":\"Safesearch\",\"type\":\"string\"},\"timelimit\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null,\"title\":\"Timelimit\"},\"max_results\":{\"default\":10,\"title\":\"Max Results\",\"type\":\"integer\"},\"page\":{\"default\":1,\"title\":\"Page\",\"type\":\"integer\"},\"backend\":{\"default\":\"auto\",\"title\":\"Backend\",\"type\":\"string\"}},\"required\":[\"query\"],\"type\":\"object\",\"title\":\"search_newsArguments\"},\"name\":\"search_news\",\"outputSchema\":{\"properties\":{\"result\":{\"items\":{\"additionalProperties\":true,\"type\":\"object\"},\"title\":\"Result\",\"type\":\"array\"}},\"required\":[\"result\"],\"type\":\"object\",\"title\":\"search_newsOutput\"}},{\"description\":\"Perform a video search using DDGS.\\n\\nArgs:\\n    query: Video search query string\\n    region: Region for search (e.g., us-en, uk-en, ru-ru)\\n    safesearch: Safe search setting (on, moderate, off)\\n    timelimit: Time limit (d, w, m) or custom date range\\n    max_results: Maximum number of results to return\\n    page: Page number of results\\n    backend: Search backend (auto, or specific engine)\\n    resolution: Video resolution (high, standard)\\n    duration: Video duration (short, medium, long)\\n    license_videos: Video license (creativeCommon, youtube)\\n\\nReturns:\\n    List of video search results with title, URL, and metadata\\n\\n\",\"inputSchema\":{\"properties\":{\"query\":{\"title\":\"Query\",\"type\":\"string\"},\"region\":{\"default\":\"us-en\",\"title\":\"Region\",\"type\":\"string\"},\"safesearch\":{\"default\":\"moderate\",\"title\":\"Safesearch\",\"type\":\"string\"},\"timelimit\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null,\"title\":\"Timelimit\"},\"max_results\":{\"default\":10,\"title\":\"Max Results\",\"type\":\"integer\"},\"page\":{\"default\":1,\"title\":\"Page\",\"type\":\"integer\"},\"backend\":{\"default\":\"auto\",\"title\":\"Backend\",\"type\":\"string\"},\"resolution\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null,\"title\":\"Resolution\"},\"duration\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null,\"title\":\"Duration\"},\"license_videos\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null,\"title\":\"License Videos\"}},\"required\":[\"query\"],\"type\":\"object\",\"title\":\"search_videosArguments\"},\"name\":\"search_videos\",\"outputSchema\":{\"properties\":{\"result\":{\"items\":{\"additionalProperties\":true,\"type\":\"object\"},\"title\":\"Result\",\"type\":\"array\"}},\"required\":[\"result\"],\"type\":\"object\",\"title\":\"search_videosOutput\"}},{\"description\":\"Perform a book search using DDGS.\\n\\nArgs:\\n    query: Books search query string\\n    max_results: Maximum number of results to return\\n    page: Page number of results\\n    backend: Search backend (auto, or specific engine)\\n\\nReturns:\\n    List of book search results with title, author, and metadata\\n\\n\",\"inputSchema\":{\"properties\":{\"query\":{\"title\":\"Query\",\"type\":\"string\"},\"max_results\":{\"default\":10,\"title\":\"Max Results\",\"type\":\"integer\"},\"page\":{\"default\":1,\"title\":\"Page\",\"type\":\"integer\"},\"backend\":{\"default\":\"auto\",\"title\":\"Backend\",\"type\":\"string\"}},\"required\":[\"query\"],\"type\":\"object\",\"title\":\"search_booksArguments\"},\"name\":\"search_books\",\"outputSchema\":{\"properties\":{\"result\":{\"items\":{\"additionalProperties\":true,\"type\":\"object\"},\"title\":\"Result\",\"type\":\"array\"}},\"required\":[\"result\"],\"type\":\"object\",\"title\":\"search_booksOutput\"}},{\"description\":\"Extract content from a URL.\\n\\nArgs:\\n    url: The URL to fetch and extract content from.\\n    fmt: Output format: \\\"text_markdown\\\", \\\"text_plain\\\", \\\"text_rich\\\", \\\"text\\\" (raw HTML), \\\"content\\\" (raw bytes).\\n\\nReturns:\\n    Dictionary with url and content keys.\\n\\n\",\"inputSchema\":{\"properties\":{\"url\":{\"title\":\"Url\",\"type\":\"string\"},\"fmt\":{\"default\":\"text_markdown\",\"title\":\"Fmt\",\"type\":\"string\"}},\"required\":[\"url\"],\"type\":\"object\",\"title\":\"extract_contentArguments\"},\"name\":\"extract_content\",\"outputSchema\":{\"type\":\"object\",\"additionalProperties\":{\"anyOf\":[{\"type\":\"string\"},{\"format\":\"binary\",\"type\":\"string\"}]},\"title\":\"extract_contentDictOutput\"}}]}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 3,
+   "method": "ping"
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":3,\"result\":{}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 4,
+   "method": "prompts/list"
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":4,\"result\":{\"prompts\":[]}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 5,
+   "method": "resources/list"
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":5,\"result\":{\"resources\":[]}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 6,
+   "method": "resources/templates/list"
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":6,\"result\":{\"resourceTemplates\":[]}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 7,
+   "method": "no/such/method"
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":7,\"error\":{\"code\":-32601,\"message\":\"Method not found\",\"data\":\"no/such/method\"}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 8,
+   "method": "tools/call",
+   "params": {
+    "name": "no_such_tool",
+    "arguments": {}
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":8,\"result\":{\"content\":[{\"text\":\"Unknown tool: no_such_tool\",\"type\":\"text\"}],\"isError\":true}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 9,
+   "method": "tools/call",
+   "params": {
+    "name": "search_text",
+    "arguments": {}
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":9,\"result\":{\"content\":[{\"text\":\"Error executing tool search_text: 1 validation error for search_textArguments\\nquery\\n  Field required [type=missing, input_value={}, input_type=dict]\\n    For further information visit https://errors.pydantic.dev/2.14/v/missing\",\"type\":\"text\"}],\"isError\":true}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 10,
+   "method": "tools/call",
+   "params": {
+    "name": "search_text",
+    "arguments": {
+     "query": "rust"
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":10,\"result\":{\"content\":[{\"text\":\"{\\n  \\\"title\\\": \\\"Rust Programming Language\\\",\\n  \\\"href\\\": \\\"https://rust-lang.org/\\\",\\n  \\\"body\\\": \\\"A language empowering everyone to build reliable and efficient software.\\\"\\n}\",\"type\":\"text\"},{\"text\":\"{\\n  \\\"title\\\": \\\"Rust (programming language) - Wikipedia\\\",\\n  \\\"href\\\": \\\"https://en.wikipedia.org/wiki/Rust_(programming_language)\\\",\\n  \\\"body\\\": \\\"Rust is a general-purpose programming language emphasizing performance and memory safety.\\\"\\n}\",\"type\":\"text\"}],\"isError\":false,\"structuredContent\":{\"result\":[{\"title\":\"Rust Programming Language\",\"href\":\"https://rust-lang.org/\",\"body\":\"A language empowering everyone to build reliable and efficient software.\"},{\"title\":\"Rust (programming language) - Wikipedia\",\"href\":\"https://en.wikipedia.org/wiki/Rust_(programming_language)\",\"body\":\"Rust is a general-purpose programming language emphasizing performance and memory safety.\"}]}}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 11,
+   "method": "tools/call",
+   "params": {
+    "name": "search_text",
+    "arguments": {
+     "query": ""
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":11,\"result\":{\"content\":[{\"text\":\"Error executing tool search_text\",\"type\":\"text\"}],\"isError\":true}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 12,
+   "method": "tools/call",
+   "params": {
+    "name": "search_text",
+    "arguments": {
+     "query": "rust",
+     "max_results": "x"
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":12,\"result\":{\"content\":[{\"text\":\"Error executing tool search_text: 1 validation error for search_textArguments\\nmax_results\\n  Input should be a valid integer, unable to parse string as an integer [type=int_parsing, input_value='x', input_type=str]\\n    For further information visit https://errors.pydantic.dev/2.14/v/int_parsing\",\"type\":\"text\"}],\"isError\":true}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 13,
+   "method": "tools/call",
+   "params": {
+    "name": "search_images",
+    "arguments": {
+     "query": "rust",
+     "size": "Large"
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":13,\"result\":{\"content\":[{\"text\":\"{\\n  \\\"title\\\": \\\"Rust Programming Language\\\",\\n  \\\"image\\\": \\\"https://example.com/rust.png\\\",\\n  \\\"thumbnail\\\": \\\"https://example.com/rust-thumb.jpg\\\",\\n  \\\"url\\\": \\\"https://example.com/rust-page\\\",\\n  \\\"height\\\": \\\"800\\\",\\n  \\\"width\\\": \\\"1200\\\",\\n  \\\"source\\\": \\\"example.com\\\"\\n}\",\"type\":\"text\"},{\"text\":\"{\\n  \\\"title\\\": null,\\n  \\\"image\\\": \\\"https://example.com/ferris.png\\\",\\n  \\\"thumbnail\\\": \\\"https://example.com/ferris-thumb.jpg\\\",\\n  \\\"url\\\": \\\"https://example.com/ferris-page\\\",\\n  \\\"height\\\": \\\"480\\\",\\n  \\\"width\\\": \\\"640\\\",\\n  \\\"source\\\": \\\"example.com\\\"\\n}\",\"type\":\"text\"}],\"isError\":false,\"structuredContent\":{\"result\":[{\"title\":\"Rust Programming Language\",\"image\":\"https://example.com/rust.png\",\"thumbnail\":\"https://example.com/rust-thumb.jpg\",\"url\":\"https://example.com/rust-page\",\"height\":\"800\",\"width\":\"1200\",\"source\":\"example.com\"},{\"title\":null,\"image\":\"https://example.com/ferris.png\",\"thumbnail\":\"https://example.com/ferris-thumb.jpg\",\"url\":\"https://example.com/ferris-page\",\"height\":\"480\",\"width\":\"640\",\"source\":\"example.com\"}]}}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 14,
+   "method": "tools/call",
+   "params": {
+    "name": "search_videos",
+    "arguments": {
+     "query": "rust"
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":14,\"result\":{\"content\":[],\"isError\":false,\"structuredContent\":{\"result\":[]}}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 15,
+   "method": "tools/call",
+   "params": {
+    "name": "search_news",
+    "arguments": {
+     "query": "rust",
+     "timelimit": "d"
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":15,\"result\":{\"content\":[{\"text\":\"{\\n  \\\"date\\\": \\\"2 days ago\\\",\\n  \\\"title\\\": \\\"Rust language release improves tooling\\\",\\n  \\\"body\\\": \\\"The update improves compiler and Cargo workflows for developers.\\\",\\n  \\\"url\\\": \\\"https://example.com/rust-news\\\",\\n  \\\"image\\\": \\\"/th?id=ON.123&pid=News\\\",\\n  \\\"source\\\": \\\"Example News\\\"\\n}\",\"type\":\"text\"}],\"isError\":false,\"structuredContent\":{\"result\":[{\"date\":\"2 days ago\",\"title\":\"Rust language release improves tooling\",\"body\":\"The update improves compiler and Cargo workflows for developers.\",\"url\":\"https://example.com/rust-news\",\"image\":\"/th?id=ON.123&pid=News\",\"source\":\"Example News\"}]}}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 16,
+   "method": "tools/call",
+   "params": {
+    "name": "search_books",
+    "arguments": {
+     "query": "rust"
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":16,\"result\":{\"content\":[{\"text\":\"{\\n  \\\"title\\\": \\\"The Rust Programming Language\\\",\\n  \\\"author\\\": \\\"Steve Klabnik, Carol Nichols\\\",\\n  \\\"publisher\\\": \\\"No Starch Press\\\",\\n  \\\"info\\\": \\\"English [en], pdf, 5.2MB,\\\",\\n  \\\"url\\\": \\\"https://annas-archive.gd/md5/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\\\",\\n  \\\"thumbnail\\\": \\\"/covers/rust-book.jpg\\\"\\n}\",\"type\":\"text\"}],\"isError\":false,\"structuredContent\":{\"result\":[{\"title\":\"The Rust Programming Language\",\"author\":\"Steve Klabnik, Carol Nichols\",\"publisher\":\"No Starch Press\",\"info\":\"English [en], pdf, 5.2MB,\",\"url\":\"https://annas-archive.gd/md5/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"thumbnail\":\"/covers/rust-book.jpg\"}]}}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 17,
+   "method": "tools/call",
+   "params": {
+    "name": "extract_content",
+    "arguments": {
+     "url": "http://127.0.0.1:PORT/extract_sample.html"
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":17,\"result\":{\"content\":[{\"text\":\"{\\n  \\\"url\\\": \\\"http://127.0.0.1:PORT/extract_sample.html\\\",\\n  \\\"content\\\": \\\"# Rust *programming* language\\\\n\\\\nRust is a **general-purpose** language. See [the website][1] and [Learn][2].\\\\n\\\\n## Features\\\\n* Memory safety without a garbage collector\\\\n* Zero-cost abstractions\\\\n  * Nested item\\\\n1. First\\\\n2. Second\\\\n\\\\n> A quote with `inline code`.\\\\n\\\\n`fn main() {\\\\n    println!(\\\\\\\"Hello, world!\\\\\\\");\\\\n}`\\\\n\\\\n────────────┬────\\\\nName        │Year\\\\n────────────┼────\\\\nRust 1.0    │2015\\\\n────────────┼────\\\\nEdition 2024│2025\\\\n────────────┴────\\\\n\\\\nUnicode: café — naïve “quotes” 日本語. A long line of text that should wrap at one hundred columns\\\\nbecause html2text wraps output to the given width.\\\\n\\\\n[Rust logo]\\\\n\\\\nFooter & entities <tag>   end.\\\\n\\\\n[1]: https://www.rust-lang.org/\\\\n[2]: /learn\\\\n\\\"\\n}\",\"type\":\"text\"}],\"isError\":false,\"structuredContent\":{\"url\":\"http://127.0.0.1:PORT/extract_sample.html\",\"content\":\"# Rust *programming* language\\n\\nRust is a **general-purpose** language. See [the website][1] and [Learn][2].\\n\\n## Features\\n* Memory safety without a garbage collector\\n* Zero-cost abstractions\\n  * Nested item\\n1. First\\n2. Second\\n\\n> A quote with `inline code`.\\n\\n`fn main() {\\n    println!(\\\"Hello, world!\\\");\\n}`\\n\\n────────────┬────\\nName        │Year\\n────────────┼────\\nRust 1.0    │2015\\n────────────┼────\\nEdition 2024│2025\\n────────────┴────\\n\\nUnicode: café — naïve “quotes” 日本語. A long line of text that should wrap at one hundred columns\\nbecause html2text wraps output to the given width.\\n\\n[Rust logo]\\n\\nFooter & entities <tag>   end.\\n\\n[1]: https://www.rust-lang.org/\\n[2]: /learn\\n\"}}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 18,
+   "method": "tools/call",
+   "params": {
+    "name": "extract_content",
+    "arguments": {
+     "url": "http://127.0.0.1:PORT/extract_sample.html",
+     "fmt": "text_plain"
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":18,\"result\":{\"content\":[{\"text\":\"{\\n  \\\"url\\\": \\\"http://127.0.0.1:PORT/extract_sample.html\\\",\\n  \\\"content\\\": \\\"Rust programming language\\\\n\\\\nRust is a general-purpose language. See the website and Learn.\\\\n\\\\nFeatures\\\\nMemory safety without a garbage collector\\\\nZero-cost abstractions\\\\nNested item\\\\nFirst\\\\nSecond\\\\n\\\\nA quote with inline code.\\\\n\\\\nfn main() {\\\\n    println!(\\\\\\\"Hello, world!\\\\\\\");\\\\n}\\\\n\\\\n────────────┬────\\\\nName        │Year\\\\n────────────┼────\\\\nRust 1.0    │2015\\\\n────────────┼────\\\\nEdition 2024│2025\\\\n────────────┴────\\\\n\\\\nUnicode: café — naïve “quotes” 日本語. A long line of text that should wrap at one hundred columns\\\\nbecause html2text wraps output to the given width.\\\\n\\\\nRust logo\\\\n\\\\nFooter & entities <tag>   end.\\\\n\\\"\\n}\",\"type\":\"text\"}],\"isError\":false,\"structuredContent\":{\"url\":\"http://127.0.0.1:PORT/extract_sample.html\",\"content\":\"Rust programming language\\n\\nRust is a general-purpose language. See the website and Learn.\\n\\nFeatures\\nMemory safety without a garbage collector\\nZero-cost abstractions\\nNested item\\nFirst\\nSecond\\n\\nA quote with inline code.\\n\\nfn main() {\\n    println!(\\\"Hello, world!\\\");\\n}\\n\\n────────────┬────\\nName        │Year\\n────────────┼────\\nRust 1.0    │2015\\n────────────┼────\\nEdition 2024│2025\\n────────────┴────\\n\\nUnicode: café — naïve “quotes” 日本語. A long line of text that should wrap at one hundred columns\\nbecause html2text wraps output to the given width.\\n\\nRust logo\\n\\nFooter & entities <tag>   end.\\n\"}}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 19,
+   "method": "tools/call",
+   "params": {
+    "name": "extract_content",
+    "arguments": {
+     "url": "http://127.0.0.1:PORT/missing.html"
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":19,\"result\":{\"content\":[{\"text\":\"Error executing tool extract_content\",\"type\":\"text\"}],\"isError\":true}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 20,
+   "method": "tools/call",
+   "params": {
+    "name": "extract_content",
+    "arguments": {
+     "url": "http://127.0.0.1:PORT/extract_sample.html",
+     "fmt": "content"
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":20,\"result\":{\"content\":[{\"text\":\"{\\n  \\\"url\\\": \\\"http://127.0.0.1:PORT/extract_sample.html\\\",\\n  \\\"content\\\": \\\"<!DOCTYPE html>\\\\n<html lang=\\\\\\\"en\\\\\\\">\\\\n<head><meta charset=\\\\\\\"utf-8\\\\\\\"><title>Extract sample</title><style>p{color:red}</style><script>var x = 1;</script></head>\\\\n<body>\\\\n<h1>Rust <em>programming</em> language</h1>\\\\n<p>Rust is a <strong>general-purpose</strong> language. See <a href=\\\\\\\"https://www.rust-lang.org/\\\\\\\">the website</a> and <a href=\\\\\\\"/learn\\\\\\\">Learn</a>.</p>\\\\n<h2>Features</h2>\\\\n<ul>\\\\n  <li>Memory safety without a garbage collector</li>\\\\n  <li>Zero-cost abstractions\\\\n    <ul><li>Nested item</li></ul>\\\\n  </li>\\\\n</ul>\\\\n<ol><li>First</li><li>Second</li></ol>\\\\n<blockquote>A quote with <code>inline code</code>.</blockquote>\\\\n<pre><code>fn main() {\\\\n    println!(\\\\\\\"Hello, world!\\\\\\\");\\\\n}</code></pre>\\\\n<table>\\\\n  <tr><th>Name</th><th>Year</th></tr>\\\\n  <tr><td>Rust 1.0</td><td>2015</td></tr>\\\\n  <tr><td>Edition 2024</td><td>2025</td></tr>\\\\n</table>\\\\n<p>Unicode: café — naïve “quotes” 日本語. A long line of text that should wrap at one hundred columns because html2text wraps output to the given width.</p>\\\\n<img src=\\\\\\\"/logo.png\\\\\\\" alt=\\\\\\\"Rust logo\\\\\\\">\\\\n<hr>\\\\n<p>Footer &amp; entities &lt;tag&gt; &nbsp; end.</p>\\\\n</body>\\\\n</html>\\\\n\\\"\\n}\",\"type\":\"text\"}],\"isError\":false,\"structuredContent\":{\"url\":\"http://127.0.0.1:PORT/extract_sample.html\",\"content\":\"<!DOCTYPE html>\\n<html lang=\\\"en\\\">\\n<head><meta charset=\\\"utf-8\\\"><title>Extract sample</title><style>p{color:red}</style><script>var x = 1;</script></head>\\n<body>\\n<h1>Rust <em>programming</em> language</h1>\\n<p>Rust is a <strong>general-purpose</strong> language. See <a href=\\\"https://www.rust-lang.org/\\\">the website</a> and <a href=\\\"/learn\\\">Learn</a>.</p>\\n<h2>Features</h2>\\n<ul>\\n  <li>Memory safety without a garbage collector</li>\\n  <li>Zero-cost abstractions\\n    <ul><li>Nested item</li></ul>\\n  </li>\\n</ul>\\n<ol><li>First</li><li>Second</li></ol>\\n<blockquote>A quote with <code>inline code</code>.</blockquote>\\n<pre><code>fn main() {\\n    println!(\\\"Hello, world!\\\");\\n}</code></pre>\\n<table>\\n  <tr><th>Name</th><th>Year</th></tr>\\n  <tr><td>Rust 1.0</td><td>2015</td></tr>\\n  <tr><td>Edition 2024</td><td>2025</td></tr>\\n</table>\\n<p>Unicode: café — naïve “quotes” 日本語. A long line of text that should wrap at one hundred columns because html2text wraps output to the given width.</p>\\n<img src=\\\"/logo.png\\\" alt=\\\"Rust logo\\\">\\n<hr>\\n<p>Footer &amp; entities &lt;tag&gt; &nbsp; end.</p>\\n</body>\\n</html>\\n\"}}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 21,
+   "method": "initialize",
+   "params": {
+    "protocolVersion": "2024-11-05",
+    "capabilities": {},
+    "clientInfo": {
+     "name": "t",
+     "version": "1"
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":21,\"result\":{\"capabilities\":{\"prompts\":{\"listChanged\":false},\"resources\":{\"listChanged\":false,\"subscribe\":false},\"tools\":{\"listChanged\":false}},\"protocolVersion\":\"2024-11-05\",\"serverInfo\":{\"name\":\"ddgs-search\",\"version\":\"\"}}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 22,
+   "method": "initialize",
+   "params": {
+    "protocolVersion": "1999-01-01",
+    "capabilities": {},
+    "clientInfo": {
+     "name": "t",
+     "version": "1"
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":22,\"result\":{\"capabilities\":{\"prompts\":{\"listChanged\":false},\"resources\":{\"listChanged\":false,\"subscribe\":false},\"tools\":{\"listChanged\":false}},\"protocolVersion\":\"2025-11-25\",\"serverInfo\":{\"name\":\"ddgs-search\",\"version\":\"\"}}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 23,
+   "method": "initialize",
+   "params": {
+    "protocolVersion": "2025-03-26",
+    "capabilities": {},
+    "clientInfo": {
+     "name": "t",
+     "version": "1"
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":23,\"result\":{\"capabilities\":{\"prompts\":{\"listChanged\":false},\"resources\":{\"listChanged\":false,\"subscribe\":false},\"tools\":{\"listChanged\":false}},\"protocolVersion\":\"2025-03-26\",\"serverInfo\":{\"name\":\"ddgs-search\",\"version\":\"\"}}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 24,
+   "method": "initialize",
+   "params": {
+    "protocolVersion": "2025-11-25",
+    "capabilities": {},
+    "clientInfo": {
+     "name": "t",
+     "version": "1"
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":24,\"result\":{\"capabilities\":{\"prompts\":{\"listChanged\":false},\"resources\":{\"listChanged\":false,\"subscribe\":false},\"tools\":{\"listChanged\":false}},\"protocolVersion\":\"2025-11-25\",\"serverInfo\":{\"name\":\"ddgs-search\",\"version\":\"\"}}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 30,
+   "method": "tools/call",
+   "params": {
+    "name": "search_text",
+    "arguments": {
+     "query": 123
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":30,\"result\":{\"content\":[{\"text\":\"Error executing tool search_text: 1 validation error for search_textArguments\\nquery\\n  Input should be a valid string [type=string_type, input_value=123, input_type=int]\\n    For further information visit https://errors.pydantic.dev/2.14/v/string_type\",\"type\":\"text\"}],\"isError\":true}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 31,
+   "method": "tools/call",
+   "params": {
+    "name": "search_text",
+    "arguments": {
+     "query": null
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":31,\"result\":{\"content\":[{\"text\":\"Error executing tool search_text: 1 validation error for search_textArguments\\nquery\\n  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]\\n    For further information visit https://errors.pydantic.dev/2.14/v/string_type\",\"type\":\"text\"}],\"isError\":true}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 32,
+   "method": "tools/call",
+   "params": {
+    "name": "search_text",
+    "arguments": {
+     "query": "rust",
+     "max_results": 1.5
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":32,\"result\":{\"content\":[{\"text\":\"Error executing tool search_text: 1 validation error for search_textArguments\\nmax_results\\n  Input should be a valid integer, got a number with a fractional part [type=int_from_float, input_value=1.5, input_type=float]\\n    For further information visit https://errors.pydantic.dev/2.14/v/int_from_float\",\"type\":\"text\"}],\"isError\":true}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 33,
+   "method": "tools/call",
+   "params": {
+    "name": "search_text",
+    "arguments": {
+     "query": "rust",
+     "max_results": 2.0
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":33,\"result\":{\"content\":[{\"text\":\"{\\n  \\\"title\\\": \\\"Rust Programming Language\\\",\\n  \\\"href\\\": \\\"https://rust-lang.org/\\\",\\n  \\\"body\\\": \\\"A language empowering everyone to build reliable and efficient software.\\\"\\n}\",\"type\":\"text\"},{\"text\":\"{\\n  \\\"title\\\": \\\"Rust (programming language) - Wikipedia\\\",\\n  \\\"href\\\": \\\"https://en.wikipedia.org/wiki/Rust_(programming_language)\\\",\\n  \\\"body\\\": \\\"Rust is a general-purpose programming language emphasizing performance and memory safety.\\\"\\n}\",\"type\":\"text\"}],\"isError\":false,\"structuredContent\":{\"result\":[{\"title\":\"Rust Programming Language\",\"href\":\"https://rust-lang.org/\",\"body\":\"A language empowering everyone to build reliable and efficient software.\"},{\"title\":\"Rust (programming language) - Wikipedia\",\"href\":\"https://en.wikipedia.org/wiki/Rust_(programming_language)\",\"body\":\"Rust is a general-purpose programming language emphasizing performance and memory safety.\"}]}}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 34,
+   "method": "tools/call",
+   "params": {
+    "name": "search_text",
+    "arguments": {
+     "query": "rust",
+     "max_results": true
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":34,\"result\":{\"content\":[{\"text\":\"{\\n  \\\"title\\\": \\\"Rust Programming Language\\\",\\n  \\\"href\\\": \\\"https://rust-lang.org/\\\",\\n  \\\"body\\\": \\\"A language empowering everyone to build reliable and efficient software.\\\"\\n}\",\"type\":\"text\"},{\"text\":\"{\\n  \\\"title\\\": \\\"Rust (programming language) - Wikipedia\\\",\\n  \\\"href\\\": \\\"https://en.wikipedia.org/wiki/Rust_(programming_language)\\\",\\n  \\\"body\\\": \\\"Rust is a general-purpose programming language emphasizing performance and memory safety.\\\"\\n}\",\"type\":\"text\"}],\"isError\":false,\"structuredContent\":{\"result\":[{\"title\":\"Rust Programming Language\",\"href\":\"https://rust-lang.org/\",\"body\":\"A language empowering everyone to build reliable and efficient software.\"},{\"title\":\"Rust (programming language) - Wikipedia\",\"href\":\"https://en.wikipedia.org/wiki/Rust_(programming_language)\",\"body\":\"Rust is a general-purpose programming language emphasizing performance and memory safety.\"}]}}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 35,
+   "method": "tools/call",
+   "params": {
+    "name": "search_text",
+    "arguments": {
+     "query": "rust",
+     "max_results": "7"
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":35,\"result\":{\"content\":[{\"text\":\"{\\n  \\\"title\\\": \\\"Rust Programming Language\\\",\\n  \\\"href\\\": \\\"https://rust-lang.org/\\\",\\n  \\\"body\\\": \\\"A language empowering everyone to build reliable and efficient software.\\\"\\n}\",\"type\":\"text\"},{\"text\":\"{\\n  \\\"title\\\": \\\"Rust (programming language) - Wikipedia\\\",\\n  \\\"href\\\": \\\"https://en.wikipedia.org/wiki/Rust_(programming_language)\\\",\\n  \\\"body\\\": \\\"Rust is a general-purpose programming language emphasizing performance and memory safety.\\\"\\n}\",\"type\":\"text\"}],\"isError\":false,\"structuredContent\":{\"result\":[{\"title\":\"Rust Programming Language\",\"href\":\"https://rust-lang.org/\",\"body\":\"A language empowering everyone to build reliable and efficient software.\"},{\"title\":\"Rust (programming language) - Wikipedia\",\"href\":\"https://en.wikipedia.org/wiki/Rust_(programming_language)\",\"body\":\"Rust is a general-purpose programming language emphasizing performance and memory safety.\"}]}}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 36,
+   "method": "tools/call",
+   "params": {
+    "name": "search_text",
+    "arguments": {
+     "query": "rust",
+     "max_results": " 7 "
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":36,\"result\":{\"content\":[{\"text\":\"{\\n  \\\"title\\\": \\\"Rust Programming Language\\\",\\n  \\\"href\\\": \\\"https://rust-lang.org/\\\",\\n  \\\"body\\\": \\\"A language empowering everyone to build reliable and efficient software.\\\"\\n}\",\"type\":\"text\"},{\"text\":\"{\\n  \\\"title\\\": \\\"Rust (programming language) - Wikipedia\\\",\\n  \\\"href\\\": \\\"https://en.wikipedia.org/wiki/Rust_(programming_language)\\\",\\n  \\\"body\\\": \\\"Rust is a general-purpose programming language emphasizing performance and memory safety.\\\"\\n}\",\"type\":\"text\"}],\"isError\":false,\"structuredContent\":{\"result\":[{\"title\":\"Rust Programming Language\",\"href\":\"https://rust-lang.org/\",\"body\":\"A language empowering everyone to build reliable and efficient software.\"},{\"title\":\"Rust (programming language) - Wikipedia\",\"href\":\"https://en.wikipedia.org/wiki/Rust_(programming_language)\",\"body\":\"Rust is a general-purpose programming language emphasizing performance and memory safety.\"}]}}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 37,
+   "method": "tools/call",
+   "params": {
+    "name": "search_text",
+    "arguments": {
+     "query": "rust",
+     "page": null
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":37,\"result\":{\"content\":[{\"text\":\"Error executing tool search_text: 1 validation error for search_textArguments\\npage\\n  Input should be a valid integer [type=int_type, input_value=None, input_type=NoneType]\\n    For further information visit https://errors.pydantic.dev/2.14/v/int_type\",\"type\":\"text\"}],\"isError\":true}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 38,
+   "method": "tools/call",
+   "params": {
+    "name": "search_text",
+    "arguments": {
+     "query": "rust",
+     "timelimit": 5
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":38,\"result\":{\"content\":[{\"text\":\"Error executing tool search_text: 1 validation error for search_textArguments\\ntimelimit\\n  Input should be a valid string [type=string_type, input_value=5, input_type=int]\\n    For further information visit https://errors.pydantic.dev/2.14/v/string_type\",\"type\":\"text\"}],\"isError\":true}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 39,
+   "method": "tools/call",
+   "params": {
+    "name": "search_text",
+    "arguments": {
+     "query": "rust",
+     "unknown": 1
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":39,\"result\":{\"content\":[{\"text\":\"{\\n  \\\"title\\\": \\\"Rust Programming Language\\\",\\n  \\\"href\\\": \\\"https://rust-lang.org/\\\",\\n  \\\"body\\\": \\\"A language empowering everyone to build reliable and efficient software.\\\"\\n}\",\"type\":\"text\"},{\"text\":\"{\\n  \\\"title\\\": \\\"Rust (programming language) - Wikipedia\\\",\\n  \\\"href\\\": \\\"https://en.wikipedia.org/wiki/Rust_(programming_language)\\\",\\n  \\\"body\\\": \\\"Rust is a general-purpose programming language emphasizing performance and memory safety.\\\"\\n}\",\"type\":\"text\"}],\"isError\":false,\"structuredContent\":{\"result\":[{\"title\":\"Rust Programming Language\",\"href\":\"https://rust-lang.org/\",\"body\":\"A language empowering everyone to build reliable and efficient software.\"},{\"title\":\"Rust (programming language) - Wikipedia\",\"href\":\"https://en.wikipedia.org/wiki/Rust_(programming_language)\",\"body\":\"Rust is a general-purpose programming language emphasizing performance and memory safety.\"}]}}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 40,
+   "method": "tools/call",
+   "params": {
+    "name": "search_text",
+    "arguments": {
+     "max_results": "x",
+     "page": [
+      1
+     ]
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":40,\"result\":{\"content\":[{\"text\":\"Error executing tool search_text: 3 validation errors for search_textArguments\\nquery\\n  Field required [type=missing, input_value={'max_results': 'x', 'page': [1]}, input_type=dict]\\n    For further information visit https://errors.pydantic.dev/2.14/v/missing\\nmax_results\\n  Input should be a valid integer, unable to parse string as an integer [type=int_parsing, input_value='x', input_type=str]\\n    For further information visit https://errors.pydantic.dev/2.14/v/int_parsing\\npage\\n  Input should be a valid integer [type=int_type, input_value=[1], input_type=list]\\n    For further information visit https://errors.pydantic.dev/2.14/v/int_type\",\"type\":\"text\"}],\"isError\":true}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 41,
+   "method": "tools/call",
+   "params": {
+    "name": "search_text",
+    "arguments": {
+     "region": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":41,\"result\":{\"content\":[{\"text\":\"Error executing tool search_text: 1 validation error for search_textArguments\\nquery\\n  Field required [type=missing, input_value={'region': 'xxxxxxxxxxxxx...xxxxxxxxxxxxxxxxxxxxxx'}, input_type=dict]\\n    For further information visit https://errors.pydantic.dev/2.14/v/missing\",\"type\":\"text\"}],\"isError\":true}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 42,
+   "method": "tools/call",
+   "params": {
+    "name": "search_text",
+    "arguments": {
+     "query": "rust",
+     "region": {
+      "a": 1
+     }
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":42,\"result\":{\"content\":[{\"text\":\"Error executing tool search_text: 1 validation error for search_textArguments\\nregion\\n  Input should be a valid string [type=string_type, input_value={'a': 1}, input_type=dict]\\n    For further information visit https://errors.pydantic.dev/2.14/v/string_type\",\"type\":\"text\"}],\"isError\":true}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 43,
+   "method": "tools/call",
+   "params": {
+    "name": "search_text",
+    "arguments": {
+     "query": "rust",
+     "max_results": 100000000000000000000
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":43,\"result\":{\"content\":[{\"text\":\"{\\n  \\\"title\\\": \\\"Rust Programming Language\\\",\\n  \\\"href\\\": \\\"https://rust-lang.org/\\\",\\n  \\\"body\\\": \\\"A language empowering everyone to build reliable and efficient software.\\\"\\n}\",\"type\":\"text\"},{\"text\":\"{\\n  \\\"title\\\": \\\"Rust (programming language) - Wikipedia\\\",\\n  \\\"href\\\": \\\"https://en.wikipedia.org/wiki/Rust_(programming_language)\\\",\\n  \\\"body\\\": \\\"Rust is a general-purpose programming language emphasizing performance and memory safety.\\\"\\n}\",\"type\":\"text\"}],\"isError\":false,\"structuredContent\":{\"result\":[{\"title\":\"Rust Programming Language\",\"href\":\"https://rust-lang.org/\",\"body\":\"A language empowering everyone to build reliable and efficient software.\"},{\"title\":\"Rust (programming language) - Wikipedia\",\"href\":\"https://en.wikipedia.org/wiki/Rust_(programming_language)\",\"body\":\"Rust is a general-purpose programming language emphasizing performance and memory safety.\"}]}}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 44,
+   "method": "tools/call",
+   "params": {
+    "name": "search_text",
+    "arguments": {
+     "query": "rust",
+     "max_results": "1e3"
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":44,\"result\":{\"content\":[{\"text\":\"Error executing tool search_text: 1 validation error for search_textArguments\\nmax_results\\n  Input should be a valid integer, unable to parse string as an integer [type=int_parsing, input_value='1e3', input_type=str]\\n    For further information visit https://errors.pydantic.dev/2.14/v/int_parsing\",\"type\":\"text\"}],\"isError\":true}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 45,
+   "method": "tools/call",
+   "params": {
+    "name": "search_text",
+    "arguments": {
+     "query": true
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":45,\"result\":{\"content\":[{\"text\":\"Error executing tool search_text: 1 validation error for search_textArguments\\nquery\\n  Input should be a valid string [type=string_type, input_value=True, input_type=bool]\\n    For further information visit https://errors.pydantic.dev/2.14/v/string_type\",\"type\":\"text\"}],\"isError\":true}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 46,
+   "method": "tools/call",
+   "params": {
+    "name": "search_text",
+    "arguments": {
+     "query": "rust",
+     "max_results": -3
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":46,\"result\":{\"content\":[{\"text\":\"{\\n  \\\"title\\\": \\\"Rust Programming Language\\\",\\n  \\\"href\\\": \\\"https://rust-lang.org/\\\",\\n  \\\"body\\\": \\\"A language empowering everyone to build reliable and efficient software.\\\"\\n}\",\"type\":\"text\"},{\"text\":\"{\\n  \\\"title\\\": \\\"Rust (programming language) - Wikipedia\\\",\\n  \\\"href\\\": \\\"https://en.wikipedia.org/wiki/Rust_(programming_language)\\\",\\n  \\\"body\\\": \\\"Rust is a general-purpose programming language emphasizing performance and memory safety.\\\"\\n}\",\"type\":\"text\"}],\"isError\":false,\"structuredContent\":{\"result\":[{\"title\":\"Rust Programming Language\",\"href\":\"https://rust-lang.org/\",\"body\":\"A language empowering everyone to build reliable and efficient software.\"},{\"title\":\"Rust (programming language) - Wikipedia\",\"href\":\"https://en.wikipedia.org/wiki/Rust_(programming_language)\",\"body\":\"Rust is a general-purpose programming language emphasizing performance and memory safety.\"}]}}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 47,
+   "method": "tools/call",
+   "params": {
+    "name": "search_text"
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":47,\"result\":{\"content\":[{\"text\":\"Error executing tool search_text: 1 validation error for search_textArguments\\nquery\\n  Field required [type=missing, input_value={}, input_type=dict]\\n    For further information visit https://errors.pydantic.dev/2.14/v/missing\",\"type\":\"text\"}],\"isError\":true}}"
+ },
+ {
+  "request": {
+   "jsonrpc": "2.0",
+   "id": 48,
+   "method": "tools/call",
+   "params": {
+    "name": "extract_content",
+    "arguments": {
+     "url": 5
+    }
+   }
+  },
+  "response": "{\"jsonrpc\":\"2.0\",\"id\":48,\"result\":{\"content\":[{\"text\":\"Error executing tool extract_content: 1 validation error for extract_contentArguments\\nurl\\n  Input should be a valid string [type=string_type, input_value=5, input_type=int]\\n    For further information visit https://errors.pydantic.dev/2.14/v/string_type\",\"type\":\"text\"}],\"isError\":true}}"
+ }
+]

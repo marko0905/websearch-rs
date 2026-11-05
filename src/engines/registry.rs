@@ -25,28 +25,41 @@ impl EngineRegistry {
     /// Build the registry with every available engine registered.
     pub fn new() -> Self {
         Self {
-            text: EngineSet::new(vec![
-                Arc::new(text::Wikipedia::new()),
-                Arc::new(text::DuckDuckGo::new()),
-                Arc::new(text::Bing::new()),
-                Arc::new(text::Brave::new()),
-                Arc::new(text::Grokipedia::new()),
-                Arc::new(text::Mojeek::new()),
-                Arc::new(text::Yahoo::new()),
-                Arc::new(text::Startpage::new()),
-                Arc::new(text::Yandex::new()),
-            ]),
-            news: EngineSet::new(vec![
-                Arc::new(news::DuckDuckGoNews::new()),
-                Arc::new(news::BingNews::new()),
-                Arc::new(news::YahooNews::new()),
-            ]),
-            images: EngineSet::new(vec![
-                Arc::new(images::DuckDuckGoImages::new()),
-                Arc::new(images::BingImages::new()),
-            ]),
-            videos: EngineSet::new(vec![Arc::new(videos::DuckDuckGoVideos::new())]),
-            books: EngineSet::new(vec![Arc::new(books::AnnasArchive::new())]),
+            // Text `bing` and `yandex` are intentionally NOT registered: upstream
+            // ddgs v9.16.1 marks both `disabled = True` (bing: irrelevant results,
+            // since v9.9.2; yandex: since v9.15.0), and its registry skips disabled
+            // engines entirely. Their modules are kept in `engines::text`; to
+            // re-enable one, add `Arc::new(text::Bing::new())` /
+            // `Arc::new(text::Yandex::new())` here once upstream re-enables it.
+            text: EngineSet::new(
+                "text",
+                vec![
+                    Arc::new(text::Wikipedia::new()),
+                    Arc::new(text::DuckDuckGo::new()),
+                    Arc::new(text::Brave::new()),
+                    Arc::new(text::Grokipedia::new()),
+                    Arc::new(text::Mojeek::new()),
+                    Arc::new(text::Yahoo::new()),
+                    Arc::new(text::Startpage::new()),
+                ],
+            ),
+            news: EngineSet::new(
+                "news",
+                vec![
+                    Arc::new(news::DuckDuckGoNews::new()),
+                    Arc::new(news::BingNews::new()),
+                    Arc::new(news::YahooNews::new()),
+                ],
+            ),
+            images: EngineSet::new(
+                "images",
+                vec![
+                    Arc::new(images::DuckDuckGoImages::new()),
+                    Arc::new(images::BingImages::new()),
+                ],
+            ),
+            videos: EngineSet::new("videos", vec![Arc::new(videos::DuckDuckGoVideos::new())]),
+            books: EngineSet::new("books", vec![Arc::new(books::AnnasArchive::new())]),
         }
     }
 

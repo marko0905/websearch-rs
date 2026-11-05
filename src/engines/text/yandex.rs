@@ -1,28 +1,40 @@
-//! Yandex text engine — scrapes the web SERP at `yandex.com/search/`.
+//! Yandex text engine — port of `ddgs/engines/yandex.py` (v9.16.1).
 //!
-//! Organic results are `li.serp-item` blocks whose title link carries the
-//! `OrganicTitle-Link` class and the real destination URL (no redirect), with
-//! the snippet in an `OrganicText` block. Ad `serp-item`s have no
-//! `OrganicTitle-Link` anchor and are skipped. Yandex aggressively anti-bots
-//! datacenter traffic, so live results depend on the requesting IP.
-
-use std::collections::HashSet;
+//! **DISABLED to match upstream ddgs v9.16.1** (since ddgs v9.15.0): upstream
+//! sets `disabled = True` and skips the engine in its registry, so it is not
+//! registered in [`crate::engines::registry::EngineRegistry`] and cannot be
+//! selected by `auto` or by name. The code is kept 1:1 with upstream; to
+//! re-enable, register `Yandex` in `registry.rs` once upstream does.
+//!
+//! `GET https://yandex.com/search/site/` with `text`, `web=1`, a random
+//! 7-digit `searchid` (`SystemRandom().randint(1000000, 9999999)`), and `p`
+//! for later pages. Parsing is the generic `BaseSearchEngine` loop with
+//! upstream's XPaths; there is no `post_extract_results`.
 
 use async_trait::async_trait;
-use scraper::Html;
 use url::Url;
 
 use crate::engines::SearchEngine;
-use crate::engines::util::{element_text, first_match, selector, selectors};
+use crate::engines::util::{system_randint, text_result};
+use crate::html;
 use crate::http::HttpClient;
 use crate::{Result, TextResult, TextSearchRequest};
 
 const NAME: &str = "yandex";
-const SEARCH_ENDPOINT: &str = "https://yandex.com/search/";
-const HOME: &str = "https://yandex.com/";
+const SEARCH_ENDPOINT: &str = "https://yandex.com/search/site/";
+
+/// Upstream `items_xpath`.
+const ITEMS_XPATH: &str = "//li[contains(@class, 'serp-item')]";
+/// Upstream `elements_xpath` (dict order).
+const ELEMENTS_XPATH: &[(&str, &str)] = &[
+    ("title", ".//h3//text()"),
+    ("href", ".//h3//a/@href"),
+    ("body", ".//div[contains(@class, 'text')]//text()"),
+];
 
 /// Yandex HTML text engine.
 #[derive(Clone, Debug, Default)]
+#[allow(dead_code)] // disabled upstream; not registered (see module docs)
 pub struct Yandex;
 
 impl Yandex {
@@ -38,65 +50,48 @@ impl SearchEngine<TextSearchRequest, TextResult> for Yandex {
         NAME
     }
 
+    /// Upstream `provider = "yandex"`.
+    fn provider(&self) -> &'static str {
+        "yandex"
+    }
+
     async fn search(
         &self,
         http: &HttpClient,
         request: &TextSearchRequest,
     ) -> Result<Vec<TextResult>> {
-        let url = build_url(request)?;
-        let body = http.get_text(url.as_str(), &[("Referer", HOME)]).await?;
-        parse_text(&body, request.max_results)
+        let url = build_url(request, system_randint(1_000_000, 9_999_999)?)?;
+        let Some(body) = http.get_text(url.as_str(), &[]).await? else {
+            // Upstream `BaseSearchEngine.request`: non-200 → `None` → no results.
+            return Ok(Vec::new());
+        };
+        parse_text(&body)
     }
 }
 
-fn build_url(request: &TextSearchRequest) -> Result<Url> {
+/// Upstream `build_payload` (dict order). Region, safe search and time limit
+/// are not used.
+fn build_url(request: &TextSearchRequest, searchid: u64) -> Result<Url> {
     let mut url = Url::parse(SEARCH_ENDPOINT)?;
     {
         let mut query = url.query_pairs_mut();
-        query.append_pair("text", request.query.trim());
-        // Yandex paginates with `p`, a 0-based page index.
+        query.append_pair("text", &request.query);
+        query.append_pair("web", "1");
+        query.append_pair("searchid", &searchid.to_string());
         if request.page > 1 {
-            query.append_pair("p", &request.page.saturating_sub(1).to_string());
+            query.append_pair("p", &(request.page - 1).to_string());
         }
     }
     Ok(url)
 }
 
-fn parse_text(body: &str, max_results: usize) -> Result<Vec<TextResult>> {
-    let document = Html::parse_document(body);
-    let result_selector = selector("li.serp-item")?;
-    // Organic titles only — ad blocks lack `.OrganicTitle-Link`.
-    let anchor_selectors = selectors(&["a.OrganicTitle-Link[href]", "h2 a[href]"])?;
-    let snippet_selectors = selectors(&[".OrganicText", ".TextContainer", ".organic__text"])?;
-
-    let mut results: Vec<TextResult> = Vec::new();
-    let mut seen: HashSet<String> = HashSet::new();
-
-    for node in document.select(&result_selector) {
-        let Some(anchor) = first_match(node, &anchor_selectors) else {
-            continue;
-        };
-        let Some(href) = anchor.value().attr("href") else {
-            continue;
-        };
-        let href = href.trim();
-        if !href.starts_with("http") || !seen.insert(href.to_string()) {
-            continue;
-        }
-        let title = element_text(anchor);
-        if title.is_empty() {
-            continue;
-        }
-        let body_text = first_match(node, &snippet_selectors)
-            .map(element_text)
-            .unwrap_or_default();
-        results.push(TextResult::new(title, href, body_text, NAME));
-        if results.len() >= max_results {
-            break;
-        }
-    }
-
-    Ok(results)
+/// Upstream `BaseSearchEngine.extract_results` with Yandex's XPaths,
+/// evaluated by libxml2 exactly like lxml.
+fn parse_text(body: &str) -> Result<Vec<TextResult>> {
+    Ok(html::extract_results(body, ITEMS_XPATH, ELEMENTS_XPATH)?
+        .into_iter()
+        .map(|fields| text_result(&fields))
+        .collect())
 }
 
 #[cfg(test)]
@@ -104,32 +99,31 @@ mod tests {
     use super::*;
 
     #[test]
-    fn parses_yandex_fixture() {
-        let body = include_str!("../../../fixtures/yandex_text_page.html");
-        let results = parse_text(body, 10).expect("parse");
-        assert_eq!(results.len(), 3);
-        assert_eq!(results[0].title, "Rust Programming Language");
-        assert_eq!(results[0].href, "https://rust-lang.org/");
-        assert!(results[0].body.contains("empowering everyone"));
-        assert_eq!(results[0].source, NAME);
+    fn matches_upstream_output() {
+        // Expected output was produced by ddgs 9.16.1's own Yandex
+        // `extract_results` on the same fixture.
+        let expected: Vec<TextResult> =
+            serde_json::from_str(include_str!("../../../fixtures/yandex_text_expected.json"))
+                .expect("expected json");
+        let results = parse_text(include_str!("../../../fixtures/yandex_text_page.html")).unwrap();
+        assert_eq!(results, expected);
     }
 
     #[test]
-    fn skips_ad_items_without_organic_title() {
-        // An ad serp-item (no OrganicTitle-Link) must not yield a result.
-        let html = r#"<ul><li class="serp-item"><a class="Link OrganicLabel-Link"
-            href="https://ad.example/promo">Sponsored</a></li></ul>"#;
-        assert!(parse_text(html, 10).unwrap().is_empty());
+    fn request_matches_upstream() {
+        let url = build_url(&TextSearchRequest::new("rust lang").page(3), 1234567).unwrap();
+        assert_eq!(
+            url.as_str(),
+            "https://yandex.com/search/site/?text=rust+lang&web=1&searchid=1234567&p=2"
+        );
+        let url = build_url(&TextSearchRequest::new("q"), 7654321).unwrap();
+        assert_eq!(
+            url.as_str(),
+            "https://yandex.com/search/site/?text=q&web=1&searchid=7654321"
+        );
     }
 
-    #[test]
-    fn respects_max_results() {
-        let body = include_str!("../../../fixtures/yandex_text_page.html");
-        assert_eq!(parse_text(body, 2).unwrap().len(), 2);
-    }
-
-    /// Verifies the selectors match Yandex's live markup (when the IP isn't
-    /// being anti-botted).
+    /// Verifies the XPaths on Yandex's live markup (anti-bot sensitive).
     #[tokio::test]
     #[ignore = "hits live Yandex (anti-bot sensitive)"]
     async fn live_yandex_returns_results() {
@@ -139,6 +133,5 @@ mod tests {
             .await
             .expect("search");
         assert!(!results.is_empty(), "yandex returned no results");
-        assert!(results[0].href.starts_with("http"));
     }
 }

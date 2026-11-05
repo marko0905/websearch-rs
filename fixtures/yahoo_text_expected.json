@@ -1,0 +1,37 @@
+[
+ {
+  "title": "Rust Programming Language",
+  "href": "https://rust-lang.org/",
+  "body": "Rust is a fast, reliable, and productive programming language that can run on embedded devices, web services, and more. Learn how to get started, why Rust is different, and what companies are using it in production."
+ },
+ {
+  "title": "Rust (programming language) - Wikipedia",
+  "href": "https://en.wikipedia.org/wiki/Rust_(programming_language)",
+  "body": "Rust is a general-purpose programming language that emphasizes performance, type safety, concurrency, and memory safety. Rust supports multiple programming paradigms."
+ },
+ {
+  "title": "Getting started - Rust Programming LanguageThe Rust Programming LanguageRust Tutorial - W3SchoolsIntroduction to Rust Programming Language - GeeksforGeeksIntroduction - The Rust Programming Language",
+  "href": "https://rust-lang.org/learn/get-started/",
+  "body": "The primary way that folks install Rust is through a tool called Rustup, which is a Rust installer and version management tool. See full list on rust-lang.org Rust updates very frequently. If you have installed Rustup some time ago, chances are your Rust version is out of date. Get the latest version of Rust by running rustup update. See full list on rust-lang.org When you install Rustup you’ll also get the latest stable version of the Rust build tool and package manager, also known as Cargo. Cargo does lots of things: 1. build your project with cargo build 2. run your project with cargo run 3. test your project with cargo test 4. build documentation for your project with cargo doc 5. publish a library to cr... See full list on rust-lang.org Learn how to install Rust, use Cargo, and write a small app with a dependency. Find out more about Rust, its features, and its community. See full list on rust-lang.org The Rust Programming Language by Steve Klabnik, Carol Nichols, and Chris Krycho, with contributions from the Rust Community This version of the text assumes you’re using Rust 1.97.0 (released 2026-07-09) or later with edition = \"2024\" in the Cargo.toml file of all projects to configure them to use Rust 2024 Edition idioms. Rust is a popular programming language used to build everything from web servers to game engines. Rust is known for being very fast, and is similar to C and C++ in language. Jul 23, 2025 · Rust is a blazing fast and memory-efficient static compiled language with a rich type system and ownership model. It can be used to power performance-critical services while guaranteeing memory-safety and thread-safety, empowering developers to debug at compile-time. Learn about Rust, a language that helps you write faster, more reliable software with high-level ergonomics and low-level control. This book covers Rust features, concepts, tools, and projects for beginners and experienced developers."
+ },
+ {
+  "title": "The Rust Programming Language",
+  "href": "https://doc.rust-lang.org/book/",
+  "body": "The Rust Programming Language by Steve Klabnik, Carol Nichols, and Chris Krycho, with contributions from the Rust Community This version of the text assumes you’re using Rust 1.97.0 (released 2026-07-09) or later with edition = \"2024\" in the Cargo.toml file of all projects to configure them to use Rust 2024 Edition idioms."
+ },
+ {
+  "title": "Rust Tutorial - W3Schools",
+  "href": "https://www.w3schools.com/rust/index.php",
+  "body": "Rust is a popular programming language used to build everything from web servers to game engines. Rust is known for being very fast, and is similar to C and C++ in language."
+ },
+ {
+  "title": "Introduction to Rust Programming Language - GeeksforGeeks",
+  "href": "https://www.geeksforgeeks.org/rust/introduction-to-rust-programming-language/",
+  "body": "Jul 23, 2025 · Rust is a blazing fast and memory-efficient static compiled language with a rich type system and ownership model. It can be used to power performance-critical services while guaranteeing memory-safety and thread-safety, empowering developers to debug at compile-time."
+ },
+ {
+  "title": "Introduction - The Rust Programming Language",
+  "href": "https://doc.rust-lang.org/book/ch00-00-introduction.html",
+  "body": "Learn about Rust, a language that helps you write faster, more reliable software with high-level ergonomics and low-level control. This book covers Rust features, concepts, tools, and projects for beginners and experienced developers."
+ }
+]

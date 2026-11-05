@@ -1,0 +1,215 @@
+[
+ {
+  "name": "text",
+  "rows": [
+   {
+    "title": "Rust Programming Language",
+    "href": "https://rust-lang.org/",
+    "body": "A language empowering everyone to build reliable and efficient software."
+   },
+   {
+    "title": "Rust (programming language) - Wikipedia",
+    "href": "https://en.wikipedia.org/wiki/Rust_(programming_language)",
+    "body": "Rust is a general-purpose programming language emphasizing performance and memory safety."
+   },
+   {
+    "title": "The Rust Programming Language - Book",
+    "href": "https://doc.rust-lang.org/book/",
+    "body": "The official book on the Rust programming language."
+   },
+   {
+    "title": "Example OrgExample title",
+    "href": "https://example.org/a",
+    "body": "Body A"
+   },
+   {
+    "title": "",
+    "href": "https://example.org/b",
+    "body": "B1B2"
+   },
+   {
+    "title": "",
+    "href": "",
+    "body": ""
+   },
+   {
+    "title": "Wrap\ttest — a title that is long enough to need wrapping at seventy-eight columns, really",
+    "href": "https://example.com/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "body": "Rust is a general-purpose programming language emphasizing performance, type safety, and concurrency. It enforces memory safety -- meaning that all references point to valid memory -- without a garbage collector; self-contained, well-known, state-of-the-art multi-paradigm design. Rust is a general-purpose programming language emphasizing performance, type safety, and concurrency. It enforces memory safety -- meaning that all references point to valid memory -- without a garbage collector; self-contained, well-known, state-of-the-art multi-paradigm design. Rust is a general-purpose programming language emphasizing performance, type safety, and concurrency. It enforces memory safety -- meaning that all references point to valid memory -- without a garbage collector; self-contained, well-known, state-of-the-art multi-paradigm design. "
+   },
+   {
+    "title": "",
+    "href": "https://example.com/x",
+    "body": ""
+   }
+  ],
+  "print": "1.\ntitle       Rust Programming Language\nhref        https://rust-lang.org/\nbody        A language empowering everyone to build reliable and efficient software.\n2.\ntitle       Rust (programming language) - Wikipedia\nhref        https://en.wikipedia.org/wiki/Rust_(programming_language)\nbody        Rust is a general-purpose programming language emphasizing performance and\n            memory safety.\n3.\ntitle       The Rust Programming Language - Book\nhref        https://doc.rust-lang.org/book/\nbody        The official book on the Rust programming language.\n4.\ntitle       Example OrgExample title\nhref        https://example.org/a\nbody        Body A\n5.\ntitle       \nhref        https://example.org/b\nbody        B1B2\n6.\ntitle       \nhref        \nbody        \n7.\ntitle       Wrap    test — a title that is long enough to need wrapping at seventy-eight\n            columns, really\nhref        https://example.com/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\nbody        Rust is a general-purpose programming language emphasizing performance, type\n            safety, and concurrency. It enforces memory safety -- meaning that\n            all references point to valid memory -- without a garbage\n            collector; self-contained, well-known, state-of-the-art multi-\n            paradigm design. Rust is a general-purpose programming language\n            emphasizing performance, type safety, and concurrency. It enforces\n            memory safety -- meaning that all references point to valid memory\n            -- without a garbage collector; self-contained, well-known, state-\n            of-the-art multi-paradigm design. Rust is a general-purpose\n            programming language emphasizing performance, type safety, and\n            concurrency. It enforces memory safety -- meaning that all\n            references point to valid memory -- without a garbage collector;\n            self-contained, well-known, state-of-the-art multi-paradigm\n            design.\n8.\ntitle       \nhref        https://example.com/x\nbody        \n",
+  "csv": "title,href,body\r\nRust Programming Language,https://rust-lang.org/,A language empowering everyone to build reliable and efficient software.\r\nRust (programming language) - Wikipedia,https://en.wikipedia.org/wiki/Rust_(programming_language),Rust is a general-purpose programming language emphasizing performance and memory safety.\r\nThe Rust Programming Language - Book,https://doc.rust-lang.org/book/,The official book on the Rust programming language.\r\nExample OrgExample title,https://example.org/a,Body A\r\n,https://example.org/b,B1B2\r\n,,\r\n\"Wrap\ttest — a title that is long enough to need wrapping at seventy-eight columns, really\",https://example.com/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa,\"Rust is a general-purpose programming language emphasizing performance, type safety, and concurrency. It enforces memory safety -- meaning that all references point to valid memory -- without a garbage collector; self-contained, well-known, state-of-the-art multi-paradigm design. Rust is a general-purpose programming language emphasizing performance, type safety, and concurrency. It enforces memory safety -- meaning that all references point to valid memory -- without a garbage collector; self-contained, well-known, state-of-the-art multi-paradigm design. Rust is a general-purpose programming language emphasizing performance, type safety, and concurrency. It enforces memory safety -- meaning that all references point to valid memory -- without a garbage collector; self-contained, well-known, state-of-the-art multi-paradigm design. \"\r\n,https://example.com/x,\r\n",
+  "json": "[\n  {\n    \"title\": \"Rust Programming Language\",\n    \"href\": \"https://rust-lang.org/\",\n    \"body\": \"A language empowering everyone to build reliable and efficient software.\"\n  },\n  {\n    \"title\": \"Rust (programming language) - Wikipedia\",\n    \"href\": \"https://en.wikipedia.org/wiki/Rust_(programming_language)\",\n    \"body\": \"Rust is a general-purpose programming language emphasizing performance and memory safety.\"\n  },\n  {\n    \"title\": \"The Rust Programming Language - Book\",\n    \"href\": \"https://doc.rust-lang.org/book/\",\n    \"body\": \"The official book on the Rust programming language.\"\n  },\n  {\n    \"title\": \"Example OrgExample title\",\n    \"href\": \"https://example.org/a\",\n    \"body\": \"Body A\"\n  },\n  {\n    \"title\": \"\",\n    \"href\": \"https://example.org/b\",\n    \"body\": \"B1B2\"\n  },\n  {\n    \"title\": \"\",\n    \"href\": \"\",\n    \"body\": \"\"\n  },\n  {\n    \"title\": \"Wrap\\ttest — a title that is long enough to need wrapping at seventy-eight columns, really\",\n    \"href\": \"https://example.com/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n    \"body\": \"Rust is a general-purpose programming language emphasizing performance, type safety, and concurrency. It enforces memory safety -- meaning that all references point to valid memory -- without a garbage collector; self-contained, well-known, state-of-the-art multi-paradigm design. Rust is a general-purpose programming language emphasizing performance, type safety, and concurrency. It enforces memory safety -- meaning that all references point to valid memory -- without a garbage collector; self-contained, well-known, state-of-the-art multi-paradigm design. Rust is a general-purpose programming language emphasizing performance, type safety, and concurrency. It enforces memory safety -- meaning that all references point to valid memory -- without a garbage collector; self-contained, well-known, state-of-the-art multi-paradigm design. \"\n  },\n  {\n    \"title\": \"\",\n    \"href\": \"https://example.com/x\",\n    \"body\": \"\"\n  }\n]"
+ },
+ {
+  "name": "images",
+  "rows": [
+   {
+    "title": "Rust Programming Language",
+    "image": "https://example.com/rust.png",
+    "thumbnail": "https://example.com/rust-thumb.jpg",
+    "url": "https://example.com/rust-page",
+    "height": "800",
+    "width": "1200",
+    "source": "example.com"
+   },
+   {
+    "title": null,
+    "image": "https://example.com/ferris.png",
+    "thumbnail": "https://example.com/ferris-thumb.jpg",
+    "url": "https://example.com/ferris-page",
+    "height": "480",
+    "width": "640",
+    "source": "example.com"
+   },
+   {
+    "title": "Rust Programming Language",
+    "image": "https://example.com/rust-image.png",
+    "thumbnail": "https://example.com/rust-thumb.png",
+    "url": "https://example.com/rust-article",
+    "height": 444,
+    "width": 700,
+    "source": "Bing"
+   },
+   {
+    "title": "The Rust Book",
+    "image": "https://example.com/rust-book.jpg",
+    "thumbnail": "https://example.com/rust-book-thumb.jpg",
+    "url": "https://example.com/rust-book",
+    "height": 800,
+    "width": 1200,
+    "source": "Bing"
+   }
+  ],
+  "print": "1.\ntitle       Rust Programming Language\nimage       https://example.com/rust.png\nthumbnail   https://example.com/rust-thumb.jpg\nurl         https://example.com/rust-page\nheight      800\nwidth       1200\nsource      example.com\n2.\ntitle       None\nimage       https://example.com/ferris.png\nthumbnail   https://example.com/ferris-thumb.jpg\nurl         https://example.com/ferris-page\nheight      480\nwidth       640\nsource      example.com\n3.\ntitle       Rust Programming Language\nimage       https://example.com/rust-image.png\nthumbnail   https://example.com/rust-thumb.png\nurl         https://example.com/rust-article\nheight      444\nwidth       700\nsource      Bing\n4.\ntitle       The Rust Book\nimage       https://example.com/rust-book.jpg\nthumbnail   https://example.com/rust-book-thumb.jpg\nurl         https://example.com/rust-book\nheight      800\nwidth       1200\nsource      Bing\n",
+  "csv": "title,image,thumbnail,url,height,width,source\r\nRust Programming Language,https://example.com/rust.png,https://example.com/rust-thumb.jpg,https://example.com/rust-page,800,1200,example.com\r\n,https://example.com/ferris.png,https://example.com/ferris-thumb.jpg,https://example.com/ferris-page,480,640,example.com\r\nRust Programming Language,https://example.com/rust-image.png,https://example.com/rust-thumb.png,https://example.com/rust-article,444,700,Bing\r\nThe Rust Book,https://example.com/rust-book.jpg,https://example.com/rust-book-thumb.jpg,https://example.com/rust-book,800,1200,Bing\r\n",
+  "json": "[\n  {\n    \"title\": \"Rust Programming Language\",\n    \"image\": \"https://example.com/rust.png\",\n    \"thumbnail\": \"https://example.com/rust-thumb.jpg\",\n    \"url\": \"https://example.com/rust-page\",\n    \"height\": \"800\",\n    \"width\": \"1200\",\n    \"source\": \"example.com\"\n  },\n  {\n    \"title\": null,\n    \"image\": \"https://example.com/ferris.png\",\n    \"thumbnail\": \"https://example.com/ferris-thumb.jpg\",\n    \"url\": \"https://example.com/ferris-page\",\n    \"height\": \"480\",\n    \"width\": \"640\",\n    \"source\": \"example.com\"\n  },\n  {\n    \"title\": \"Rust Programming Language\",\n    \"image\": \"https://example.com/rust-image.png\",\n    \"thumbnail\": \"https://example.com/rust-thumb.png\",\n    \"url\": \"https://example.com/rust-article\",\n    \"height\": 444,\n    \"width\": 700,\n    \"source\": \"Bing\"\n  },\n  {\n    \"title\": \"The Rust Book\",\n    \"image\": \"https://example.com/rust-book.jpg\",\n    \"thumbnail\": \"https://example.com/rust-book-thumb.jpg\",\n    \"url\": \"https://example.com/rust-book\",\n    \"height\": 800,\n    \"width\": 1200,\n    \"source\": \"Bing\"\n  }\n]"
+ },
+ {
+  "name": "videos",
+  "rows": [
+   {
+    "title": "Learn Rust Programming",
+    "content": "https://www.youtube.com/watch?v=abc123",
+    "description": "Learn <b>Rust</b> programming from scratch.",
+    "duration": "1:23:45",
+    "embed_html": "<iframe width=\"1280\" height=\"720\" src=\"https://www.youtube.com/embed/abc123?autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>",
+    "embed_url": "https://www.youtube.com/embed/abc123?autoplay=1",
+    "image_token": "token-abc",
+    "images": {
+     "large": "https://example.com/video-large.jpg",
+     "medium": "https://example.com/video-medium.jpg",
+     "motion": "",
+     "small": "https://example.com/video-small.jpg"
+    },
+    "provider": "Bing",
+    "published": "2024-05-21T16:00:07.0000000",
+    "publisher": "YouTube",
+    "statistics": {
+     "viewCount": 12345
+    },
+    "uploader": "Example Channel"
+   },
+   {
+    "title": "Rust Systems Programming",
+    "content": "https://www.youtube.com/watch?v=def456",
+    "description": "A systems programming tutorial.",
+    "duration": "12:34",
+    "embed_html": null,
+    "embed_url": "https://www.youtube.com/embed/def456?autoplay=1",
+    "image_token": null,
+    "images": {
+     "medium": "https://example.com/second-video.jpg"
+    },
+    "provider": "Bing",
+    "published": "2023-01-01T00:00:00.0000000",
+    "publisher": "YouTube",
+    "statistics": {
+     "viewCount": null
+    },
+    "uploader": "Another Channel"
+   }
+  ],
+  "print": "1.\ntitle       Learn Rust Programming\ncontent     https://www.youtube.com/watch?v=abc123\ndescription Learn <b>Rust</b> programming from scratch.\nduration    1:23:45\nembed_html  <iframe width=\"1280\" height=\"720\"\n            src=\"https://www.youtube.com/embed/abc123?autoplay=1\"\n            frameborder=\"0\" allowfullscreen></iframe>\nembed_url   https://www.youtube.com/embed/abc123?autoplay=1\nimage_token token-abc\nimages      {'large': 'https://example.com/video-large.jpg', 'medium':\n            'https://example.com/video-medium.jpg', 'motion': '', 'small':\n            'https://example.com/video-small.jpg'}\nprovider    Bing\npublished   2024-05-21T16:00:07.0000000\npublisher   YouTube\nstatistics  {'viewCount': 12345}\nuploader    Example Channel\n2.\ntitle       Rust Systems Programming\ncontent     https://www.youtube.com/watch?v=def456\ndescription A systems programming tutorial.\nduration    12:34\nembed_html  None\nembed_url   https://www.youtube.com/embed/def456?autoplay=1\nimage_token None\nimages      {'medium': 'https://example.com/second-video.jpg'}\nprovider    Bing\npublished   2023-01-01T00:00:00.0000000\npublisher   YouTube\nstatistics  {'viewCount': None}\nuploader    Another Channel\n",
+  "csv": "title,content,description,duration,embed_html,embed_url,image_token,images,provider,published,publisher,statistics,uploader\r\nLearn Rust Programming,https://www.youtube.com/watch?v=abc123,Learn <b>Rust</b> programming from scratch.,1:23:45,\"<iframe width=\"\"1280\"\" height=\"\"720\"\" src=\"\"https://www.youtube.com/embed/abc123?autoplay=1\"\" frameborder=\"\"0\"\" allowfullscreen></iframe>\",https://www.youtube.com/embed/abc123?autoplay=1,token-abc,\"{'large': 'https://example.com/video-large.jpg', 'medium': 'https://example.com/video-medium.jpg', 'motion': '', 'small': 'https://example.com/video-small.jpg'}\",Bing,2024-05-21T16:00:07.0000000,YouTube,{'viewCount': 12345},Example Channel\r\nRust Systems Programming,https://www.youtube.com/watch?v=def456,A systems programming tutorial.,12:34,,https://www.youtube.com/embed/def456?autoplay=1,,{'medium': 'https://example.com/second-video.jpg'},Bing,2023-01-01T00:00:00.0000000,YouTube,{'viewCount': None},Another Channel\r\n",
+  "json": "[\n  {\n    \"title\": \"Learn Rust Programming\",\n    \"content\": \"https://www.youtube.com/watch?v=abc123\",\n    \"description\": \"Learn <b>Rust</b> programming from scratch.\",\n    \"duration\": \"1:23:45\",\n    \"embed_html\": \"<iframe width=\\\"1280\\\" height=\\\"720\\\" src=\\\"https://www.youtube.com/embed/abc123?autoplay=1\\\" frameborder=\\\"0\\\" allowfullscreen></iframe>\",\n    \"embed_url\": \"https://www.youtube.com/embed/abc123?autoplay=1\",\n    \"image_token\": \"token-abc\",\n    \"images\": {\n      \"large\": \"https://example.com/video-large.jpg\",\n      \"medium\": \"https://example.com/video-medium.jpg\",\n      \"motion\": \"\",\n      \"small\": \"https://example.com/video-small.jpg\"\n    },\n    \"provider\": \"Bing\",\n    \"published\": \"2024-05-21T16:00:07.0000000\",\n    \"publisher\": \"YouTube\",\n    \"statistics\": {\n      \"viewCount\": 12345\n    },\n    \"uploader\": \"Example Channel\"\n  },\n  {\n    \"title\": \"Rust Systems Programming\",\n    \"content\": \"https://www.youtube.com/watch?v=def456\",\n    \"description\": \"A systems programming tutorial.\",\n    \"duration\": \"12:34\",\n    \"embed_html\": null,\n    \"embed_url\": \"https://www.youtube.com/embed/def456?autoplay=1\",\n    \"image_token\": null,\n    \"images\": {\n      \"medium\": \"https://example.com/second-video.jpg\"\n    },\n    \"provider\": \"Bing\",\n    \"published\": \"2023-01-01T00:00:00.0000000\",\n    \"publisher\": \"YouTube\",\n    \"statistics\": {\n      \"viewCount\": null\n    },\n    \"uploader\": \"Another Channel\"\n  }\n]"
+ },
+ {
+  "name": "news",
+  "rows": [
+   {
+    "date": "2 days ago",
+    "title": "Rust language release improves tooling",
+    "body": "The update improves compiler and Cargo workflows for developers.",
+    "url": "https://example.com/rust-news",
+    "image": "/th?id=ON.123&pid=News",
+    "source": "Example News"
+   },
+   {
+    "date": "3 hours ago",
+    "title": "Rust adoption grows",
+    "body": "More teams are adopting Rust for infrastructure.",
+    "url": "https://example.com/rust-adoption",
+    "image": "",
+    "source": "Tech Daily"
+   },
+   {
+    "date": "4 hours ago",
+    "title": "Rust project announces new release",
+    "body": "The Rust team announced a release with compiler improvements.",
+    "url": "https://news.yahoo.com/rust/RU=https://example.com/rust-release/RK=2/RS=abc",
+    "image": "https://s.yimg.com/ny/api/res/1.2/abc/-/https://example.com/rust-release.jpg",
+    "source": "Example News · via Yahoo"
+   },
+   {
+    "date": "1 day ago",
+    "title": "Rust community survey published",
+    "body": "The community survey highlights Rust usage in production.",
+    "url": "https://news.yahoo.com/rust/RU=https://example.com/rust-community/RK=2/RS=def",
+    "image": "",
+    "source": "Tech Wire · via Yahoo"
+   }
+  ],
+  "print": "1.\ndate        2 days ago\ntitle       Rust language release improves tooling\nbody        The update improves compiler and Cargo workflows for developers.\nurl         https://example.com/rust-news\nimage       /th?id=ON.123&pid=News\nsource      Example News\n2.\ndate        3 hours ago\ntitle       Rust adoption grows\nbody        More teams are adopting Rust for infrastructure.\nurl         https://example.com/rust-adoption\nimage       \nsource      Tech Daily\n3.\ndate        4 hours ago\ntitle       Rust project announces new release\nbody        The Rust team announced a release with compiler improvements.\nurl         https://news.yahoo.com/rust/RU=https://example.com/rust-release/RK=2/RS=abc\nimage       https://s.yimg.com/ny/api/res/1.2/abc/-/https://example.com/rust-release.jpg\nsource      Example News · via Yahoo\n4.\ndate        1 day ago\ntitle       Rust community survey published\nbody        The community survey highlights Rust usage in production.\nurl         https://news.yahoo.com/rust/RU=https://example.com/rust-community/RK=2/RS=def\nimage       \nsource      Tech Wire · via Yahoo\n",
+  "csv": "date,title,body,url,image,source\r\n2 days ago,Rust language release improves tooling,The update improves compiler and Cargo workflows for developers.,https://example.com/rust-news,/th?id=ON.123&pid=News,Example News\r\n3 hours ago,Rust adoption grows,More teams are adopting Rust for infrastructure.,https://example.com/rust-adoption,,Tech Daily\r\n4 hours ago,Rust project announces new release,The Rust team announced a release with compiler improvements.,https://news.yahoo.com/rust/RU=https://example.com/rust-release/RK=2/RS=abc,https://s.yimg.com/ny/api/res/1.2/abc/-/https://example.com/rust-release.jpg,Example News · via Yahoo\r\n1 day ago,Rust community survey published,The community survey highlights Rust usage in production.,https://news.yahoo.com/rust/RU=https://example.com/rust-community/RK=2/RS=def,,Tech Wire · via Yahoo\r\n",
+  "json": "[\n  {\n    \"date\": \"2 days ago\",\n    \"title\": \"Rust language release improves tooling\",\n    \"body\": \"The update improves compiler and Cargo workflows for developers.\",\n    \"url\": \"https://example.com/rust-news\",\n    \"image\": \"/th?id=ON.123&pid=News\",\n    \"source\": \"Example News\"\n  },\n  {\n    \"date\": \"3 hours ago\",\n    \"title\": \"Rust adoption grows\",\n    \"body\": \"More teams are adopting Rust for infrastructure.\",\n    \"url\": \"https://example.com/rust-adoption\",\n    \"image\": \"\",\n    \"source\": \"Tech Daily\"\n  },\n  {\n    \"date\": \"4 hours ago\",\n    \"title\": \"Rust project announces new release\",\n    \"body\": \"The Rust team announced a release with compiler improvements.\",\n    \"url\": \"https://news.yahoo.com/rust/RU=https://example.com/rust-release/RK=2/RS=abc\",\n    \"image\": \"https://s.yimg.com/ny/api/res/1.2/abc/-/https://example.com/rust-release.jpg\",\n    \"source\": \"Example News · via Yahoo\"\n  },\n  {\n    \"date\": \"1 day ago\",\n    \"title\": \"Rust community survey published\",\n    \"body\": \"The community survey highlights Rust usage in production.\",\n    \"url\": \"https://news.yahoo.com/rust/RU=https://example.com/rust-community/RK=2/RS=def\",\n    \"image\": \"\",\n    \"source\": \"Tech Wire · via Yahoo\"\n  }\n]"
+ },
+ {
+  "name": "books",
+  "rows": [
+   {
+    "title": "The Rust Programming Language",
+    "author": "Steve Klabnik, Carol Nichols",
+    "publisher": "No Starch Press",
+    "info": "English [en], pdf, 5.2MB,",
+    "url": "https://annas-archive.gd/md5/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "thumbnail": "/covers/rust-book.jpg"
+   },
+   {
+    "title": "Programming Rust2nd Edition",
+    "author": "Jim Blandy, Jason Orendorff",
+    "publisher": "",
+    "info": "English [en], epub, 3.1MB",
+    "url": "https://annas-archive.gd/md5/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "thumbnail": "https://example.com/programming-rust.jpg"
+   },
+   {
+    "title": "",
+    "author": "",
+    "publisher": "",
+    "info": "",
+    "url": "https://annas-archive.gd",
+    "thumbnail": ""
+   }
+  ],
+  "print": "1.\ntitle       The Rust Programming Language\nauthor      Steve Klabnik, Carol Nichols\npublisher   No Starch Press\ninfo        English [en], pdf, 5.2MB,\nurl         https://annas-archive.gd/md5/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\nthumbnail   /covers/rust-book.jpg\n2.\ntitle       Programming Rust2nd Edition\nauthor      Jim Blandy, Jason Orendorff\npublisher   \ninfo        English [en], epub, 3.1MB\nurl         https://annas-archive.gd/md5/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\nthumbnail   https://example.com/programming-rust.jpg\n3.\ntitle       \nauthor      \npublisher   \ninfo        \nurl         https://annas-archive.gd\nthumbnail   \n",
+  "csv": "title,author,publisher,info,url,thumbnail\r\nThe Rust Programming Language,\"Steve Klabnik, Carol Nichols\",No Starch Press,\"English [en], pdf, 5.2MB,\",https://annas-archive.gd/md5/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa,/covers/rust-book.jpg\r\nProgramming Rust2nd Edition,\"Jim Blandy, Jason Orendorff\",,\"English [en], epub, 3.1MB\",https://annas-archive.gd/md5/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb,https://example.com/programming-rust.jpg\r\n,,,,https://annas-archive.gd,\r\n",
+  "json": "[\n  {\n    \"title\": \"The Rust Programming Language\",\n    \"author\": \"Steve Klabnik, Carol Nichols\",\n    \"publisher\": \"No Starch Press\",\n    \"info\": \"English [en], pdf, 5.2MB,\",\n    \"url\": \"https://annas-archive.gd/md5/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n    \"thumbnail\": \"/covers/rust-book.jpg\"\n  },\n  {\n    \"title\": \"Programming Rust2nd Edition\",\n    \"author\": \"Jim Blandy, Jason Orendorff\",\n    \"publisher\": \"\",\n    \"info\": \"English [en], epub, 3.1MB\",\n    \"url\": \"https://annas-archive.gd/md5/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\n    \"thumbnail\": \"https://example.com/programming-rust.jpg\"\n  },\n  {\n    \"title\": \"\",\n    \"author\": \"\",\n    \"publisher\": \"\",\n    \"info\": \"\",\n    \"url\": \"https://annas-archive.gd\",\n    \"thumbnail\": \"\"\n  }\n]"
+ }
+]

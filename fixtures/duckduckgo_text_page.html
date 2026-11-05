@@ -1,33 +1,90 @@
-<!doctype html>
+<!--
+  Sanitized DuckDuckGo HTML SERP fixture (structure of a real
+  POST https://html.duckduckgo.com/html/ response, trimmed to three organic
+  results). A hand-made ad item (`y.js` href, dropped by upstream's
+  post_extract_results) and a `no-results body` div (an item with empty
+  fields; upstream keeps it) are added. The `vqd` token, the next-page form,
+  and all scripts are removed.
+-->
+<!DOCTYPE html>
 <html>
-  <body>
-    <div class="results">
-      <div class="result results_links results_links_deep web-result">
-        <h2 class="result__title">
-          <a class="result__a" href="/l/?kh=-1&uddg=https%3A%2F%2Fwww.rust-lang.org%2F">Rust Programming Language</a>
-        </h2>
-        <a class="result__snippet" href="/l/?kh=-1&uddg=https%3A%2F%2Fwww.rust-lang.org%2F">
-          A language empowering everyone to build reliable and efficient software.
-        </a>
-      </div>
-      <div class="result results_links results_links_deep web-result">
-        <h2 class="result__title">
-          <a class="result__a" href="/l/?kh=-1&uddg=https%3A%2F%2Fdoc.rust-lang.org%2Fbook%2F">The Rust Book</a>
-        </h2>
-        <a class="result__snippet" href="/l/?kh=-1&uddg=https%3A%2F%2Fdoc.rust-lang.org%2Fbook%2F">
-          The Rust Programming Language book introduces Rust concepts with examples.
-        </a>
-      </div>
-      <div class="nav-link">
-        <form action="/html/" method="post">
-          <input type="submit" class="btn btn--alt" value="Next" />
-          <input type="hidden" name="q" value="rust programming" />
-          <input type="hidden" name="s" value="30" />
-          <input type="hidden" name="dc" value="31" />
-          <input type="hidden" name="kl" value="us-en" />
-          <input type="hidden" name="kp" value="-1" />
-        </form>
-      </div>
+<body class="body--html">
+  <div class="serp__results">
+    <div id="links" class="results">
+                <div class="result results_links results_links_deep result--ad ">
+                  <div class="links_main links_deep result__body">
+                      <h2 class="result__title">
+                        <a rel="nofollow" class="result__a" href="https://duckduckgo.com/y.js?ad_domain=example.com&amp;ad_provider=bingv7aa&amp;u3=https%3A%2F%2Fwww.example.com%2F">Example Ad</a>
+                      </h2>
+                        <a class="result__snippet" href="https://duckduckgo.com/y.js?ad_domain=example.com&amp;ad_provider=bingv7aa&amp;u3=https%3A%2F%2Fwww.example.com%2F">Sponsored snippet.</a>
+                  </div>
+                </div>
+                <div class="result results_links results_links_deep web-result ">
+                  <div class="links_main links_deep result__body"> <!-- This is the visible part -->
+                      <h2 class="result__title">
+                        <a rel="nofollow" class="result__a" href="https://rust-lang.org/">Rust Programming Language</a>
+                      </h2>
+                      <div class="result__extras">
+                        <div class="result__extras__url">
+                          <span class="result__icon">
+                            <a rel="nofollow" href="https://rust-lang.org/">
+                              <img class="result__icon__img" width="16" height="16" alt="" src="//external-content.duckduckgo.com/ip3/rust-lang.org.ico" name="i15" />
+                            </a>
+                          </span>
+                          <a class="result__url" href="https://rust-lang.org/">
+                            rust-lang.org
+                          </a>
+                        </div>
+                      </div>
+                        <a class="result__snippet" href="https://rust-lang.org/"><b>Rust</b> is a fast, reliable, and productive <b>programming</b> <b>language</b> that can run on embedded devices, web services, and more. Learn how to get started, why <b>Rust</b> is different, and what companies are using it in production.</a>
+                    <div class="clear"></div>
+                  </div>
+                </div>
+                <div class="result results_links results_links_deep web-result ">
+                  <div class="links_main links_deep result__body"> <!-- This is the visible part -->
+                      <h2 class="result__title">
+                        <a rel="nofollow" class="result__a" href="https://en.wikipedia.org/wiki/Rust_(programming_language)">Rust (programming language) - Wikipedia</a>
+                      </h2>
+                      <div class="result__extras">
+                        <div class="result__extras__url">
+                          <span class="result__icon">
+                            <a rel="nofollow" href="https://en.wikipedia.org/wiki/Rust_(programming_language)">
+                              <img class="result__icon__img" width="16" height="16" alt="" src="//external-content.duckduckgo.com/ip3/en.wikipedia.org.ico" name="i15" />
+                            </a>
+                          </span>
+                          <a class="result__url" href="https://en.wikipedia.org/wiki/Rust_(programming_language)">
+                            en.wikipedia.org/wiki/Rust_(programming_language)
+                          </a>
+                        </div>
+                      </div>
+                        <a class="result__snippet" href="https://en.wikipedia.org/wiki/Rust_(programming_language)"><b>Rust</b> (<b>programming</b> <b>language</b>) ... <b>Rust</b> is a general-purpose <b>programming</b> <b>language</b> that emphasizes performance, type safety, concurrency, and memory safety. <b>Rust</b> supports multiple <b>programming</b> paradigms. It was influenced by ideas from functional <b>programming</b>, including immutability, higher-order functions, algebraic data types, and pattern matching.</a>
+                    <div class="clear"></div>
+                  </div>
+                </div>
+                <div class="result results_links results_links_deep web-result ">
+                  <div class="links_main links_deep result__body"> <!-- This is the visible part -->
+                      <h2 class="result__title">
+                        <a rel="nofollow" class="result__a" href="https://rust-lang.org/learn/get-started/">Getting started - Rust Programming Language</a>
+                      </h2>
+                      <div class="result__extras">
+                        <div class="result__extras__url">
+                          <span class="result__icon">
+                            <a rel="nofollow" href="https://rust-lang.org/learn/get-started/">
+                              <img class="result__icon__img" width="16" height="16" alt="" src="//external-content.duckduckgo.com/ip3/rust-lang.org.ico" name="i15" />
+                            </a>
+                          </span>
+                          <a class="result__url" href="https://rust-lang.org/learn/get-started/">
+                            rust-lang.org/learn/get-started/
+                          </a>
+                        </div>
+                      </div>
+                        <a class="result__snippet" href="https://rust-lang.org/learn/get-started/">Learn how to install <b>Rust</b>, use Cargo, and write a small app with a dependency. Find out more about <b>Rust</b>, its features, and its community.</a>
+                    <div class="clear"></div>
+                  </div>
+                </div>
+                
+      <div class="no-results body">No more results.</div>
     </div>
-  </body>
+  </div>
+</body>
 </html>

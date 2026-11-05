@@ -1,0 +1,392 @@
+[
+ {
+  "args": [],
+  "stdout": "",
+  "stderr": "Usage: ddgs [OPTIONS] COMMAND1 [ARGS]... [COMMAND2 [ARGS]...]...\n\n  DDGS CLI tool.\n\nOptions:\n  --help  Show this message and exit.\n\nCommands:\n  api      Start/stop the DDGS API server.\n  books    CLI function to perform a DDGS books metasearch.\n  extract  CLI function to extract content from a URL.\n  images   CLI function to perform a DDGS images metasearch.\n  mcp      Start DDGS MCP server over stdio for local MCP clients.\n  news     CLI function to perform a DDGS news metasearch.\n  text     CLI function to perform a DDGS text metasearch.\n  version  Print and return version.\n  videos   CLI function to perform a DDGS videos metasearch.\n",
+  "code": 2
+ },
+ {
+  "args": [
+   "--help"
+  ],
+  "stdout": "Usage: ddgs [OPTIONS] COMMAND1 [ARGS]... [COMMAND2 [ARGS]...]...\n\n  DDGS CLI tool.\n\nOptions:\n  --help  Show this message and exit.\n\nCommands:\n  api      Start/stop the DDGS API server.\n  books    CLI function to perform a DDGS books metasearch.\n  extract  CLI function to extract content from a URL.\n  images   CLI function to perform a DDGS images metasearch.\n  mcp      Start DDGS MCP server over stdio for local MCP clients.\n  news     CLI function to perform a DDGS news metasearch.\n  text     CLI function to perform a DDGS text metasearch.\n  version  Print and return version.\n  videos   CLI function to perform a DDGS videos metasearch.\n",
+  "stderr": "",
+  "code": 0
+ },
+ {
+  "args": [
+   "--help",
+   "text"
+  ],
+  "stdout": "Usage: ddgs [OPTIONS] COMMAND1 [ARGS]... [COMMAND2 [ARGS]...]...\n\n  DDGS CLI tool.\n\nOptions:\n  --help  Show this message and exit.\n\nCommands:\n  api      Start/stop the DDGS API server.\n  books    CLI function to perform a DDGS books metasearch.\n  extract  CLI function to extract content from a URL.\n  images   CLI function to perform a DDGS images metasearch.\n  mcp      Start DDGS MCP server over stdio for local MCP clients.\n  news     CLI function to perform a DDGS news metasearch.\n  text     CLI function to perform a DDGS text metasearch.\n  version  Print and return version.\n  videos   CLI function to perform a DDGS videos metasearch.\n",
+  "stderr": "",
+  "code": 0
+ },
+ {
+  "args": [
+   "-x",
+   "text"
+  ],
+  "stdout": "",
+  "stderr": "Usage: ddgs [OPTIONS] COMMAND1 [ARGS]... [COMMAND2 [ARGS]...]...\nTry 'ddgs --help' for help.\n\nError: No such option '-x'.\n",
+  "code": 2
+ },
+ {
+  "args": [
+   "tex"
+  ],
+  "stdout": "",
+  "stderr": "Usage: ddgs [OPTIONS] COMMAND1 [ARGS]... [COMMAND2 [ARGS]...]...\nTry 'ddgs --help' for help.\n\nError: No such command 'tex'. Did you mean 'text'?\n",
+  "code": 2
+ },
+ {
+  "args": [
+   "foo"
+  ],
+  "stdout": "",
+  "stderr": "Usage: ddgs [OPTIONS] COMMAND1 [ARGS]... [COMMAND2 [ARGS]...]...\nTry 'ddgs --help' for help.\n\nError: No such command 'foo'.\n",
+  "code": 2
+ },
+ {
+  "args": [
+   "version"
+  ],
+  "stdout": "9.16.1\n",
+  "stderr": "",
+  "code": 0
+ },
+ {
+  "args": [
+   "version",
+   "--help"
+  ],
+  "stdout": "Usage: ddgs version [OPTIONS]\n\n  Print and return version.\n\nOptions:\n  --help  Show this message and exit.\n",
+  "stderr": "",
+  "code": 0
+ },
+ {
+  "args": [
+   "version",
+   "--nope"
+  ],
+  "stdout": "",
+  "stderr": "Usage: ddgs version [OPTIONS]\nTry 'ddgs version --help' for help.\n\nError: No such option '--nope'.\n",
+  "code": 2
+ },
+ {
+  "args": [
+   "text",
+   "--help"
+  ],
+  "stdout": "Usage: ddgs text [OPTIONS]\n\n  CLI function to perform a DDGS text metasearch.\n\nOptions:\n  -q, --query TEXT                text search query\n  -k, --keywords TEXT             (Deprecated) text search query\n  -r, --region TEXT               us-en, ru-ru, etc.\n  -s, --safesearch [on|moderate|off]\n  -t, --timelimit [d|w|m|y]       day, week, month, year\n  -m, --max_results INTEGER       maximum number of results\n  -p, --page INTEGER              page number of results\n  -b, --backend [auto|all|bing|brave|duckduckgo|google|grokipedia|mojeek|startpage|yandex|yahoo|wikipedia]\n  -o, --output TEXT               csv, json or filename.csv|json (save the\n                                  results to a csv or json file)\n  -d, --download                  download results. -dd to set custom\n                                  directory\n  -dd, --download-directory TEXT  Specify custom download directory\n  -th, --threads INTEGER          download threads, default=10\n  -pr, --proxy TEXT               the proxy to send requests, example:\n                                  socks5h://127.0.0.1:9150\n  -v, --verify BOOLEAN            verify SSL when making the request\n  -nc, --no-color                 disable color output\n  --help                          Show this message and exit.\n",
+  "stderr": "",
+  "code": 0
+ },
+ {
+  "args": [
+   "images",
+   "--help"
+  ],
+  "stdout": "Usage: ddgs images [OPTIONS]\n\n  CLI function to perform a DDGS images metasearch.\n\nOptions:\n  -q, --query TEXT                images search query\n  -k, --keywords TEXT             (Deprecated) images search query\n  -r, --region TEXT               us-en, ru-ru, etc.\n  -s, --safesearch [on|moderate|off]\n  -t, --timelimit [d|w|m|y]\n  -m, --max_results INTEGER       maximum number of results\n  -p, --page INTEGER              page number of results\n  -b, --backend [auto|all|bing|duckduckgo]\n  -size, --size [Small|Medium|Large|Wallpaper]\n  -c, --color [color|Monochrome|Red|Orange|Yellow|Green|Blue|Purple|Pink|Brown|Black|Gray|Teal|White]\n  -type, --type_image [photo|clipart|gif|transparent|line]\n  -l, --layout [Square|Tall|Wide]\n  -lic, --license_image [any|Public|Share|ShareCommercially|Modify|ModifyCommercially]\n  -o, --output TEXT               csv, json or filename.csv|json (save the\n                                  results to a csv or json file)\n  -d, --download                  download results. -dd to set custom\n                                  directory\n  -dd, --download-directory TEXT  Specify custom download directory\n  -th, --threads INTEGER          download threads, default=10\n  -pr, --proxy TEXT               the proxy to send requests, example:\n                                  socks5h://127.0.0.1:9150\n  -v, --verify BOOLEAN            verify SSL when making the request\n  -nc, --no-color                 disable color output\n  --help                          Show this message and exit.\n",
+  "stderr": "",
+  "code": 0
+ },
+ {
+  "args": [
+   "videos",
+   "--help"
+  ],
+  "stdout": "Usage: ddgs videos [OPTIONS]\n\n  CLI function to perform a DDGS videos metasearch.\n\nOptions:\n  -q, --query TEXT                videos search query\n  -k, --keywords TEXT             (Deprecated) videos search query\n  -r, --region TEXT               us-en, ru-ru, etc.\n  -s, --safesearch [on|moderate|off]\n  -t, --timelimit [d|w|m]         day, week, month\n  -m, --max_results INTEGER       maximum number of results\n  -p, --page INTEGER              page number of results\n  -b, --backend [auto|all|duckduckgo]\n  -res, --resolution [high|standart]\n  -d, --duration [short|medium|long]\n  -lic, --license_videos [creativeCommon|youtube]\n  -o, --output TEXT               csv, json or filename.csv|json (save the\n                                  results to a csv or json file)\n  -pr, --proxy TEXT               the proxy to send requests, example:\n                                  socks5h://127.0.0.1:9150\n  -v, --verify BOOLEAN            verify SSL when making the request\n  -nc, --no-color                 disable color output\n  --help                          Show this message and exit.\n",
+  "stderr": "",
+  "code": 0
+ },
+ {
+  "args": [
+   "news",
+   "--help"
+  ],
+  "stdout": "Usage: ddgs news [OPTIONS]\n\n  CLI function to perform a DDGS news metasearch.\n\nOptions:\n  -q, --query TEXT                news search query\n  -k, --keywords TEXT             (Deprecated) news search query\n  -r, --region TEXT               us-en, ru-ru, etc.\n  -s, --safesearch [on|moderate|off]\n  -t, --timelimit [d|w|m|y]       day, week, month, year\n  -m, --max_results INTEGER       maximum number of results\n  -p, --page INTEGER              page number of results\n  -b, --backend [auto|all|bing|duckduckgo|yahoo]\n  -o, --output TEXT               csv, json or filename.csv|json (save the\n                                  results to a csv or json file)\n  -pr, --proxy TEXT               the proxy to send requests, example:\n                                  socks5h://127.0.0.1:9150\n  -v, --verify BOOLEAN            verify SSL when making the request\n  -nc, --no-color                 disable color output\n  --help                          Show this message and exit.\n",
+  "stderr": "",
+  "code": 0
+ },
+ {
+  "args": [
+   "books",
+   "--help"
+  ],
+  "stdout": "Usage: ddgs books [OPTIONS]\n\n  CLI function to perform a DDGS books metasearch.\n\nOptions:\n  -q, --query TEXT                books search query\n  -k, --keywords TEXT             (Deprecated) books search query\n  -m, --max_results INTEGER       maximum number of results\n  -p, --page INTEGER              page number of results\n  -b, --backend [auto|all|annasarchive]\n  -o, --output TEXT               csv, json or filename.csv|json (save the\n                                  results to a csv or json file)\n  -pr, --proxy TEXT               the proxy to send requests, example:\n                                  socks5h://127.0.0.1:9150\n  -v, --verify BOOLEAN            verify SSL when making the request\n  -nc, --no-color                 disable color output\n  --help                          Show this message and exit.\n",
+  "stderr": "",
+  "code": 0
+ },
+ {
+  "args": [
+   "extract",
+   "--help"
+  ],
+  "stdout": "Usage: ddgs extract [OPTIONS]\n\n  CLI function to extract content from a URL.\n\nOptions:\n  -u, --url TEXT                  URL to extract content from  [required]\n  -f, --format [text_markdown|text_plain|text_rich|text|content]\n                                  Output format\n  -o, --output TEXT               json or filename.json (save the results to a\n                                  file)\n  -pr, --proxy TEXT               the proxy to send requests, example:\n                                  socks5h://127.0.0.1:9150\n  -v, --verify BOOLEAN            verify SSL when making the request\n  --help                          Show this message and exit.\n",
+  "stderr": "",
+  "code": 0
+ },
+ {
+  "args": [
+   "mcp",
+   "--help"
+  ],
+  "stdout": "Usage: ddgs mcp [OPTIONS]\n\n  Start DDGS MCP server over stdio for local MCP clients.\n\n  Examples:     ddgs mcp                            # Start MCP server using\n  stdio transport     ddgs mcp -pr socks5h://127.0.0.1:9150  # With proxy\n\n  MCP client configuration:     {       \"mcpServers\": {         \"ddgs\": {\n  \"command\": \"ddgs\",           \"args\": [\"mcp\"]         }       }     }\n\nOptions:\n  -pr, --proxy TEXT  the proxy to send requests, example:\n                     socks5h://127.0.0.1:9150\n  --help             Show this message and exit.\n",
+  "stderr": "",
+  "code": 0
+ },
+ {
+  "args": [
+   "api",
+   "--help"
+  ],
+  "stdout": "Usage: ddgs api [OPTIONS]\n\n  Start/stop the DDGS API server.\n\n  Starts a FastAPI server with REST endpoints for search tools. Supports text,\n  image, news, video, and book search.\n\n  Examples:     ddgs api              # Start server in foreground     ddgs\n  api -d           # Start server in detached mode     ddgs api -s           #\n  Stop the detached server     ddgs api --host 127.0.0.1 --port 9000  # Bind\n  to specific host/port     ddgs api -pr socks5h://127.0.0.1:9150  # Use proxy\n\nOptions:\n  -d, --detach       Run the server in detached mode (background)\n  -s, --stop         Stop the detached server\n  --host TEXT        Host to bind the server to\n  --port INTEGER     Port to bind the server to\n  --reload           Enable auto-reload on code changes\n  -pr, --proxy TEXT  the proxy to send requests, example:\n                     socks5h://127.0.0.1:9150\n  --help             Show this message and exit.\n",
+  "stderr": "",
+  "code": 0
+ },
+ {
+  "args": [
+   "text",
+   "-s",
+   "x"
+  ],
+  "stdout": "",
+  "stderr": "Usage: ddgs text [OPTIONS]\nTry 'ddgs text --help' for help.\n\nError: Invalid value for '-s' / '--safesearch': 'x' is not one of 'on', 'moderate', 'off'.\n",
+  "code": 2
+ },
+ {
+  "args": [
+   "text",
+   "-q"
+  ],
+  "stdout": "",
+  "stderr": "Error: Option '-q' requires an argument.\n",
+  "code": 2
+ },
+ {
+  "args": [
+   "text",
+   "-k"
+  ],
+  "stdout": "",
+  "stderr": "Error: Option '-k' requires an argument.\n",
+  "code": 2
+ },
+ {
+  "args": [
+   "text",
+   "--nope"
+  ],
+  "stdout": "",
+  "stderr": "Usage: ddgs text [OPTIONS]\nTry 'ddgs text --help' for help.\n\nError: No such option '--nope'. Did you mean '--page'?\n",
+  "code": 2
+ },
+ {
+  "args": [
+   "text",
+   "-nope"
+  ],
+  "stdout": "",
+  "stderr": "Usage: ddgs text [OPTIONS]\nTry 'ddgs text --help' for help.\n\nError: No such option '-n'.\n",
+  "code": 2
+ },
+ {
+  "args": [
+   "text",
+   "--s",
+   "on"
+  ],
+  "stdout": "",
+  "stderr": "Usage: ddgs text [OPTIONS]\nTry 'ddgs text --help' for help.\n\nError: No such option '--s'.\n",
+  "code": 2
+ },
+ {
+  "args": [
+   "text",
+   "-m",
+   "abc"
+  ],
+  "stdout": "",
+  "stderr": "Usage: ddgs text [OPTIONS]\nTry 'ddgs text --help' for help.\n\nError: Invalid value for '-m' / '--max_results': 'abc' is not a valid integer.\n",
+  "code": 2
+ },
+ {
+  "args": [
+   "text",
+   "-m",
+   " 1_0",
+   "-s",
+   "x"
+  ],
+  "stdout": "",
+  "stderr": "Usage: ddgs text [OPTIONS]\nTry 'ddgs text --help' for help.\n\nError: Invalid value for '-s' / '--safesearch': 'x' is not one of 'on', 'moderate', 'off'.\n",
+  "code": 2
+ },
+ {
+  "args": [
+   "text",
+   "-v",
+   "maybe"
+  ],
+  "stdout": "",
+  "stderr": "Usage: ddgs text [OPTIONS]\nTry 'ddgs text --help' for help.\n\nError: Invalid value for '-v' / '--verify': 'maybe' is not a valid boolean. Recognized values: , 0, 1, f, false, n, no, off, on, t, true, y, yes\n",
+  "code": 2
+ },
+ {
+  "args": [
+   "text",
+   "--verify"
+  ],
+  "stdout": "",
+  "stderr": "Error: Option '--verify' requires an argument.\n",
+  "code": 2
+ },
+ {
+  "args": [
+   "text",
+   "-nc=1"
+  ],
+  "stdout": "",
+  "stderr": "Error: Option '-nc' does not take a value.\n",
+  "code": 2
+ },
+ {
+  "args": [
+   "text",
+   "-dd"
+  ],
+  "stdout": "",
+  "stderr": "Error: Option '-dd' requires an argument.\n",
+  "code": 2
+ },
+ {
+  "args": [
+   "text",
+   "-qx",
+   "-b",
+   "nope"
+  ],
+  "stdout": "",
+  "stderr": "Usage: ddgs text [OPTIONS]\nTry 'ddgs text --help' for help.\n\nError: Invalid value for '-b' / '--backend': 'nope' is not one of 'auto', 'all', 'bing', 'brave', 'duckduckgo', 'google', 'grokipedia', 'mojeek', 'startpage', 'yandex', 'yahoo', 'wikipedia'.\n",
+  "code": 2
+ },
+ {
+  "args": [
+   "text",
+   "-qa",
+   "-kb",
+   "-t",
+   "q"
+  ],
+  "stdout": "",
+  "stderr": "Usage: ddgs text [OPTIONS]\nTry 'ddgs text --help' for help.\n\nError: Invalid value for '-t' / '--timelimit': 'q' is not one of 'd', 'w', 'm', 'y'.\n",
+  "code": 2
+ },
+ {
+  "args": [
+   "text",
+   "-s",
+   "on",
+   "-s",
+   "x",
+   "--help"
+  ],
+  "stdout": "Usage: ddgs text [OPTIONS]\n\n  CLI function to perform a DDGS text metasearch.\n\nOptions:\n  -q, --query TEXT                text search query\n  -k, --keywords TEXT             (Deprecated) text search query\n  -r, --region TEXT               us-en, ru-ru, etc.\n  -s, --safesearch [on|moderate|off]\n  -t, --timelimit [d|w|m|y]       day, week, month, year\n  -m, --max_results INTEGER       maximum number of results\n  -p, --page INTEGER              page number of results\n  -b, --backend [auto|all|bing|brave|duckduckgo|google|grokipedia|mojeek|startpage|yandex|yahoo|wikipedia]\n  -o, --output TEXT               csv, json or filename.csv|json (save the\n                                  results to a csv or json file)\n  -d, --download                  download results. -dd to set custom\n                                  directory\n  -dd, --download-directory TEXT  Specify custom download directory\n  -th, --threads INTEGER          download threads, default=10\n  -pr, --proxy TEXT               the proxy to send requests, example:\n                                  socks5h://127.0.0.1:9150\n  -v, --verify BOOLEAN            verify SSL when making the request\n  -nc, --no-color                 disable color output\n  --help                          Show this message and exit.\n",
+  "stderr": "",
+  "code": 0
+ },
+ {
+  "args": [
+   "text",
+   "--help",
+   "-s",
+   "x"
+  ],
+  "stdout": "Usage: ddgs text [OPTIONS]\n\n  CLI function to perform a DDGS text metasearch.\n\nOptions:\n  -q, --query TEXT                text search query\n  -k, --keywords TEXT             (Deprecated) text search query\n  -r, --region TEXT               us-en, ru-ru, etc.\n  -s, --safesearch [on|moderate|off]\n  -t, --timelimit [d|w|m|y]       day, week, month, year\n  -m, --max_results INTEGER       maximum number of results\n  -p, --page INTEGER              page number of results\n  -b, --backend [auto|all|bing|brave|duckduckgo|google|grokipedia|mojeek|startpage|yandex|yahoo|wikipedia]\n  -o, --output TEXT               csv, json or filename.csv|json (save the\n                                  results to a csv or json file)\n  -d, --download                  download results. -dd to set custom\n                                  directory\n  -dd, --download-directory TEXT  Specify custom download directory\n  -th, --threads INTEGER          download threads, default=10\n  -pr, --proxy TEXT               the proxy to send requests, example:\n                                  socks5h://127.0.0.1:9150\n  -v, --verify BOOLEAN            verify SSL when making the request\n  -nc, --no-color                 disable color output\n  --help                          Show this message and exit.\n",
+  "stderr": "",
+  "code": 0
+ },
+ {
+  "args": [
+   "text",
+   "--help",
+   "news",
+   "--help"
+  ],
+  "stdout": "Usage: ddgs text [OPTIONS]\n\n  CLI function to perform a DDGS text metasearch.\n\nOptions:\n  -q, --query TEXT                text search query\n  -k, --keywords TEXT             (Deprecated) text search query\n  -r, --region TEXT               us-en, ru-ru, etc.\n  -s, --safesearch [on|moderate|off]\n  -t, --timelimit [d|w|m|y]       day, week, month, year\n  -m, --max_results INTEGER       maximum number of results\n  -p, --page INTEGER              page number of results\n  -b, --backend [auto|all|bing|brave|duckduckgo|google|grokipedia|mojeek|startpage|yandex|yahoo|wikipedia]\n  -o, --output TEXT               csv, json or filename.csv|json (save the\n                                  results to a csv or json file)\n  -d, --download                  download results. -dd to set custom\n                                  directory\n  -dd, --download-directory TEXT  Specify custom download directory\n  -th, --threads INTEGER          download threads, default=10\n  -pr, --proxy TEXT               the proxy to send requests, example:\n                                  socks5h://127.0.0.1:9150\n  -v, --verify BOOLEAN            verify SSL when making the request\n  -nc, --no-color                 disable color output\n  --help                          Show this message and exit.\n",
+  "stderr": "",
+  "code": 0
+ },
+ {
+  "args": [
+   "text",
+   "extra"
+  ],
+  "stdout": "",
+  "stderr": "Usage: ddgs [OPTIONS] COMMAND1 [ARGS]... [COMMAND2 [ARGS]...]...\nTry 'ddgs --help' for help.\n\nError: No such command 'extra'. (Did you mean one of: 'extract', 'text'?)\n",
+  "code": 2
+ },
+ {
+  "args": [
+   "images",
+   "-c",
+   "red"
+  ],
+  "stdout": "",
+  "stderr": "Usage: ddgs images [OPTIONS]\nTry 'ddgs images --help' for help.\n\nError: Invalid value for '-c' / '--color': 'red' is not one of 'color', 'Monochrome', 'Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple', 'Pink', 'Brown', 'Black', 'Gray', 'Teal', 'White'.\n",
+  "code": 2
+ },
+ {
+  "args": [
+   "videos",
+   "-t",
+   "y"
+  ],
+  "stdout": "",
+  "stderr": "Usage: ddgs videos [OPTIONS]\nTry 'ddgs videos --help' for help.\n\nError: Invalid value for '-t' / '--timelimit': 'y' is not one of 'd', 'w', 'm'.\n",
+  "code": 2
+ },
+ {
+  "args": [
+   "extract"
+  ],
+  "stdout": "",
+  "stderr": "Usage: ddgs extract [OPTIONS]\nTry 'ddgs extract --help' for help.\n\nError: Missing option '-u' / '--url'.\n",
+  "code": 2
+ },
+ {
+  "args": [
+   "text"
+  ],
+  "stdout": "DDGSException: DDGSException('query is mandatory.')\n",
+  "stderr": "",
+  "code": 0
+ },
+ {
+  "args": [
+   "books"
+  ],
+  "stdout": "DDGSException: DDGSException('query is mandatory.')\n",
+  "stderr": "",
+  "code": 0
+ },
+ {
+  "args": [
+   "text",
+   "--query="
+  ],
+  "stdout": "DDGSException: DDGSException('query is mandatory.')\n",
+  "stderr": "",
+  "code": 0
+ },
+ {
+  "args": [
+   "version",
+   "news"
+  ],
+  "stdout": "9.16.1\nDDGSException: DDGSException('query is mandatory.')\n",
+  "stderr": "",
+  "code": 0
+ }
+]

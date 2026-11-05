@@ -3,6 +3,8 @@
   Mirrors live markup: <ul class="results-standard"> with <li> results, each a
   <h2><a class="title" href="..."> heading (direct destination URL) and a
   <p class="s"> snippet. No tracking, tokens, or PII.
+  The last two items are hand-made XPath edge cases (anchor not a direct
+  child of h2, inexact class, a second `ul` whose class contains "results").
 -->
 <!DOCTYPE html>
 <html>
@@ -23,6 +25,14 @@
         <h2><a class="title" href="https://doc.rust-lang.org/book/">The Rust Programming Language - Book</a></h2>
         <p class="s">The official book on the <strong>Rust</strong> <strong>programming</strong> language.</p>
       </li>
+      <li class="r4">
+        <h2><span><a class="title" href="https://example.org/nested">Anchor not a direct child of h2</a></span></h2>
+        <p class="s extra">Class is not exactly "s".</p>
+        <ul class="sub"><li>Nested list item (not an item)</li></ul>
+      </li>
+    </ul>
+    <ul class="related-results">
+      <li><h2><a href="https://example.org/related">Related</a></h2></li>
     </ul>
   </body>
 </html>

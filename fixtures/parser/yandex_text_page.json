@@ -1,0 +1,318 @@
+{
+"root": "ul",
+"nodes": [
+[
+"e",
+"html",
+[]
+],
+[
+"e",
+"body",
+[]
+],
+[
+"t",
+"\n    "
+],
+[
+"e",
+"ul",
+[]
+],
+[
+"e",
+"li",
+[
+[
+"class",
+"serp-item serp-item__futuris-snippet serp-item_card"
+]
+]
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"OrganicTitle"
+]
+]
+],
+[
+"t",
+"\n          "
+],
+[
+"e",
+"a",
+[
+[
+"target",
+"_blank"
+],
+[
+"class",
+"Link Link_theme_normal OrganicTitle-Link link"
+],
+[
+"href",
+"https://rust-lang.org/"
+]
+]
+],
+[
+"t",
+"\n            "
+],
+[
+"e",
+"span",
+[
+[
+"class",
+"OrganicTitle-LinkText"
+]
+]
+],
+[
+"t",
+"Rust Programming Language"
+],
+[
+"t",
+"\n          "
+],
+[
+"t",
+"\n        "
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"TextContainer OrganicText Typo Typo_text_m"
+]
+]
+],
+[
+"t",
+"A language empowering everyone to build reliable and efficient software."
+],
+[
+"t",
+"\n      "
+],
+[
+"t",
+"\n      "
+],
+[
+"e",
+"li",
+[
+[
+"class",
+"serp-item serp-item__futuris-snippet serp-item_card"
+]
+]
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"OrganicTitle"
+]
+]
+],
+[
+"t",
+"\n          "
+],
+[
+"e",
+"a",
+[
+[
+"target",
+"_blank"
+],
+[
+"class",
+"Link Link_theme_normal OrganicTitle-Link link"
+],
+[
+"href",
+"https://en.wikipedia.org/wiki/Rust_(programming_language)"
+]
+]
+],
+[
+"t",
+"\n            "
+],
+[
+"e",
+"span",
+[
+[
+"class",
+"OrganicTitle-LinkText"
+]
+]
+],
+[
+"t",
+"Rust (programming language) - Wikipedia"
+],
+[
+"t",
+"\n          "
+],
+[
+"t",
+"\n        "
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"TextContainer OrganicText Typo Typo_text_m"
+]
+]
+],
+[
+"t",
+"Rust is a multi-paradigm, general-purpose programming language emphasizing performance and safety."
+],
+[
+"t",
+"\n      "
+],
+[
+"t",
+"\n      "
+],
+[
+"e",
+"li",
+[
+[
+"class",
+"serp-item serp-item_card"
+]
+]
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"OrganicTitle"
+]
+]
+],
+[
+"t",
+"\n          "
+],
+[
+"e",
+"a",
+[
+[
+"target",
+"_blank"
+],
+[
+"class",
+"Link Link_theme_normal OrganicTitle-Link link"
+],
+[
+"href",
+"https://doc.rust-lang.org/book/"
+]
+]
+],
+[
+"t",
+"\n            "
+],
+[
+"e",
+"span",
+[
+[
+"class",
+"OrganicTitle-LinkText"
+]
+]
+],
+[
+"t",
+"The Rust Programming Language Book"
+],
+[
+"t",
+"\n          "
+],
+[
+"t",
+"\n        "
+],
+[
+"t",
+"\n        "
+],
+[
+"e",
+"div",
+[
+[
+"class",
+"TextContainer OrganicText Typo Typo_text_m"
+]
+]
+],
+[
+"t",
+"The official book for learning Rust, from the Rust team."
+],
+[
+"t",
+"\n      "
+],
+[
+"t",
+"\n    "
+]
+]
+}

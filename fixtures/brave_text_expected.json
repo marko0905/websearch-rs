@@ -1,0 +1,32 @@
+[
+ {
+  "title": "Rust Programming Language",
+  "href": "https://rust-lang.org/",
+  "body": "A language empowering everyone to build reliable and efficient software."
+ },
+ {
+  "title": "Rust (programming language) - Wikipedia",
+  "href": "https://en.wikipedia.org/wiki/Rust_(programming_language)",
+  "body": "Rust is a general-purpose programming language emphasizing performance and memory safety."
+ },
+ {
+  "title": "The Rust Programming Language - Book",
+  "href": "https://doc.rust-lang.org/book/",
+  "body": "The official book on the Rust programming language."
+ },
+ {
+  "title": "Example OrgExample title",
+  "href": "https://example.org/a",
+  "body": "Body A"
+ },
+ {
+  "title": "",
+  "href": "https://example.org/b",
+  "body": "B1B2"
+ },
+ {
+  "title": "",
+  "href": "",
+  "body": ""
+ }
+]

@@ -1,0 +1,18 @@
+[
+ {
+  "date": "4 hours ago",
+  "title": "Rust project announces new release",
+  "body": "The Rust team announced a release with compiler improvements.",
+  "url": "https://news.yahoo.com/rust/RU=https://example.com/rust-release/RK=2/RS=abc",
+  "image": "https://s.yimg.com/ny/api/res/1.2/abc/-/https://example.com/rust-release.jpg",
+  "source": "Example News · via Yahoo"
+ },
+ {
+  "date": "1 day ago",
+  "title": "Rust community survey published",
+  "body": "The community survey highlights Rust usage in production.",
+  "url": "https://news.yahoo.com/rust/RU=https://example.com/rust-community/RK=2/RS=def",
+  "image": "",
+  "source": "Tech Wire · via Yahoo"
+ }
+]

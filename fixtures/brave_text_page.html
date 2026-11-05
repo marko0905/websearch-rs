@@ -4,6 +4,8 @@
   anchor (with the real destination href — Brave does not wrap URLs), a
   <div class="title"> heading, and a <div class="content"> description.
   Svelte hash classes are dropped; no favicons, tracking, tokens, or PII.
+  The last four items are hand-made XPath edge cases (sitename-container,
+  `position()=last()`, an anchor without a title div, a non-`web` type).
 -->
 <!DOCTYPE html>
 <html>
@@ -33,6 +35,20 @@
           <div class="content line-clamp-dynamic">The official book on the Rust programming language.</div>
         </div>
       </div>
+      <div class="snippet" data-pos="3" data-type="web">
+        <a href="https://example.org/a" class="l1">
+          <div class="site-name-wrapper"><div class="sitename-container">Example Org</div></div>
+          <div class="title search-snippet-title">Example title</div>
+        </a>
+        <div class="snippet-content"><div class="content">Body A</div></div>
+      </div>
+      <div data-type="web">
+        <a href="https://example.org/b"><div class="title">Not the last div</div><div class="desc">x</div></a>
+        <div class="snippet"><div class="content">B1</div></div>
+        <div class="snippet"><div><div class="content">B2</div></div></div>
+      </div>
+      <div data-type="web"><a href="https://example.org/c"><span class="title">Span title</span></a></div>
+      <div data-type="web-news"><a href="https://example.org/d"><div class="title">Not an item</div></a></div>
     </div>
   </body>
 </html>
