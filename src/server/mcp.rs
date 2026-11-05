@@ -282,6 +282,8 @@ fn validate(
 }
 
 /// What the tools do; the real one searches, tests use a stub.
+// `async_trait` marks its boxed futures `#[must_use]` (newer clippy flags it).
+#[allow(clippy::double_must_use)]
 #[async_trait]
 pub(crate) trait Runner: Send + Sync {
     /// Run one search tool; rows are the result dicts.

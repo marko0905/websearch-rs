@@ -38,6 +38,8 @@ pub use registry::EngineRegistry;
 /// client; they receive their own [`HttpClient`] (one per engine, kept for the
 /// life of the [`crate::WebSearchClient`], as upstream caches one engine
 /// instance per `DDGS`).
+// `async_trait` marks its boxed futures `#[must_use]` (newer clippy flags it).
+#[allow(clippy::double_must_use)]
 #[async_trait::async_trait]
 pub trait SearchEngine<Req, Res>: Send + Sync
 where

@@ -168,7 +168,7 @@ impl<R: Rankable> ResultsAggregator<R> {
     /// first-seen order).
     pub fn extract(self) -> Vec<R> {
         let mut entries = self.entries;
-        entries.sort_by(|a, b| b.2.cmp(&a.2));
+        entries.sort_by_key(|entry| std::cmp::Reverse(entry.2));
         entries.into_iter().map(|(_, item, _)| item).collect()
     }
 }
